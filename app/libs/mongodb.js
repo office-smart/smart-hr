@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose')
 
-const uri = 'mongodb://localhost:27017/stok'
+const uri = process.env.MONGO_URI
 
 const connect = async () => {
     try {
