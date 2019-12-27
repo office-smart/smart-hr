@@ -1,0 +1,106 @@
+//- Users
+div(tabindex="-1" class="modal fade" id="modal-form-user" style="display: none;" aria-hidden="true")
+	div(class="modal-dialog")
+		div(class="modal-content")
+			div(class="modal-header")
+				h2(class="pmd-card-title-text" style="min-width: 300px;") Tambah User
+			
+			div(class="modal-body")
+				form(class="form-horizontal")
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Username
+						input(type="text" class="mat-input form-control" id="username" value="")
+						//- span(class="help-text") required! 
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Email
+						input(type="email" class="mat-input form-control" id="email" value="")
+					
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Role
+						select(class="mat-input form-control" id="role")
+							option(value="user") User
+							option(value="admin") Admin
+					
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Password
+						input(type="password" class="mat-input form-control" id="password" value="")
+					
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Konfirmasi Password
+						input(type="text" class="mat-input form-control" id="confirm" value="")
+					
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(class="control-label") Keterangan
+						textarea(required class="form-control", id="description")
+					
+			div(class="pmd-modal-action pmd-modal-bordered text-right")
+				button(data-dismiss="modal" class="btn pmd-ripple-effect btn-danger" style="float: left;" type="button") Batalkan
+				button(class="btn pmd-ripple-effect btn-primary" type="button" onclick="fn.createNewUser()") Simpan
+
+//- Transactions
+div(tabindex="-1" class="modal fade" id="form-transaction" style="display: none;" aria-hidden="true")
+	div(class="modal-dialog")
+		div(class="modal-content")
+			div(class="modal-header")
+				h2(class="pmd-card-title-text" style="min-width: 300px;") Tambah Transaksi
+			
+			div(class="modal-body")
+				form(class="form-horizontal")
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Type
+						select(class="mat-input form-control" id="trx_type")
+							option(value="user") Trx Keluar
+							option(value="admin") Trx Masuk
+					
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Tanggal
+						input(type="date" class="mat-input form-control" id="trx_date" value="")
+						//- span(class="help-text") required! 
+
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Produk
+						select(class="mat-input form-control pmd-select2" id="trx_product")
+							option(value="Prd 1") Product 1
+							option(value="Prd 2") Product 2
+							option(value="Prd 3") Product 3
+					
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Qty
+						input(type="number" class="mat-input form-control" id="trx_qty" value="")
+					
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(class="control-label") Keterangan
+						textarea(required class="form-control", id="trx_description")
+					
+			div(class="pmd-modal-action pmd-modal-bordered text-right")
+				button(data-dismiss="modal" class="btn pmd-ripple-effect btn-danger" style="float: left;" type="button") Batalkan
+				button(data-dismiss="modal" class="btn pmd-ripple-effect btn-primary" type="button") Simpan
+
+//- Products
+div(tabindex="-1" class="modal fade" id="form-product" style="display: none;" aria-hidden="true") 
+	div(class="modal-dialog") 
+		div(class="modal-content") 
+			div(class="modal-header") 
+				h2(class="pmd-card-title-text" style="min-width: 300px;") Tambah Produk
+			
+			div(class="modal-body") 
+				form(class="form-horizontal")
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Kode Produk
+						input(type="text" class="mat-input form-control" id="prd_id" value="")
+						//- span(class="help-text") required! 
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Nama Produk
+						input(type="text" class="mat-input form-control" id="prd_name" value="")
+					
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(for="first-name") Stok
+						input(type="number" class="mat-input form-control" id="prd_qty" value="")
+					
+					div(class="form-group pmd-textfield pmd-textfield-floating-label")
+						label(class="control-label") Keterangan
+						textarea(required, class="form-control", id="prd_description")
+					
+			div(class="pmd-modal-action pmd-modal-bordered text-right")
+				button(data-dismiss="modal" class="btn pmd-ripple-effect btn-danger" style="float: left;" type="button") Batalkan
+				button(data-dismiss="modal" class="btn pmd-ripple-effect btn-primary" type="button") Simpan

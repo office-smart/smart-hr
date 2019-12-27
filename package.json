@@ -1,0 +1,30 @@
+{
+  "name": "nodefrog-framework-api",
+  "version": "1.0.0",
+  "description": "nodejs blogs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon --watch app --watch package.json -x node server.js",
+    "debug": "PORT=3002 nodemon --watch app --watch package.json -x node --inspect-brk server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rohmanahmad",
+  "contacts": {
+    "email": "rohmanmail@gmail.com",
+    "website": "https://rohman.web.id"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "md5": "^2.2.1",
+    "mongoose": "^5.8.1",
+    "pug": "^2.0.4",
+    "redis": "^2.8.0",
+    "validator": "^12.1.0"
+  },
+  "devDependencies": {}
+}

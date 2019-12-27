@@ -1,0 +1,106 @@
+div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
+	div(class="container-fluid")
+		div(class=", component-box") 
+			div(class="pmd-card pmd-z-depth") 
+				div(class="pmd-tabs")
+					div(class="pmd-tab-active-bar", style="width: 104px; left: 0px;")
+					ul(class="nav nav-tabs", role="tablist", style="width: 323.047px;")
+						li(role="presentation", class="active")
+							a(href="#all", aria-controls="all", role="tab", data-toggle="tab", aria-expanded="true") Semua
+						li(role="presentation", class="")
+							a(href="#keluar", aria-controls="keluar", role="tab", data-toggle="tab", aria-expanded="false") Keluar
+						li(role="presentation", class="")
+							a(href="#masuk", aria-controls="masuk", role="tab", data-toggle="tab", aria-expanded="false") Masuk
+				
+				div(class="pmd-card-body")
+					div(class="tab-content")
+						div(role="tabpanel", class="tab-pane active", id="all") 
+							div(class="component-box")
+								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
+									div(class="pmd-table-card")
+										table(class="table pmd-table")
+											thead
+												tr
+													th #
+													th Tanggal
+													th Tipe Transaksi
+													th Nama Produk
+													th Qty
+													th Nominal
+													th 
+											tbody
+												tr
+													td(data-title="#") 1
+													td(data-title="Tanggal") 21 Juli 2019
+													td(data-title="Tipe Transaksi") trx_masuk
+													td(data-title="Nama Produk") Produk 1
+													td(data-title="Qty") 10
+													td(data-title="Nominal") 20K
+													td(data-title="Action")
+														a(href="javascript:void(0);")
+															i(class="material-icons md-dark pmd-sm") more_vert
+												tr
+													td(data-title="#") 2
+													td(data-title="Tanggal") 11 Januari 2019
+													td(data-title="Tipe Transaksi") trx_keluar
+													td(data-title="Nama Produk") Produk 2
+													td(data-title="Qty") 10
+													td(data-title="Nominal") 20K
+													td(data-title="Action")
+														a(href="javascript:void(0);")
+															i(class="material-icons md-dark pmd-sm") more_vert
+									
+						div(role="tabpanel", class="tab-pane", id="keluar") 
+							div(class="component-box")
+								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
+									div(class="pmd-table-card")
+										table(class="table pmd-table")
+											thead
+												tr
+													th #
+													th Tanggal
+													th Tipe Transaksi
+													th Nama Produk
+													th Qty
+													th Nominal
+													th 
+											tbody
+												tr
+													td(data-title="#") 1
+													td(data-title="Tanggal") 21 Juli 2019
+													td(data-title="Tipe Transaksi") trx_masuk
+													td(data-title="Nama Produk") Produk 1
+													td(data-title="Qty") 10
+													td(data-title="Nominal") 20K
+													td(data-title="Action")
+														a(href="javascript:void(0);")
+															i(class="material-icons md-dark pmd-sm") more_vert
+							
+						div(role="tabpanel", class="tab-pane", id="masuk")
+							div(class="component-box")
+								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
+									div(class="pmd-table-card")
+										table(class="table pmd-table")
+											thead
+												tr
+													th #
+													th Tanggal
+													th Tipe Transaksi
+													th Nama Produk
+													th Qty
+													th Nominal
+													th 
+											tbody
+												tr
+													td(data-title="#") 1
+													td(data-title="Tanggal") 11 Januari 2019
+													td(data-title="Tipe Transaksi") trx_keluar
+													td(data-title="Nama Produk") Produk 2
+													td(data-title="Qty") 10
+													td(data-title="Nominal") 20K
+													td(data-title="Action")
+														a(href="javascript:void(0);")
+															i(class="material-icons md-dark pmd-sm") more_vert
+
+button(data-target="#form-transaction", data-toggle="modal", class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary", style="position: fixed; bottom: 20px; right: 20px;")
+	i(class="material-icons pmd-sm") add

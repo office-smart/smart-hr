@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Users
+        link(rel="stylesheet", href="//fonts.googleapis.com/icon?family=Material+Icons")
+        link(rel="stylesheet", href="/vendor/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/vendor/propeller/css/propeller.min.css")
+        link(rel="stylesheet", href="/vendor/propeller/css/propeller-theme.css")
+        link(rel="stylesheet", href="/vendor/propeller/css/propeller-admin.css")
+    body(class="body-custom")
+        //- start content
+        include components/header.pug
+        //- include components/menu.pug
+        div(class="logincard")
+            div(class="pmd-card card-default pmd-z-depth")
+                div(class="login-card")
+                    div(class="pmd-card-body")
+                        div(class="alert alert-success", role="alert") Oh snap! Change a few things up and try submitting again. 
+                        div(class="form-group pmd-textfield pmd-textfield-floating-label")
+                            label(for="inputError1", class="control-label pmd-input-group-label") Username
+                            div(class="input-group")
+                                div(class="input-group-addon")
+                                    i(class="material-icons md-dark pmd-sm") perm_identity
+                                input(type="text", class="form-control", autocomplete="off", id="input-username")
+                        
+                        div(class="form-group pmd-textfield pmd-textfield-floating-label")
+                            label(for="inputError1", class="control-label pmd-input-group-label") Password
+                            div(class="input-group")
+                                div(class="input-group-addon")
+                                    i(class="material-icons md-dark pmd-sm") lock_outline
+                                input(type="text", class="form-control", autocomplete="off", id="input-password")
+                    
+                    div(class="pmd-card-footer card-footer-no-border card-footer-p16 text-center")
+                        div(class="form-group clearfix")
+                            div(class="checkbox pull-left")
+                                //- label(class="pmd-checkbox checkbox-pmd-ripple-effect")
+                                //-     input(type="checkbox", checked="", value="", class="pmd-checkbox")
+                                //-     | Remember me
+                            
+                            div(class="pull-right forgot-password")
+                                //- a(href="javascript:void(0);") Forgot password?
+                        
+                        button(type="submit", class="btn pmd-ripple-effect btn-primary btn-block", onclick="fn.doLogin();") Login
+                        
+        //- end content
+        script(src="/vendor/jquery/jquery-1.12.2.min.js")
+        script(src="/vendor/bootstrap/js/bootstrap.min.js")
+        script(src="/vendor/propeller/js/propeller.min.js")
+        script(src="/assets/modules/utils.js")
+        script(src="/assets/modules/login.js")
