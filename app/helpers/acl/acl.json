@@ -1,0 +1,32 @@
+{
+    "roles": [
+        "admin",
+        "user"
+    ],
+    "resources": {
+        "user": [
+            "create",
+            "delete",
+            "edit",
+            "read"
+        ],
+        "permissions": [
+            "create",
+            "delete",
+            "edit",
+            "read"
+        ],
+        "dashboard": [
+            "read"
+        ]
+    },
+    "grants": {
+        "admin": [
+            "user:add",
+            "user:edit",
+            "user:delete",
+            "user:read",
+            "user:visit"
+        ]
+    }
+}
