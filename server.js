@@ -1,15 +1,18 @@
 'use strict'
 
 require('dotenv').config()
-const {join} = require('path')
+const { join } = require('path')
 const mongodbConnection = require('./app/libs/mongodb')
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const backendRoutes = require('./app/routes/backendRoutes')
 const frontendRoutes = require('./app/routes/frontendRoutes')
+const Acl = require('./app/helpers/access')
+const access = require('./app/helpers/acl/acl.json')
 const app = express()
 const port = process.env.PORT
 
+app.locals.Acl = new Acl(access)
 app.use(cookieParser()) // using cookie parser
 app.use(express.static('public', {}))
 

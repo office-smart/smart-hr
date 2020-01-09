@@ -23,6 +23,10 @@ utils.jquery = function (selector) {
     return $(this.selectors[selector] || selector);
 }
 
+utils.canAccess = function(access,requestAccess){
+    return access.filter(item => item == requestAccess).length > 0
+}
+
 utils.getInputValue = function (selectors) { // selectors => object
     try {
         if (!selectors) throw new Error('No Selector');

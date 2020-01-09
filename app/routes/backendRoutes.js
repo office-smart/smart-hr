@@ -9,7 +9,7 @@ const UserController = require('../controllers/UserController')
 
 // middlewares
 const TokenAuth = require('../middlewares/TokenAuthMiddleware')
-const { ApiAccess } = require('../middlewares/AccessMiddleware')
+const { CanAccess } = require('../middlewares/AccessMiddleware')
 
 router.get('/', (req, res) => {
     res.send({
@@ -20,12 +20,8 @@ router.get('/', (req, res) => {
 // login route
 router.post('/user/login', [UserController.login])
 
-// product routes
-router.get('/products', [TokenAuth, ApiAccess, ProductController.getProduct])
-router.get('/products/create', [TokenAuth, ApiAccess, ProductController.create])
-
 // users routes
-router.get('/users', [TokenAuth, ApiAccess, UserController.getUsers])
-router.post('/users/create', [TokenAuth, ApiAccess, UserController.create])
+router.get('/users', [TokenAuth, CanAccess('user:read'), UserController.getUsers])
+router.post('/users/create', [TokenAuth, CanAccess('user:create'), UserController.create])
 
 module.exports = router
