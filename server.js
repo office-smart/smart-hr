@@ -8,7 +8,8 @@ const cookieParser = require('cookie-parser')
 const backendRoutes = require('./app/routes/backendRoutes')
 const frontendRoutes = require('./app/routes/frontendRoutes')
 const app = express()
-const port = process.env.PORT
+const host = process.env.HOST || '127.0.0.1'
+const port = process.env.PORT || 3003
 
 app.use(cookieParser()) // using cookie parser
 app.use(express.static('public', {}))
@@ -38,7 +39,7 @@ app.all('*', (req, res) => {
 
 mongodbConnection()
     .then(() => {
-        app.listen(port, console.log(`app listen on ${port}`))
+        app.listen(port, host, console.log(`app listen on ${port}`))
     })
     .catch((err) => {
         console.log(err)

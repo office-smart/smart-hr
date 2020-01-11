@@ -1,12 +1,12 @@
 {
   "name": "nodefrog-framework-api",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "nodejs blogs",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon --watch app --watch package.json -x node server.js",
-    "debug": "PORT=3002 nodemon --watch app --watch package.json -x node --inspect-brk server.js",
+    "dev": "nodemon --watch app --watch server.js --watch package.json -x node server.js",
+    "debug": "PORT=3002 nodemon --watch server.js --watch app --watch package.json -x node --inspect-brk server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "rohmanahmad",

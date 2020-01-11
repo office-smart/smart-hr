@@ -4,7 +4,8 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title Users
+        title #{ title || 'Login' }
+        script(src="/modules/listener.js")
         link(rel="stylesheet", href="//fonts.googleapis.com/icon?family=Material+Icons")
         link(rel="stylesheet", href="/vendor/bootstrap/css/bootstrap.min.css")
         link(rel="stylesheet", href="/vendor/propeller/css/propeller.min.css")
@@ -13,7 +14,6 @@ html(lang="en")
     body(class="body-custom")
         //- start content
         include components/header.pug
-        //- include components/menu.pug
         div(class="logincard")
             div(class="pmd-card card-default pmd-z-depth")
                 div(class="login-card")
@@ -24,14 +24,14 @@ html(lang="en")
                             div(class="input-group")
                                 div(class="input-group-addon")
                                     i(class="material-icons md-dark pmd-sm") perm_identity
-                                input(type="text", class="form-control", autocomplete="off", id="input-username")
+                                input(type="text", class="form-control", autocomplete="off", id="input-username", autofocus="true")
                         
                         div(class="form-group pmd-textfield pmd-textfield-floating-label")
                             label(for="inputError1", class="control-label pmd-input-group-label") Password
                             div(class="input-group")
                                 div(class="input-group-addon")
                                     i(class="material-icons md-dark pmd-sm") lock_outline
-                                input(type="text", class="form-control", autocomplete="off", id="input-password")
+                                input(type="password", class="form-control", autocomplete="off", id="input-password")
                     
                     div(class="pmd-card-footer card-footer-no-border card-footer-p16 text-center")
                         div(class="form-group clearfix")
@@ -41,7 +41,7 @@ html(lang="en")
                                 //-     | Remember me
                             
                             div(class="pull-right forgot-password")
-                                //- a(href="javascript:void(0);") Forgot password?
+                                a(href="/forgot") Forgot password?
                         
                         button(type="submit", class="btn pmd-ripple-effect btn-primary btn-block", onclick="fn.doLogin();") Login
                         
@@ -49,5 +49,5 @@ html(lang="en")
         script(src="/vendor/jquery/jquery-1.12.2.min.js")
         script(src="/vendor/bootstrap/js/bootstrap.min.js")
         script(src="/vendor/propeller/js/propeller.min.js")
-        script(src="/assets/modules/utils.js")
-        script(src="/assets/modules/login.js")
+        script(src="/modules/utils.js")
+        script(src="/modules/login.js")

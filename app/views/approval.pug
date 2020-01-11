@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title #{ title } Approval
+        script(src="/modules/listener.js")
+        link(rel="stylesheet", href="//fonts.googleapis.com/icon?family=Material+Icons")
+        link(rel="stylesheet", href="/vendor/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/vendor/propeller/css/propeller.min.css")
+        link(rel="stylesheet", href="/vendor/propeller/css/propeller-theme.css")
+        link(rel="stylesheet", href="/vendor/propeller/css/propeller-admin.css")
+        link(rel="stylesheet", href="/assets/css/style.css")
+    body
+        //- start content
+        include components/header.pug
+        include components/menu.pug
+        include page-components/approval-content.pug
+        include components/modals.pug
+        //- end content
+        script(src="/vendor/jquery/jquery-1.12.2.min.js")
+        script(src="/vendor/bootstrap/js/bootstrap.min.js")
+        script(src="/vendor/propeller/js/propeller.min.js")
+        script(src="/modules/utils.js")
+        script(src="/modules/approval.js")

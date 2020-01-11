@@ -7,6 +7,7 @@ fn.selectors = {
 
 fn.init = function () {
     ls.clear();
+    fn.listenEnter(fn.doLogin);
 }
 
 fn.doLogin = function () {
@@ -29,7 +30,7 @@ fn.doLogin = function () {
             window.location.href = '/users';
         })
         .catch(function (err) {
-            alert(err.message);
+            fn.alertError(err.error);
         });
 }
 
