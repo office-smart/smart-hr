@@ -22,20 +22,7 @@ fn.loadingUser = function () {
 
 fn.getUsers = function () {
     try {
-        fn.sendXHR({
-            url: '/api/users',
-            method: 'GET',
-            beforeSend: function () {
-                fn.loadingUser();
-            },
-            data: {}
-        })
-            .then(function (data) {
-                fn.updateRowUserData(data);
-            })
-            .catch(function (err) {
-                throw err;
-            });
+        
     } catch (err) {
         console.error(err);
     }
