@@ -26,6 +26,7 @@ fn.doLogin = function () {
         if (key === 'token') currentToken = res[key]
       }
       document.cookie = 'x_stok_key=' + currentToken
+      debugger
       window.location.href = '/users'
     })
     .catch(function (err) {

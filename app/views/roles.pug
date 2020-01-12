@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible" content="ie=edge")
+        title Users
+        link(rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons")
+        link(rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/vendor/propeller/css/propeller.min.css")
+        link(rel="stylesheet" href="/vendor/propeller/css/propeller-theme.css")
+        link(rel="stylesheet" href="/vendor/propeller/css/propeller-admin.css")
+        link(rel="stylesheet" href="/assets/css/style.css")
+        //- link(rel="stylesheet" href="/vendor/select2/css/select2.min.css")
+        //- link(rel="stylesheet" href="/vendor/select2/css/select2-bootstrap.css")
+        //- link(rel="stylesheet" href="/vendor/select2/css/pmd-select2.css")
+
+        link(rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css')
+        link(rel='stylesheet' type='text/css' href='https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css')
+        link(rel='stylesheet' type='text/css' href='https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css')
+        link(rel="stylesheet" href="/vendor/datatable/css/pmd-datatable.css")
+    body
+        //- start content
+        include components/header.pug
+        include components/menu.pug
+        include components/roles-content.pug
+        include components/modal/role.pug
+        include components/footer.pug
+        //- end content
+        script(src="/vendor/jquery/jquery-1.12.2.min.js")
+        script(src="/vendor/bootstrap/js/bootstrap.min.js")
+        script(src="/vendor/propeller/js/propeller.min.js")
+        //- script(src="/vendor/select2/js/select2.js")
+        //- script(src="/vendor/select2/js/pmd-select2.js"
+        script(src="/assets/modules/utils.js")
+        script(src="/assets/modules/roles.js")
+        //- datatables
+        script(type='text/javascript' language='javascript' src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')
+        script(type='text/javascript' language='javascript' src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js')
+        script(type='text/javascript' language='javascript' src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js')
+        script(type='text/javascript' language='javascript' src='https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js')
+        //- end datatables

@@ -15,7 +15,10 @@ controller.forgot = (req, res) => {
   res.render('forgot', { activeMenu: '' })
 }
 controller.users = (req, res) => {
-  res.render('users', { activeMenu: 'users', title: 'User' })
+  res.render('users', { activeMenu: 'users', title: 'User Page' })
+}
+controller.roles = (req, res) => {
+  res.render('roles', { activeMenu: 'roles', title: 'Role Page' })
 }
 
 module.exports = controller

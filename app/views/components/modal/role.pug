@@ -1,0 +1,28 @@
+div(tabindex="-1" class="modal fade" id="modal-form-role" style="display: none;" aria-hidden="true")
+    div(class="modal-dialog")
+        div(class="modal-content")
+            div(class="modal-header")
+                h2(class="pmd-card-title-text" style="min-width: 300px;") Add Role
+
+            div(class="modal-body")
+                form#create-role-form(class="form-horizontal")
+                    div(class="form-group pmd-textfield pmd-textfield-floating-label")
+                        label Role Name
+                        input(type="text" class="mat-input form-control" name="role_name" id="role_name" value="")
+                                
+                    div(class="pmd-card pmd-z-depth pmd-card-custom-view")
+                        div(class="pmd-table-card")
+                            table#resources-form-table(class="table pmd-table")
+                                thead
+                                    tr
+                                        th Resources
+                                        th Create
+                                        th Delete
+                                        th Edit
+                                        th Read
+                                        th Visit
+                                tbody#resource-body
+
+            div(class="pmd-modal-action pmd-modal-bordered text-right")
+                    button(data-dismiss="modal" class="btn pmd-ripple-effect btn-danger" style="float: left;" type="button") Batalkan
+                    button(class="btn pmd-ripple-effect btn-primary" type="button" onclick="fn.createNewRole()") Simpan

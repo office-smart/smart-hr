@@ -16,5 +16,6 @@ router.get('/', (req, res) => {
 router.get('/login', [viewController.login])
 router.get('/logout', [viewController.logout])
 router.get('/users', [CookieAuth, CanAccess('user:visit'), viewController.users])
+router.get('/roles', [CookieAuth, CanAccess('role:visit'), viewController.roles])
 
 module.exports = router

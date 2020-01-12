@@ -1,10 +1,10 @@
 'use strict'
-
+const { join } = require('path')
 const { result } = require('lodash')
 
 class Acl {
-  constructor (access) {
-    this.access = access
+  constructor (data) {
+    this.data = data
   }
 
   setRole (role) {
@@ -13,28 +13,39 @@ class Acl {
   }
 
   can (requestAccess) {
-    const access = result(this.access, `grants.${this.role}`)
+    const access = result(this.data, `grants.${this.role}`)
     return access.filter(item => item === requestAccess).length > 0
   }
 
-  getResource () {
-
+  getResources (resourceType) {
+    const resources = result(this.data, 'resources', [])
+    if (resourceType && resources.length > 0) {
+      return resources.filter(e => e === resourceType)
+    } else {
+      return resources
+    }
   }
 
-  getRole () {
-
+  getRoles () {
+    return result(this.data, 'roles', [])
   }
 
   saveRule () {
-
+    return require('fs').writeFileSync(join(__dirname, '/acl/acl.json'), JSON.stringify(this.data))
   }
 
-  addRole () {
-
+  addRole (newRole) {
+    const role = result(this.data, 'roles', [])
+    role.push(newRole)
+    return this
   }
 
-  getAccess (resources = null) {
-    const access = result(this.access, `grants.${this.role}`)
+  deleteRole (roleTarget) {
+    this.data.roles = this.data.roles.filter(e => e !== roleTarget)
+  }
+
+  getAccessByResource (resources = null, role = null) {
+    const access = result(this.data, `grants.${(role || this.role)}`)
     if (resources) {
       return access
     } else {
@@ -42,12 +53,29 @@ class Acl {
     }
   }
 
-  addAccess () {
-
+  setAcces (access = [], role = null) {
+    role = role || this.role
+    this.data.grants[role] = []
+    if (typeof access === 'string') {
+      this.data.grants[role].push(access)
+    } else {
+      access.map(e => this.data.grants[role].push(e))
+    }
+    return this
   }
 
-  deleteAccess () {
+  deleteAccess (permission, role) {
+    role = role || this.role
+    this.data.grants[role] = this.data.grants[role].filter(e => e !== role + ':' + permission)
+  }
 
+  getAccessByPermission (permission = null, role = null) {
+    const access = this.data.grants[role]
+    if (access && access.length > 0) {
+      return access.filter(e => e.split(':')[1] === permission).map(e => e.split(':')[0])
+    } else {
+      return []
+    }
   }
 }
 

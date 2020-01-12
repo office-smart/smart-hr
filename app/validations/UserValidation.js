@@ -36,7 +36,7 @@ class UserValidations {
             try {
               const isPasswordValid = await bcrypt.compare(value, user.password)
               if (!isPasswordValid) {
-                return Promise.reject('username or password are wrong, please try again')
+                return Promise.reject('username or password is wrong, please try again')
               }
               return value
             } catch (error) {

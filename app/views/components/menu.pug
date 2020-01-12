@@ -15,19 +15,15 @@ aside(id="basicSidebar", class="pmd-sidebar  sidebar-default pmd-sidebar-slide-p
 			//- ul(class="dropdown-menu")
 			//- 	li
 			//- 		a(href="login.html") Logout
-			
-		li
-			a(class="pmd-ripple-effect " + (activeMenu === 'transactions' ? 'active': ''), href="/transactions")
-				i(class="media-left media-middle material-icons") import_export 
-				span(class="media-body") Transaksi
-		li
-			a(class="pmd-ripple-effect " + (activeMenu === 'products' ? 'active': ''), href="/products")
-				i(class="media-left media-middle material-icons") local_mall 
-				span(class="media-body") Produk
 		li
 			a(class="pmd-ripple-effect " + (activeMenu === 'users' ? 'active': ''), href="/users")
 				i(class="media-left media-middle material-icons") supervisor_account
 				span(class="media-body") User Akun
+
+		li
+			a(class="pmd-ripple-effect " + (activeMenu === 'roles' ? 'active': ''), href="/roles")
+				i(class="media-left media-middle material-icons") supervisor_account
+				span(class="media-body") Role Setting
 
 		li(style="background: #5a2c2c;")
 			a(class="pmd-ripple-effect", href="/logout")

@@ -2,7 +2,7 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const { join } = require('path')
 
-const Acl = require('./app/helpers/ValidationHelper')
+const Acl = require('./app/helpers/AclHelper')
 const access = require('./app/helpers/acl/acl.json')
 
 module.exports = (app, express) => {
