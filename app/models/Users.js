@@ -5,12 +5,19 @@ const mongoose = require('mongoose')
 const schema = new mongoose
     .Schema({
         _id: mongoose.Types.ObjectId,
-        userId: String,
         username: String,
         password: String,
         email: String,
         status: Number,
-        roleType: String,
+        /* 
+        apps: {
+            hr: {
+                access: []
+            }
+        }
+        */
+        apps: {},
+        roleType: String, // user, admin, 
         createAt: Date,
         updateAt: Date
     })

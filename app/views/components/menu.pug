@@ -7,28 +7,15 @@ aside(id="basicSidebar", class="pmd-sidebar  sidebar-default pmd-sidebar-slide-p
 				div(class="media-left")
 					img(src="/vendor/images/user-icon.png", alt="New User")
 				
-				div(class="media-body media-middle", id="current-user") Your Username
+				div(class="media-body media-middle", id="current-user") ####
 				
 				div(class="media-right media-middle")
 					i(class="dic-more-vert dic")
-				
-			//- ul(class="dropdown-menu")
-			//- 	li
-			//- 		a(href="login.html") Logout
-			
-		li
-			a(class="pmd-ripple-effect " + (activeMenu === 'transactions' ? 'active': ''), href="/transactions")
-				i(class="media-left media-middle material-icons") import_export 
-				span(class="media-body") Transaksi
-		li
-			a(class="pmd-ripple-effect " + (activeMenu === 'products' ? 'active': ''), href="/products")
-				i(class="media-left media-middle material-icons") local_mall 
-				span(class="media-body") Produk
-		li
-			a(class="pmd-ripple-effect " + (activeMenu === 'users' ? 'active': ''), href="/users")
-				i(class="media-left media-middle material-icons") supervisor_account
-				span(class="media-body") User Akun
-
+		each val, index in menus
+			li
+				a(class="pmd-ripple-effect " + val['class'], href=val['link'])
+					i(class="media-left media-middle material-icons") #{ val['icon'] } 
+					span(class="media-body") #{ val['title'] }
 		li(style="background: #5a2c2c;")
 			a(class="pmd-ripple-effect", href="/logout")
 				i(class="media-left media-middle material-icons") power_off
