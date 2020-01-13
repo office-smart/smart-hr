@@ -1,24 +1,12 @@
 'use strict'
-
-const { getAccess } = require('../helpers/access')
-
-exports.ApiAccess = async (req, res, next) => {
+exports.CanAccess = (can) => {
+  return function (req, res, next) {
     try {
-        req.roleAccess = req.config.user.roleType
-        next()
+      const hasAccess = req.app.locals.Acl.setRole(req.config.user.roleType).can(can)
+      if (!hasAccess) throw new Error('Access Denied!')
+      next()
     } catch (err) {
-        res.render('page-unauthorized')
+      res.status(403).render('page-unauthorized')
     }
-}
-
-exports.ViewAccess = async (req, res, next) => {
-    try {
-        const endpoint = req.originalUrl
-        const hasAccess = getAccess(req.config.user.roleType, endpoint)
-        req.roleAccess = req.config.user.roleType
-        if (!hasAccess) throw new Error('Access Denied!')
-        next()
-    } catch (err) {
-        res.render('page-unauthorized')
-    }
+  }
 }

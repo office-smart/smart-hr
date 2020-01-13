@@ -8,10 +8,10 @@ const viewController = require('../controllers/ViewController')
 
 // middlewares
 const CookieAuth = require('../middlewares/CookieAuthMiddleware')
-const { ViewAccess } = require('../middlewares/AccessMiddleware')
+const { CanAccess } = require('../middlewares/AccessMiddleware')
 
 router.get('/', (req, res) => {
-    res.redirect('/transactions')
+  res.redirect('/users')
 })
 router.get('/login', [viewController.login])
 router.get('/logout', [viewController.logout])
@@ -26,5 +26,7 @@ router.get('/calendar', [/* CookieAuth, ViewAccess,  */viewController.calendar])
 router.get('/tasks', [/* CookieAuth, ViewAccess,  */viewController.tasks])
 router.get('/my-inbox', [/* CookieAuth, ViewAccess,  */viewController.myinbox])
 router.get('/approval', [/* CookieAuth, ViewAccess,  */viewController.approval])
+router.get('/users', [CookieAuth, CanAccess('user:visit'), viewController.users])
+router.get('/roles', [CookieAuth, CanAccess('role:visit'), viewController.roles])
 
 module.exports = router
