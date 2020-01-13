@@ -49,10 +49,10 @@ controller.forgot = (req, res) => {
   res.render('forgot', { activeMenu: '' })
 }
 controller.users = (req, res) => {
-  res.render('users', { activeMenu: 'users', title: 'User Page' })
+  res.render('users', { menus: loadMenu(req.lang, 'users'), activeMenu: 'users', title: 'User Page' })
 }
 controller.roles = (req, res) => {
-  res.render('roles', { activeMenu: 'roles', title: 'Role Page' })
+  res.render('roles', { menus: loadMenu(req.lang, 'roles'), activeMenu: 'roles', title: 'Role Page' })
 }
 
 module.exports = controller

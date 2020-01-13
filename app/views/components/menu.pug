@@ -16,14 +16,6 @@ aside(id="basicSidebar", class="pmd-sidebar  sidebar-default pmd-sidebar-slide-p
                 a(class="pmd-ripple-effect " + val['class'], href=val['link'])
                     i(class="media-left media-middle material-icons") #{ val['icon'] } 
                     span(class="media-body") #{ val['title'] }
-            a(class="pmd-ripple-effect " + (activeMenu === 'users' ? 'active': ''), href="/users")
-                i(class="media-left media-middle material-icons") supervisor_account
-                span(class="media-body") User Akun
-
-        li
-            a(class="pmd-ripple-effect " + (activeMenu === 'roles' ? 'active': ''), href="/roles")
-                i(class="media-left media-middle material-icons") supervisor_account
-                span(class="media-body") Role Setting
 
         li(style="background: #5a2c2c;")
             a(class="pmd-ripple-effect", href="/logout")
