@@ -27,7 +27,7 @@ fn.doLogin = function () {
                 if (key === 'token') currentToken = res[key];
             }
             document.cookie = 'x_stok_key=' + currentToken;
-            window.location.href = '/users';
+            window.location.href = '/dashboard';
         })
         .catch(function (err) {
             fn.alertError(err.error);

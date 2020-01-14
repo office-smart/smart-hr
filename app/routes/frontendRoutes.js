@@ -11,7 +11,7 @@ const CookieAuth = require('../middlewares/CookieAuthMiddleware')
 const { ViewAccess } = require('../middlewares/AccessMiddleware')
 
 router.get('/', (req, res) => {
-    res.redirect('/transactions')
+    res.redirect('/dashboard')
 })
 router.get('/login', [viewController.login])
 router.get('/logout', [viewController.logout])

@@ -1,18 +1,261 @@
+mixin dateDropdown(min=0, max=30, withTitle=false, customId={day: "join-date-day", month: "join-date-month", year: "join-date-year"})
+	.row
+		.col-md-3.col-sm-3.col-xs-3
+			.form-group.pmd-textfield
+				- var n = 1;
+				if withTitle
+					label.control-label(for='') Day
+				select.form-control(name="day", id=customId.day)
+					while n <= 31
+						option(value=n) #{ n++ }
+		.col-md-1.col-sm-1.col-xs-1
+		.col-md-3.col-sm-3.col-xs-3
+			.form-group.pmd-textfield
+				- var n = 1;
+				if withTitle
+					label.control-label(for='') Month
+				select.form-control(name="month", id=customId.month)
+					while n <= 12
+						option(value=n) #{ n++ }
+		.col-md-1.col-sm-1.col-xs-1
+		.col-md-4.col-sm-4.col-xs-4
+			.form-group.pmd-textfield
+				- var n = parseInt(new Date().getFullYear() - min);
+				- var nEnd = parseInt(n) - max;
+				if withTitle
+					label.control-label(for='') Year
+				select.form-control(name="year", id=customId.year)
+					while n > nEnd
+						option(value=n) #{ n-- }
+
 mixin employmentInfo
-	| employment info
+	.component-box
+		.pmd-card.pmd-z-depth.pmd-card-custom-form
+			.pmd-card-body
+				.row
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='company-name') Company Name
+							input#company-name.form-control(type='text')
+						.form-group.pmd-textfield
+							label.control-label(for='job-position') Job Position
+							input#job-position.form-control(type='text')
+						.form-group.pmd-textfield
+							label.control-label(for='employment-status') Employment Status
+							input#employment-status.form-control(type='text')
+						.form-group.pmd-textfield
+							label.control-label(for='join-date') Join Date
+							+dateDropdown(0, 30, false)
+						
+					.col-md-1
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='organization-name') Organization Name
+							input#organization-name.form-control(type='text')
+						.form-group.pmd-textfield
+							label.control-label(for='job-title') Job Title
+							input#job-title.form-control(type='text')
+						.form-group.pmd-textfield
+							label.control-label(for='branch-id') Brach Id
+							input#branch-id.form-control(type='text')
+						.form-group.pmd-textfield
+							br
+							button.btn.btn-primary.pmd-ripple-effect(onclick="", style="float: right;") Save Changes
 
 mixin personalInfo
-	| personal info
+	.component-box
+		.pmd-card.pmd-z-depth.pmd-card-custom-form
+			.pmd-card-body
+				.row
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='employee-id') Employee ID
+							input#employee-id.form-control(type='text')
+					.col-md-1
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='fullname') Full Name
+							input#fullname.form-control(type='text')
+				.row
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='lastname') Last Name
+							input#lastname.form-control(type='text')
+					.col-md-1
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='email-address') Email Address
+							input#email-address.form-control(type='text')
+				.row
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='barcode') Barcode
+							input#barcode.form-control(type='text')
+					.col-md-1
+					.col-md-5
+						.form-group.pmd-textfield
+							.row
+								.col-md-4
+									label.control-label(for='identity-type') Identity Type
+									select#identity-type.form-control(name='identity')
+										for val, key in {'national-identity': 'KTP', 'driving-license': 'SIM', 'passport': 'Passport'}
+											option(value=key) #{val}
+								.col-md-8
+									.form-group.pmd-textfield
+										label.control-label(for='identity-no') Identity No
+										input#identity-no.form-control(type='text')
+				.row
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='address') Address
+							textarea#address.form-control(name="address", style="height: 30px;")
+					.col-md-1
+					.col-md-3
+						.form-group.pmd-textfield
+							label.control-label(for='city') City
+							input#city.form-control(type='text')
+					.col-md-2
+						.form-group.pmd-textfield
+							label.control-label(for='postal-code') Postal Code
+							input#postal-code.form-control(type='text')
+				.row
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='place-of-birth') Place Of Birth
+							input#place-of-birth.form-control(name="place-of-birth")
+					.col-md-1
+					.col-md-5
+						+dateDropdown(14, 60, true, {day: "birth-date-day", month: "birth-date-month", year: "birth-date-year"})
+				.row
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='phone1') Phone Number #1
+							input#phone1.form-control(name="phone1")
+					.col-md-1
+					.col-md-5
+						.form-group.pmd-textfield
+							label.control-label(for='phone2') Phone Number #2
+							input#phone2.form-control(type='text')
+				.row
+					.col-md-5
+						.row
+							.col-md-6.col-xs-6-col-sm-6
+								.form-group.pmd-textfield
+									label.control-label(for='gender') Gender
+									br
+									label.radio-inline.pmd-radio(style="padding-top: 10px;")
+										input#inlineRadio1(type='radio' name='gender' value='male' checked="true")
+										span(for='inlineRadio1') Male
+									label.radio-inline.pmd-radio(style="padding-top: 10px;")
+										input#inlineRadio2(type='radio' name='gender' value='female')
+										span(for='inlineRadio2') Female
+							.col-md-6.col-xs-6-col-sm-6
+								.form-group.pmd-textfield
+									label.control-label(for='marital-status') Marital Status
+									select#marital-status.form-control(type='maritalstatus')
+										option(value="single") Single
+										option(value="married") Married
+					.col-md-1
+					.col-md-5
+						.row
+							.col-md-6.col-xs-6-col-sm-6
+								.form-group.pmd-textfield
+									label.control-label(for='blood-type') Blood Type
+									select#blood-type.form-control(type='blood')
+										each bld in ['none', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+											option(value=bld) #{bld}
+							.col-md-6.col-xs-6-col-sm-6
+								.form-group.pmd-textfield
+									label.control-label(for='religion') Religion
+									select#religion.form-control(type='religion-status')
+										option(value="islam") Islam
+										option(value="crist") Cristen
+										option(value="catholic") Catholic
+										option(value="hindu") Hindu
+										option(value="budha") Budha
+						.row
+							.col-md-12
+								button.btn.btn-primary.pmd-ripple-effect(onclick="", style="float: right;margin-top: 30px;") Update Info
 
 mixin familyInfo
-	| family info
-
+	.component-box
+		.pmd-card.pmd-z-depth.pmd-card-custom-view
+			.row
+				.col-md-10.col-xs-7.col-sm-7
+					h2(style="padding-left: 10px;") Family Data
+				.col-md-2.col-xs-5.col-sm-5(style="padding-top: 10px;")
+					button.btn.btn-primary.pmd-ripple-effect(onclick="", style="") Add New
+			.pmd-table-card
+				table.table.pmd-table
+					thead
+						tr
+							th #
+							th Fullname
+							th Relationship
+							th Birth Date
+							th Identity No
+							th Marital Status
+							th Gender
+							th 
+					tbody(id="family-data-content")
+						tr
+							td(data-title='#') 1
+							td(data-title='Fullname') Giacomo Guilizzoni
+							td(data-title='Relationship') Father
+							td(data-title='Birth Date') 1 June 2014
+							td(data-title='Identity No') 611826454635
+							td(data-title='Marital Status') Married
+							td(data-title='Gender') Male
+							td(data-title)
+								a(href='javascript:void(0);')
+									i.material-icons.md-dark.pmd-sm more_vert
+				//- .row
+				//- 	.col-md-12
+				//- 		.pmd-table-card
+				//- 			table.table.pmd-table
+				//- 				thead
+				//- 					tr
+				//- 						th #
+				//- 						th 
+				//- 						th Relationship
+				//- 						th 
+				//- 						th 
+				//- 						th 
+				//- 				tbody(id="emergency-contact-content")
+			hr
+			.row
+				.col-md-10.col-xs-7.col-sm-7
+					h2(style="padding-left: 10px;") Emergecy Contacts
+				.col-md-2.col-xs-5.col-sm-5(style="padding-top: 10px;")
+					button.btn.btn-primary.pmd-ripple-effect(onclick="", style="") Add New
+			.pmd-table-card
+				table.table.pmd-table
+					thead
+						tr
+							th #
+							th Name
+							th Relationship
+							th Phone Number
+							th Email
+							th Gender
+							th 
+					tbody(id="family-data-content")
+						tr
+							td(data-title='#') 1
+							td(data-title='Fullname') Giacomo Guilizzoni
+							td(data-title='Relationship') Uncle
+							td(data-title='Phone Number') 0823393883
+							td(data-title='Email') jhon@example.com
+							td(data-title='Gender') Male
+							td(data-title)
+								a(href='javascript:void(0);')
+									i.material-icons.md-dark.pmd-sm more_vert
 
 div(class="component-box")
 	div(class="pmd-card")
-		h1 You can edit this information about yourself
+		h1(style="padding: 5px;") You can edit this information about yourself
 div(class="component-box") 
-	div(class="pmd-card pmd-z-depth")  
+	div(class="pmd-card pmd-z-depth dropdown-tab")  
 		div(class="pmd-tabs") 
 			div(class="pmd-tab-active-bar") 
 			ul(class="nav nav-tabs" role="tablist") 

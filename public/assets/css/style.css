@@ -10,3 +10,6 @@
 .border-red {
     border-left: 5px solid rgb(240, 54, 54);
 }
+.form-control {
+    border-bottom: solid 0.5px #e6e6e6 !important;
+}
