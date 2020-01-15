@@ -251,27 +251,28 @@ mixin familyInfo
 								a(href='javascript:void(0);')
 									i.material-icons.md-dark.pmd-sm more_vert
 
-div(class="component-box")
-	div(class="pmd-card")
-		h1(style="padding: 5px;") You can edit this information about yourself
-div(class="component-box") 
-	div(class="pmd-card pmd-z-depth dropdown-tab")  
-		div(class="pmd-tabs") 
-			div(class="pmd-tab-active-bar") 
-			ul(class="nav nav-tabs" role="tablist") 
-				li(role="presentation" class="active") 
-					a(href="#employment-info" aria-controls="employment-info" role="tab" data-toggle="tab") Employment Info
-				li(role="presentation") 
-					a(href="#personal-info" aria-controls="personal-info" role="tab" data-toggle="tab") Personal Info
-				li(role="presentation") 
-					a(href="#family-info" aria-controls="family-info" role="tab" data-toggle="tab") Family Info
-		
-		div(class="pmd-card-body") 
-			div(class="tab-content") 
-				div(role="tabpanel" class="tab-pane active" id="employment-info")
-					+employmentInfo
-				div(role="tabpanel" class="tab-pane" id="personal-info")
-					+personalInfo
-				div(role="tabpanel" class="tab-pane" id="family-info")
-					+familyInfo
+mixin generalInformation
+	div(class="component-box")
+		div(class="pmd-card")
+			h1(style="padding: 5px;") You can edit this information about yourself
+	div(class="component-box") 
+		div(class="pmd-card pmd-z-depth dropdown-tab")  
+			div(class="pmd-tabs") 
+				div(class="pmd-tab-active-bar") 
+				ul(class="nav nav-tabs" role="tablist") 
+					li(role="presentation" class="active") 
+						a(href="#employment-info" aria-controls="employment-info" role="tab" data-toggle="tab") Employment Info
+					li(role="presentation") 
+						a(href="#personal-info" aria-controls="personal-info" role="tab" data-toggle="tab") Personal
+					li(role="presentation") 
+						a(href="#family-info" aria-controls="family-info" role="tab" data-toggle="tab") Family Info
 			
+			div(class="pmd-card-body") 
+				div(class="tab-content") 
+					div(role="tabpanel" class="tab-pane active" id="employment-info")
+						+employmentInfo
+					div(role="tabpanel" class="tab-pane" id="personal-info")
+						+personalInfo
+					div(role="tabpanel" class="tab-pane" id="family-info")
+						+familyInfo
+				

@@ -1,10 +1,16 @@
+include mixins/myinfo/general.pug
+include mixins/myinfo/payroll.pug
+include mixins/myinfo/timeoff.pug
+include mixins/myinfo/overtime.pug
+include mixins/myinfo/delegation.pug
+
 div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
 	div(class="container-fluid")
 		div(class="component-box") 
 			div(class="pmd-card pmd-z-depth") 
 				div(class="pmd-tabs")
-					div(class="pmd-tab-active-bar", style="width: 104px; left: 0px;")
-					ul(class="nav nav-tabs", role="tablist", style="width: 323.047px;")
+					div(class="pmd-tab-active-bar", style="")
+					ul(class="nav nav-tabs", role="tablist", style="")
 						li(role="presentation", class="active")
 							a(href="#general", aria-controls="general", role="tab", data-toggle="tab", aria-expanded="true") General Info
 						li(role="presentation", class="")
@@ -21,20 +27,20 @@ div(id="content", class="pmd-content content-area dashboard", style="padding-bot
 						div(role="tabpanel", class="tab-pane active", id="general") 
 							div(class="component-box")
 								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
-									include items/myinfo/general.pug
+									+generalInformation
 						div(role="tabpanel", class="tab-pane", id="payroll") 
 							div(class="component-box")
 								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
-									include items/myinfo/payroll.pug
+									+payrollInfo
 						div(role="tabpanel", class="tab-pane", id="timeoff") 
 							div(class="component-box")
 								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
-									include items/myinfo/timeoff.pug
+									+timeoffInfo
 						div(role="tabpanel", class="tab-pane", id="overtime") 
 							div(class="component-box")
 								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
-									include items/myinfo/overtime.pug
+									+overtimeInfo
 						div(role="tabpanel", class="tab-pane", id="delegation") 
 							div(class="component-box")
 								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
-									include items/myinfo/delegation.pug
+									+delegationInfo

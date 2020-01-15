@@ -767,7 +767,7 @@ var pmdDropdown = function ($) {
     }
 
     function hideBsDropdownDesktop(e) {
-        	var hassidebar = $(e.target).closest(Selector.PMD_SIDEBAR).hasClass(ClassName.PMD_SIDEBAR);
+            var hassidebar = $(e.target).closest(Selector.PMD_SIDEBAR).hasClass(ClassName.PMD_SIDEBAR);
 			var dropdowncenter = $(e.target).find(Selector.DROPDOWN_MENU).hasClass(ClassName.CENTER);
 			var that = $(e.target).find(Selector.DROPDOWN_MENU);
 			if ($(window).width() < minimumSize) {
@@ -1401,7 +1401,7 @@ var pmdTab = function ($) {
 	
    /**
 	* ------------------------------------------------------------------------
-	* Functions
+	* Functions 413
 	* ------------------------------------------------------------------------
 	*/
 
@@ -1409,7 +1409,9 @@ var pmdTab = function ($) {
         var itemsWidth = 0;
         $this.find(Selector.LI).each(function () {
             var itemWidth = $(this)[0].getBoundingClientRect().width;
+            // var itemWidth = $(this).first().outerWidth();
             itemsWidth += itemWidth;
+            // console.log($(this)[0], itemWidth);
         });
         return itemsWidth;
     }
@@ -1418,7 +1420,7 @@ var pmdTab = function ($) {
         if ($this.find(Selector.UL_NAV_TABS).hasClass(ClassName.NAV_JUSTIFIED)) {
             $this.find(Selector.UL_NAV_TABS).width("100%");
         } else {
-            $this.find(Selector.UL_NAV_TABS).width(widthOfList($this));
+            $this.find(Selector.UL_NAV_TABS).width(widthOfList($this) + 100);
         }
     }
 
