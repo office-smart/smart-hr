@@ -1,4 +1,5 @@
 include ../summary-overtime.pug
+include ../table/table-head.pug
 
 mixin overtimeInfo
 	div(class="component-box")
@@ -11,8 +12,8 @@ mixin overtimeInfo
 				.col-md-3.col-xs-6
 					+summaryOvertime
 	div(class="component-box")
-		.pmd-card.pmd-z-depth
-			.pmd-card-body
+		.pmd-card(style="margin-bottom: 0px;")
+			.pmd-card-body(style="min-height: 0px;")
 				.row
 					.col-md-2
 						.form-group.pmd-textfield
@@ -33,19 +34,10 @@ mixin overtimeInfo
 					.col-md-1(style="padding-top: 10px;")
 						button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;")
 							i(class="material-icons md-light pmd-sm") search
-		div(class="pmd-card pmd-z-depth pmd-card-custom-view")
+		div(class="pmd-card pmd-card-custom-view")
 			div(class="pmd-table-card", style="max-height: 500px;overflow: auto;")
 				table(class="table pmd-table")
-					thead
-						tr
-							th #
-							th Date
-							th Start Time
-							th End Time
-							th Total Hours
-							th Status
-							th Notes
-							th 
+					+generateTableHead(["#", "Date", "Start Time", "End Time", "Total Hours", "Status", "Notes", "Actions"])
 					tbody
 						tr
 							td(data-title="#") 1

@@ -1,18 +1,19 @@
 include ../remainder-timeoff.pug
+include ../table/table-head.pug
 
 mixin timeoffInfo
 	div(class="component-box")
 		div(class="pmd-card")
 			.row(style="padding: 10px;")
-				.col-md-7
+				.col-md-6
 					h1(style="padding: 5px;") Time Off Information
 				.col-md-2
 					a.btn.btn-primary.pmd-ripple-effect(href="/timeoff/create", style="float: right;margin-top: 100px;") Request Timeoff
-				.col-md-2.col-xs-6
+				.col-md-3.col-xs-6
 					+remainderTimeoff
 	div(class="component-box")
-		.pmd-card.pmd-z-depth
-			.pmd-card-body
+		.pmd-card(style="margin-bottom: 0px;")
+			.pmd-card-body(style="min-height: 0px;")
 				.row
 					.col-md-2
 						.form-group.pmd-textfield
@@ -41,19 +42,10 @@ mixin timeoffInfo
 					.col-md-1(style="padding-top: 10px;")
 						button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;")
 							i(class="material-icons md-light pmd-sm") search
-		div(class="pmd-card pmd-z-depth pmd-card-custom-view")
+		div(class="pmd-card pmd-card-custom-view")
 			div(class="pmd-table-card", style="max-height: 500px;overflow: auto;")
 				table(class="table pmd-table")
-					thead
-						tr
-							th #
-							th Type
-							th Start Date
-							th End Date
-							th Total Days
-							th Status
-							th Notes
-							th 
+					+generateTableHead(["#", "Type", "Start Date", "End Date", "Total Days", "Status", "Notes", "Actions"])
 					tbody
 						tr
 							td(data-title="#") 1

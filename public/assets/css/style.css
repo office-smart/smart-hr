@@ -13,3 +13,6 @@
 .form-control {
     border-bottom: solid 0.5px #e6e6e6 !important;
 }
+input[type="text"] {
+    margin-top: 5px;
+}

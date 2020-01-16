@@ -1,12 +1,18 @@
+include mixins/table/table-head.pug
+
 div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
 	div(class="container-fluid")
 		div(class=", component-box") 
 			div(class="pmd-card pmd-z-depth") 
 				div(class="pmd-tabs")
-					div(class="pmd-tab-active-bar", style="width: 104px; left: 0px;")
-					ul(class="nav nav-tabs", role="tablist", style="width: 323.047px;")
+					div(class="pmd-tab-active-bar", style="")
+					ul(class="nav nav-tabs", role="tablist", style="")
 						li(role="presentation", class="active")
-							a(href="#all", aria-controls="all", role="tab", data-toggle="tab", aria-expanded="true") Semua
+							a(href="#all", aria-controls="all", role="tab", data-toggle="tab", aria-expanded="true") All Employees
+						li(role="presentation", class="")
+							a(href="#attendance", aria-controls="attendance", role="tab", data-toggle="tab", aria-expanded="true") Attendances
+						li(role="presentation", class="")
+							a(href="#schedule", aria-controls="schedule", role="tab", data-toggle="tab", aria-expanded="true") Schedules
 				
 				div(class="pmd-card-body")
 					div(class="tab-content")
@@ -15,24 +21,20 @@ div(id="content", class="pmd-content content-area dashboard", style="padding-bot
 								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
 									div(class="pmd-table-card")
 										table(class="table pmd-table")
-											thead
-												tr
-													th #
-													th Tanggal
-													th Tipe Transaksi
-													th Nama Produk
-													th Qty
-													th Nominal
-													th 
+											+generateTableHead(["#", "Photo", "Full Name", "Employee ID", "Barcode", "Organization", "Job Position", "Job Title", "Hire Date", "Status", "Actions"])
 											tbody
 												tr
 													td(data-title="#") 1
-													td(data-title="Tanggal") 21 Juli 2019
-													td(data-title="Tipe Transaksi") trx_masuk
-													td(data-title="Nama Produk") Produk 1
-													td(data-title="Qty") 10
-													td(data-title="Nominal") 20K
-													td(data-title="Action")
+													td(data-title="Photo") 
+													td(data-title="Full Name") Akhmad Abdul Rohman
+													td(data-title="Employee ID") 10001
+													td(data-title="Barcode") 1
+													td(data-title="Organization") Ivosights
+													td(data-title="Job Position") Head
+													td(data-title="Job Title") Tech Developer
+													td(data-title="Hire Date") 
+													td(data-title="Status") 20K
+													td(data-title="Actions")
 														a(href="javascript:void(0);")
 															i(class="material-icons md-dark pmd-sm") more_vert
 
