@@ -8,6 +8,7 @@ module.exports = {
         myinbox: 'My Inbox',
         payroll: 'Payroll',
         tasks: 'Tasks',
+        administration: 'Administration',
         timeoff: 'Timeoff'
     }
 }

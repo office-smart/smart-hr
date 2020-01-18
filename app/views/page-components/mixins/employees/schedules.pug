@@ -1,0 +1,43 @@
+include ../buttons/floating-button.pug
+
+mixin filterSchedule(opts)
+	.row
+		if (!opts.myAccount)
+		.col-md-3
+			.form-group.pmd-textfield
+				label.control-label(for='employee-name') Employee Name
+				input#employee-name.form-control(type='text')
+		.col-md-3
+			.form-group.pmd-textfield
+				label.control-label(for='employee-name') Date
+				input#employee-name.form-control(type='text')
+		.col-md-2
+			button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
+				i(class="material-icons md-light pmd-sm") search
+				
+mixin schedules(opts)
+	+floatingButton({ btnClass: 'btn-primary visible-xs visible-sm', dataTarget: '#modal-schedule-create', icon: 'add' })
+	div(class="component-box")
+		div(class="pmd-card pmd-card-custom-view")
+			div(class="pmd-table-card")
+				.row
+					.col-md-7
+						+filterSchedule(opts)
+					.col-md-4.hidden-xs.hidden-sm
+						button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
+							i(class="material-icons md-light pmd-sm") add
+				hr
+				table(class="table pmd-table")
+					+generateTableHead(["#", "Date", "Start Time", "End Time", "Full Name", "Agenda", "Description", "Actions"])
+					tbody
+						tr
+							td(data-title="#") 1
+							td(data-title="Date Time") 12 Jan 2020
+							td(data-title="Start Time") 14:00
+							td(data-title="End Time") 15:00
+							td(data-title="Full Name") Akhmad Abdul Rohman
+							td(data-title="Agenda") Meeting
+							td(data-title="Description") Meet with commbank for feature release
+							td(data-title="Actions")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert

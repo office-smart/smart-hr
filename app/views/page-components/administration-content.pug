@@ -1,0 +1,33 @@
+include mixins/table/table-head.pug
+include mixins/employees/all-employees.pug
+include mixins/employees/attendances.pug
+include mixins/employees/schedules.pug
+
+div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
+	div(class="container-fluid")
+		div(class="component-box") 
+			div(class="pmd-card pmd-z-depth")
+				div(class="pmd-tabs")
+					div(class="pmd-tab-active-bar", style="")
+					ul(class="nav nav-tabs", role="tablist", style="")
+						li(role="presentation", class="active")
+							a(href="#company-info", aria-controls="company-info", role="tab", data-toggle="tab", aria-expanded="true") About Company
+						li(role="presentation", class="")
+							a(href="#broadcast", aria-controls="broadcast", role="tab", data-toggle="tab", aria-expanded="true") Broadcast
+						li(role="presentation", class="")
+							a(href="#employees", aria-controls="employees", role="tab", data-toggle="tab", aria-expanded="true") Employees
+						li(role="presentation", class="")
+							a(href="#calendars", aria-controls="calendars", role="tab", data-toggle="tab", aria-expanded="true") Calendars
+						li(role="presentation", class="")
+							a(href="#payroll", aria-controls="payroll", role="tab", data-toggle="tab", aria-expanded="true") Payroll
+						li(role="presentation", class="")
+							a(href="#logs", aria-controls="logs", role="tab", data-toggle="tab", aria-expanded="true") Logs
+				hr
+				div(class="pmd-card-body")
+					div(class="tab-content")
+						div(role="tabpanel", class="tab-pane active", id="employees") 
+							+allEmployees({ isAdmin: true })
+						div(role="tabpanel", class="tab-pane", id="attendances") 
+							+attendances({ isAdmin: true })
+						div(role="tabpanel", class="tab-pane", id="schedules") 
+							+schedules({ isAdmin: true })

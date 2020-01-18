@@ -1,3 +1,5 @@
+include global-components/header.pug
+
 <!DOCTYPE html>
 html(lang="en")
     head
@@ -13,7 +15,7 @@ html(lang="en")
         link(rel="stylesheet", href="/vendor/propeller/css/propeller-admin.css")
     body(class="body-custom")
         //- start content
-        include components/header.pug
+        +Header({title, isLogin: false})
         div(class="logincard")
             div(class="pmd-card card-default pmd-z-depth")
                 div(class="login-card")
@@ -36,6 +38,6 @@ html(lang="en")
         //- end content
         script(src="/vendor/jquery/jquery-1.12.2.min.js")
         script(src="/vendor/bootstrap/js/bootstrap.min.js")
-        script(src="/vendor/propeller/js/propeller.min.js")
+        script(src="/vendor/propeller/js/propeller.js")
         script(src="/modules/utils.js")
         script(src="/modules/login.js")

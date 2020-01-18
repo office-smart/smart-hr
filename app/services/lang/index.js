@@ -48,6 +48,12 @@ exports.menus = function (type = 'en', active = 'dashboard') {
         icon: 'memory',
         title: m.tasks,
         link: '/tasks'
+    },{
+        id: 'administration',
+        class: '',
+        icon: 'tune',
+        title: m.administration,
+        link: '/administration'
     }]
     return menus.map(x => {
         if (active === x.id) x.class = 'active'

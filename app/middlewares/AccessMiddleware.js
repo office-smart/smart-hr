@@ -13,12 +13,12 @@ exports.ApiAccess = async (req, res, next) => {
 
 exports.ViewAccess = async (req, res, next) => {
     try {
-        const endpoint = req.originalUrl
-        const hasAccess = getAccess(req.config.user.roleType, endpoint)
-        req.roleAccess = req.config.user.roleType
-        if (!hasAccess) throw new Error('Access Denied!')
+        // const endpoint = req.originalUrl
+        // const hasAccess = getAccess(req.config.user.roleType, endpoint)
+        // req.roleAccess = req.config.user.roleType
+        // if (!hasAccess) throw new Error('Access Denied!')
         next()
     } catch (err) {
-        res.render('page-unauthorized')
+        res.render('page-unauthorized', {title: 'Access Denied'})
     }
 }

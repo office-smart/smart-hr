@@ -1,30 +1,7 @@
+include mixins/comming-soon.pug
+
 div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
 	div(class="container-fluid")
-		div(class=", component-box") 
+		div(class="component-box") 
 			div(class="pmd-card pmd-z-depth") 
-				div(class="pmd-tabs")
-					div(class="pmd-tab-active-bar", style="width: 104px; left: 0px;")
-					ul(class="nav nav-tabs", role="tablist", style="width: 323.047px;")
-						li(role="presentation", class="active")
-							a(href="#all", aria-controls="all", role="tab", data-toggle="tab", aria-expanded="true") Semua
-				
-				div(class="pmd-card-body")
-					div(class="tab-content")
-						div(role="tabpanel", class="tab-pane active", id="all") 
-							div(class="component-box")
-								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
-									div(class="pmd-table-card")
-										table(class="table pmd-table")
-											thead
-												tr
-													th #
-													th Role Type
-													th User ID
-													th Username
-													th Email
-													th Status
-													th 
-											tbody(id="users-content")
-
-button(id="modal-trigger-add", data-target="#modal-form-user", data-toggle="modal", class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary hide", style="position: fixed; bottom: 20px; right: 20px;")
-	i(class="material-icons pmd-sm") add
+				+commingSoonContent

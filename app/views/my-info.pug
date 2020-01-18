@@ -1,3 +1,5 @@
+include global-components/header.pug
+include global-components/menu.pug
 <!DOCTYPE html>
 html(lang="en")
     head
@@ -14,10 +16,10 @@ html(lang="en")
         link(rel="stylesheet", href="/assets/css/style.css")
     body
         //- start content
-        include components/header.pug
-        include components/menu.pug
+        +Header({title, isLogin: true})
+        +Menus({ currentUser })
         include page-components/my-info-content.pug
-        include components/modals.pug
+        
         //- end content
         script(src="/vendor/jquery/jquery-1.12.2.min.js")
         script(src="/vendor/bootstrap/js/bootstrap.min.js")

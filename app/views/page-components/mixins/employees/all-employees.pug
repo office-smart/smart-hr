@@ -1,0 +1,56 @@
+include ../buttons/floating-button.pug
+
+mixin filterEmployee
+	.row
+		.col-md-3
+			.form-group.pmd-textfield
+				label.control-label(for='employee-name') Employee Name
+				input#employee-name.form-control(type='text')
+		.col-md-3
+			.form-group.pmd-textfield
+				label.control-label(for='job-position') Job Position
+				input#job-position.form-control(type='text')
+		.col-md-3
+			.form-group.pmd-textfield
+				label.control-label(for='employee-status') Status
+				select#employee-status.form-control(name='employeeStatus')
+					option(value="active") Active
+					option(value="probation") Probation
+					option(value="graduate") Graduate
+		.col-md-2
+			button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
+				i(class="material-icons md-light pmd-sm") search
+
+mixin allEmployees(opts)
+	if (opts.isAdmin)
+		+floatingButton({ icon: "add", dataTarget: "#modal-employee-create", btnClass: "btn-primary visible-xs visible-sm" })
+	div(class="component-box")
+		div(class="pmd-card pmd-card-custom-view")
+			div(class="pmd-table-card")
+				.row
+					.col-md-7
+						+filterEmployee
+					if (opts.isAdmin)
+						.col-md-4.hidden-xs.hidden-sm
+							button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
+								i(class="material-icons md-light pmd-sm") add
+				hr
+				table(class="table pmd-table")
+					+generateTableHead(["#", "Photo", "Full Name", "Employee ID", "Barcode", "Organization", "Job Position", "Job Title", "Hire Date", "Status", "Actions"])
+					tbody
+						tr
+							td(data-title="#") 1
+							td(data-title="Photo")
+								img.img-responsive(style="float: right;", data-src="holder.js/40x40", src="/uploads/profiles/preview-no-image.png")
+								hr(style="border: 0px solid;")
+							td(data-title="Full Name") Akhmad Abdul Rohman
+							td(data-title="Employee ID") 10001
+							td(data-title="Barcode") 1
+							td(data-title="Organization") Ivosights
+							td(data-title="Job Position") Head
+							td(data-title="Job Title") Tech Developer
+							td(data-title="Hire Date") 20 Jun 2020
+							td(data-title="Status") 20K
+							td(data-title="Actions")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert

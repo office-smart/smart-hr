@@ -26,7 +26,7 @@ fn.doLogin = function () {
                 ls.setItem(key, res[key]);
                 if (key === 'token') currentToken = res[key];
             }
-            document.cookie = 'x_stok_key=' + currentToken;
+            document.cookie = 'x_hr_key=' + currentToken;
             window.location.href = '/dashboard';
         })
         .catch(function (err) {

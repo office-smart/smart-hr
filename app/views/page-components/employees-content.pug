@@ -1,42 +1,27 @@
 include mixins/table/table-head.pug
+include mixins/employees/all-employees.pug
+include mixins/employees/attendances.pug
+include mixins/employees/schedules.pug
 
 div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
 	div(class="container-fluid")
-		div(class=", component-box") 
-			div(class="pmd-card pmd-z-depth") 
+		div(class="component-box") 
+			div(class="pmd-card pmd-z-depth")
 				div(class="pmd-tabs")
 					div(class="pmd-tab-active-bar", style="")
 					ul(class="nav nav-tabs", role="tablist", style="")
 						li(role="presentation", class="active")
 							a(href="#all", aria-controls="all", role="tab", data-toggle="tab", aria-expanded="true") All Employees
 						li(role="presentation", class="")
-							a(href="#attendance", aria-controls="attendance", role="tab", data-toggle="tab", aria-expanded="true") Attendances
+							a(href="#attendances", aria-controls="attendances", role="tab", data-toggle="tab", aria-expanded="true") Attendances
 						li(role="presentation", class="")
-							a(href="#schedule", aria-controls="schedule", role="tab", data-toggle="tab", aria-expanded="true") Schedules
-				
+							a(href="#schedules", aria-controls="schedules", role="tab", data-toggle="tab", aria-expanded="true") Schedules
+				hr
 				div(class="pmd-card-body")
 					div(class="tab-content")
 						div(role="tabpanel", class="tab-pane active", id="all") 
-							div(class="component-box")
-								div(class="pmd-card pmd-z-depth pmd-card-custom-view")
-									div(class="pmd-table-card")
-										table(class="table pmd-table")
-											+generateTableHead(["#", "Photo", "Full Name", "Employee ID", "Barcode", "Organization", "Job Position", "Job Title", "Hire Date", "Status", "Actions"])
-											tbody
-												tr
-													td(data-title="#") 1
-													td(data-title="Photo") 
-													td(data-title="Full Name") Akhmad Abdul Rohman
-													td(data-title="Employee ID") 10001
-													td(data-title="Barcode") 1
-													td(data-title="Organization") Ivosights
-													td(data-title="Job Position") Head
-													td(data-title="Job Title") Tech Developer
-													td(data-title="Hire Date") 
-													td(data-title="Status") 20K
-													td(data-title="Actions")
-														a(href="javascript:void(0);")
-															i(class="material-icons md-dark pmd-sm") more_vert
-
-button(data-target="#form-transaction", data-toggle="modal", class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary", style="position: fixed; bottom: 20px; right: 20px;")
-	i(class="material-icons pmd-sm") add
+							+allEmployees({ isAdmin: false })
+						div(role="tabpanel", class="tab-pane", id="attendances") 
+							+attendances({ isAdmin: false })
+						div(role="tabpanel", class="tab-pane", id="schedules") 
+							+schedules({ isAdmin: false })

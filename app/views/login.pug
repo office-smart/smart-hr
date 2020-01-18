@@ -1,3 +1,5 @@
+include global-components/header.pug
+
 <!DOCTYPE html>
 html(lang="en")
     head
@@ -13,10 +15,14 @@ html(lang="en")
         link(rel="stylesheet", href="/vendor/propeller/css/propeller-admin.css")
     body(class="body-custom")
         //- start content
-        include components/header.pug
+        +Header({title, isLogin: false})
         div(class="logincard")
             div(class="pmd-card card-default pmd-z-depth")
                 div(class="login-card")
+                    div(class="pmd-card-header text-center")
+                        //- https://cooltext.com/Logo-Design-Starburst
+                        img(src="/uploads/private/logo2.png", style="width: 220px;")
+                    br
                     div(class="pmd-card-body")
                         div(class="alert alert-success", role="alert") Oh snap! Change a few things up and try submitting again. 
                         div(class="form-group pmd-textfield pmd-textfield-floating-label")
@@ -48,6 +54,6 @@ html(lang="en")
         //- end content
         script(src="/vendor/jquery/jquery-1.12.2.min.js")
         script(src="/vendor/bootstrap/js/bootstrap.min.js")
-        script(src="/vendor/propeller/js/propeller.min.js")
+        script(src="/vendor/propeller/js/propeller.js")
         script(src="/modules/utils.js")
         script(src="/modules/login.js")

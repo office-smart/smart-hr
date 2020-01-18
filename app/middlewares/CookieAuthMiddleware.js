@@ -14,6 +14,7 @@ module.exports = async (req, res, next) => {
         req.config = { user }
         next()
     } catch (err) {
-        res.redirect('/login')
+        console.log(err)
+        // res.redirect('/login')
     }
 }
