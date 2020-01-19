@@ -1,6 +1,6 @@
 {
   "name": "nodefrog-framework-api",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "nodejs blogs",
   "main": "index.js",
   "scripts": {

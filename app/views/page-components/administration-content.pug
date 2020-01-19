@@ -1,7 +1,6 @@
 include mixins/table/table-head.pug
-include mixins/employees/all-employees.pug
-include mixins/employees/attendances.pug
-include mixins/employees/schedules.pug
+include mixins/administration/about-company.pug
+include mixins/administration/broadcast.pug
 
 div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
 	div(class="container-fluid")
@@ -26,8 +25,8 @@ div(id="content", class="pmd-content content-area dashboard", style="padding-bot
 				div(class="pmd-card-body")
 					div(class="tab-content")
 						div(role="tabpanel", class="tab-pane active", id="employees") 
-							+allEmployees({ isAdmin: true })
-						div(role="tabpanel", class="tab-pane", id="attendances") 
-							+attendances({ isAdmin: true })
+							+aboutCompany
+						div(role="tabpanel", class="tab-pane", id="broadcast") 
+							+broadcast
 						div(role="tabpanel", class="tab-pane", id="schedules") 
-							+schedules({ isAdmin: true })
+							//- +schedules({ isAdmin: true })

@@ -1,32 +1,4 @@
-mixin dateDropdown(min=0, max=30, withTitle=false, customId={day: "join-date-day", month: "join-date-month", year: "join-date-year"})
-	.row
-		.col-md-3.col-sm-3.col-xs-3
-			.form-group.pmd-textfield
-				- var n = 1;
-				if withTitle
-					label.control-label(for='') Day
-				select.form-control(name="day", id=customId.day)
-					while n <= 31
-						option(value=n) #{ n++ }
-		.col-md-1.col-sm-1.col-xs-1
-		.col-md-3.col-sm-3.col-xs-3
-			.form-group.pmd-textfield
-				- var n = 1;
-				if withTitle
-					label.control-label(for='') Month
-				select.form-control(name="month", id=customId.month)
-					while n <= 12
-						option(value=n) #{ n++ }
-		.col-md-1.col-sm-1.col-xs-1
-		.col-md-4.col-sm-4.col-xs-4
-			.form-group.pmd-textfield
-				- var n = parseInt(new Date().getFullYear() - min);
-				- var nEnd = parseInt(n) - max;
-				if withTitle
-					label.control-label(for='') Year
-				select.form-control(name="year", id=customId.year)
-					while n > nEnd
-						option(value=n) #{ n-- }
+include ../form-elements/date-picker.pug
 
 mixin employmentInfo
 	.component-box
