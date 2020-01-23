@@ -1,6 +1,10 @@
 include mixins/table/table-head.pug
 include mixins/administration/about-company.pug
 include mixins/administration/broadcast.pug
+include mixins/administration/employees.pug
+include mixins/administration/calendars.pug
+include mixins/administration/payroll.pug
+include mixins/administration/audits.pug
 
 div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
 	div(class="container-fluid")
@@ -20,13 +24,19 @@ div(id="content", class="pmd-content content-area dashboard", style="padding-bot
 						li(role="presentation", class="")
 							a(href="#payroll", aria-controls="payroll", role="tab", data-toggle="tab", aria-expanded="true") Payroll
 						li(role="presentation", class="")
-							a(href="#logs", aria-controls="logs", role="tab", data-toggle="tab", aria-expanded="true") Logs
+							a(href="#audit", aria-controls="audit", role="tab", data-toggle="tab", aria-expanded="true") Audit
 				hr
 				div(class="pmd-card-body")
 					div(class="tab-content")
-						div(role="tabpanel", class="tab-pane active", id="employees") 
+						div(role="tabpanel", class="tab-pane", id="company-info") 
 							+aboutCompany
 						div(role="tabpanel", class="tab-pane", id="broadcast") 
-							+broadcast
-						div(role="tabpanel", class="tab-pane", id="schedules") 
-							//- +schedules({ isAdmin: true })
+							+broadcastAdministration
+						div(role="tabpanel", class="tab-pane active", id="employees")
+							+employeesAdministration
+						div(role="tabpanel", class="tab-pane", id="calendars")
+							+calendarAdministration
+						div(role="tabpanel", class="tab-pane", id="payroll")
+							+payrollAdministration
+						div(role="tabpanel", class="tab-pane", id="audit") 
+							+auditAdministration

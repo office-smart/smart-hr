@@ -1,5 +1,3 @@
-include ../buttons/floating-button.pug
-
 mixin filterEmployee
 	.row
 		.col-md-3
@@ -22,18 +20,12 @@ mixin filterEmployee
 				i(class="material-icons md-light pmd-sm") search
 
 mixin allEmployees(opts)
-	if (opts.isAdmin)
-		+floatingButton({ icon: "add", dataTarget: "#modal-employee-create", btnClass: "btn-primary visible-xs visible-sm" })
 	div(class="component-box")
 		div(class="pmd-card pmd-card-custom-view")
 			div(class="pmd-table-card")
 				.row
 					.col-md-7
 						+filterEmployee
-					if (opts.isAdmin)
-						.col-md-4.hidden-xs.hidden-sm
-							button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
-								i(class="material-icons md-light pmd-sm") add
 				hr
 				table(class="table pmd-table")
 					+generateTableHead(["#", "Photo", "Full Name", "Employee ID", "Barcode", "Organization", "Job Position", "Job Title", "Hire Date", "Status", "Actions"])

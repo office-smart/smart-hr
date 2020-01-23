@@ -1,0 +1,166 @@
+include ../form-elements/date-picker.pug
+
+mixin employeeModalForm
+	.component-box
+		.pmd-card.pmd-card-custom-form
+			.pmd-card-body
+				.row
+					.col-md-12
+						h3 General Information
+						hr
+				.row
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-id') Employee ID
+							input#employee-id.form-control(type='text')
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-name') Employee Name
+							input#employee-name.form-control(type='text')
+				
+				.row
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-email') Email
+							input#employee-email.form-control(type='text')
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-phone-number') Phone Number
+							input#employee-phone-number.form-control(type='text')
+				
+				.row
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-place-of-birth') Place Of Birth
+							input#employee-place-of-birth.form-control(type='text')
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-date-of-birth') Date Of Birth
+							input#employee-date-of-birth.form-control(type='text')
+				
+				.row
+					.col-md-12
+						h3 Company Information
+						hr
+
+				.row
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-job-position') Job Position
+							input#employee-job-position.form-control(type='text')
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-job-title') Job Title
+							input#employee-job-title.form-control(type='text')
+				.row
+					.col-md-3
+						.form-group.pmd-textfield
+							label.control-label(for='employee-employee-status') Employee Status
+							input#employee-employee-status.form-control(type='text')
+					.col-md-9
+						.form-group.pmd-textfield
+							label.control-label(for='employee-join-date') Join Date
+							input#employee-join-date.form-control(type='text')
+				
+				.row
+					.col-md-12
+						h3 Payroll Information
+						hr
+
+				.row
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-salary') Salary
+							input#employee-salary.form-control(type='text')
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-tax-id') Tax ID (NPWP)
+							input#employee-tax-id.form-control(type='text')
+				.row
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-tax-status') Tax Status
+							input#employee-tax-status.form-control(type='text')
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-bank-name') Bank Name
+							input#employee-bank-name.form-control(type='text')
+				.row
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-bank-account-no') Bank Account No
+							input#employee-bank-account-no.form-control(type='text')
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-bank-account-holder') Bank Account Holder
+							input#employee-bank-account-holder.form-control(type='text')
+				.row
+					.col-md-4
+						.form-group.pmd-textfield
+							label.control-label(for='employee-task-configuration') Salary Configuration
+							.radio
+								label.pmd-radio.pmd-radio-ripple-effect
+									input#salary-config-gross(type='radio' name='salary-config' value='gross')
+									span(for='salary-config-gross') Gross
+							.radio
+								label.pmd-radio.pmd-radio-ripple-effect
+									input#salary-config-nett(type='radio' name='salary-config' value='nett' checked)
+									span(for='salary-config-nett') Nett
+					.col-md-4
+						.form-group.pmd-textfield
+							label.control-label(for='employee-task-configuration') Salary Type
+							.radio
+								label.pmd-radio.pmd-radio-ripple-effect
+									input#salary-config-daily(type='radio' name='salary-config-type' value='daily')
+									span(for='salary-config-daily') daily
+							.radio
+								label.pmd-radio.pmd-radio-ripple-effect
+									input#salary-config-monthly(type='radio' name='salary-config-type' value='monthly' checked)
+									span(for='salary-config-monthly') monthly
+					.col-md-4
+						.form-group.pmd-textfield
+							label.control-label(for='employee-task-configuration') Tax Configuration
+							.radio
+								label.pmd-radio.pmd-radio-ripple-effect
+									input#click(type='radio' name='tax-config' value='gross')
+									span(for='click') Gross
+							.radio
+								label.pmd-radio.pmd-radio-ripple-effect
+									input#click(type='radio' name='tax-config' value='nett' checked)
+									span(for='click') Nett
+
+				.row
+					.col-md-12
+						h3 Insurance
+						hr
+				.row
+					.col-md-3
+						.form-group.pmd-textfield
+							label.control-label(for='employee-insurance-type') Insurance Type
+							input#employee-insurance-type.form-control(type='text')
+					.col-md-6
+						.form-group.pmd-textfield
+							label.control-label(for='employee-insurance-account') Insurance Account
+							input#employee-insurance-account.form-control(type='text')
+					.col-md-3
+						.form-group.pmd-textfield
+							button.btn.btn-primary.pmd-btn Add
+				.row
+					.col-md-12
+						textarea.form-control
+				.row
+					.col-md-12
+						h3 
+				
+				.row
+					.col-md-12
+						button.btn.btn-primary.pmd-ripple-effect(onclick="", style="float: right;") Save Changes
+
+mixin employeesAdministration
+	div(class="component-box")
+		div(class="pmd-card")
+			h1(style="padding: 5px;") Company Employees
+	div(class="component-box") 
+		div(class="pmd-card dropdown-tab")  
+			div(class="pmd-card-body") 
+				+employeeModalForm
