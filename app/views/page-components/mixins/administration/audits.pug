@@ -1,42 +1,5 @@
-include ../form-elements/date-picker.pug
+include ../form-elements/forms.pug
 
-mixin broadcastForm
-	.component-box
-		.pmd-card.pmd-card-custom-form
-			.pmd-card-body
-				.row
-					.col-md-11
-						.form-group.pmd-textfield
-							label.control-label(for='broadcast-to') Broadcast To
-							input#broadcast-to.form-control(type='text')
-					.col-md-1
-						.form-group.pmd-checkbox(style="padding-top: 20px;text-align: right;")
-							label.pmd-checkbox.pmd-checkbox-ripple-effect(for='send-to-all')
-								input#send-to-all.pmd-checkbox-ripple-effect(type='checkbox')
-								span All
-				.row
-					.col-md-7
-						.form-group.pmd-textfield
-							label.control-label(for='broadcast-title') Subject / Title
-							input#broadcast-title.form-control(type='text')
-					.col-md-5
-						.row
-							.col-md-7
-								.form-group.pmd-textfield
-									label.control-label(for='broadcast-scheduled') Scheduled
-									+dateDropdown()
-							.col-md-5
-								.form-group.pmd-checkbox(style="padding-top: 20px;text-align: right;")
-									label.pmd-checkbox.pmd-checkbox-ripple-effect(for='broadcast-send-now')
-										input#broadcast-send-now.pmd-checkbox-ripple-effect(type='checkbox')
-										span Send Now
-				.row
-					.col-md-12
-						.form-group.pmd-textfield
-							label.control-label(for='broadcast-text') Text
-							textarea#broadcast-text.form-control(style="min-height: 230px;border: 0.3px solid #ececec")
-						br
-						button.btn.btn-primary.pmd-ripple-effect(onclick="", style="float: right;") Save Changes
 
 mixin auditAdministration
 	div(class="component-box")
@@ -45,4 +8,4 @@ mixin auditAdministration
 	div(class="component-box") 
 		div(class="pmd-card dropdown-tab")  
 			div(class="pmd-card-body") 
-				+broadcastForm
+				//- +broadcastForm

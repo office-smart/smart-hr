@@ -1,3 +1,4 @@
+include ../form-elements/forms.pug
 include ../remainder-timeoff.pug
 include ../table/table-head.pug
 
@@ -17,32 +18,14 @@ mixin timeoffInfo
 			.pmd-card-body(style="min-height: 0px;")
 				.row
 					.col-md-2
-						.form-group.pmd-textfield
-							label.control-label(for='filter-type') Type
-							select#filter-type.form-control(name='filterType')
-								option(value="") All
-								option(value="cuti-tahunan") Cuti Tahunan
-								option(value="cuti-melahirkan") Cuti Melahirkan
-								option(value="cuti-sakit") Cuti Sakit
+						+inputDropdown({name: 'filterType', title: 'Type', id: 'timeoff-type'}, [{name: '', title: 'All'},{name: 'cuti-tahunan', title: 'Cuti Tahunan'},{name: 'cuti-melahirkan', title: 'Cuti Melahirkan'},{name: 'cuti-sakit', title: 'Cuti Sakit'}])
 					.col-md-2
-						.form-group.pmd-textfield
-							label.control-label(for='start-date') Start Date
-							input#period.form-control(type='text')
+						+inputDropdownMonth({name: 'month', title: 'Month', id: 'timeoff-month'})
 					.col-md-2
-						.form-group.pmd-textfield
-							label.control-label(for='end-date') End Date
-							input#end-date.form-control(type='text')
-					.col-md-2
-						.form-group.pmd-textfield
-							label.control-label(for='filter-status') Status
-							select#filter-status.form-control(name='filterStatus')
-								option(value="") All
-								option(value="pending") Pending
-								option(value="approved") Approved
-								option(value="rejected") Rejected
+						+inputDropdown({name: 'timeoffStatus', title: 'Type', id: 'timeoff-status'}, [{name: '', title: 'All'},{name: 'pending', title: 'Pending'},{name: 'approved', title: 'Approved'},{name: 'rejected', title: 'Rejected'}])
 					.col-md-1(style="padding-top: 10px;")
-						button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;")
-							i(class="material-icons md-light pmd-sm") search
+						+rippleButtonIcon({class: 'btn-primary', style: "float: right;min-width: 50px;", icon: 'search', id: 'timeoff-search'})
+
 		div(class="pmd-card pmd-card-custom-view")
 			div(class="pmd-table-card", style="max-height: 500px;overflow: auto;")
 				table(class="table pmd-table")

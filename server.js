@@ -11,6 +11,7 @@ const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3003
 
+app.disable('view cache')
 app.use(cookieParser()) // using cookie parser
 app.use(express.static('public', {}))
 

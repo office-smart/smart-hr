@@ -1,4 +1,4 @@
-include ../form-elements/date-picker.pug
+include ../form-elements/forms.pug
 
 mixin employeeModalForm
 	.component-box
@@ -159,26 +159,15 @@ mixin employeeModalForm
 mixin filterEmployee
 	.row
 		.col-md-2
-			.form-group.pmd-textfield
-				label.control-label(for='employee-name') Employee Name
-				input#employee-name.form-control(type='text')
+			+inputTextField({title: "Employee Name", id: "employee-name"})
 		.col-md-2
-			.form-group.pmd-textfield
-				label.control-label(for='job-position') Job Position
-				input#job-position.form-control(type='text')
+			+inputTextField({title: "Job Position", id: "job-position"})
 		.col-md-2
-			.form-group.pmd-textfield
-				label.control-label(for='employee-status') Status
-				select#employee-status.form-control(name='employeeStatus')
-					option(value="active") Active
-					option(value="probation") Probation
-					option(value="graduate") Graduate
+			+inputDropdown({name: 'employeeStatus', title: 'Status', id: 'employee-status'}, [{name: 'active', title: 'Active'},{name: 'probation', title: 'Probation'},{name: 'graduate', title: 'Graduate'}])
 		.col-md-2.col-xs-9
-			button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
-				i(class="material-icons md-light pmd-sm") search
+			+rippleButtonIcon({class: 'btn-primary', style: "float: right;min-width: 50px;margin-top:8px;", icon: 'search', id: 'employee-search'})
 		.col-md-4.col-xs-3
-			button.btn.btn-primary.pmd-btn-raised.pmd-ripple-effect(style="float: right;min-width: 50px;margin-top:8px;")
-				i(class="material-icons md-light pmd-sm") create
+			+rippleButtonIcon({class: 'btn-primary', style: "float: right;min-width: 50px;margin-top:8px;", icon: 'create', id: 'employee-create'})
 
 mixin allEmployeesData(opts)
 	div(class="component-box")

@@ -1,32 +1,4 @@
-mixin dateDropdown(min=0, max=30, withTitle=false, customId={day: "join-date-day", month: "join-date-month", year: "join-date-year"})
-	.row
-		.col-md-3.col-sm-3.col-xs-3
-			.form-group.pmd-textfield
-				- var n = 1;
-				if withTitle
-					label.control-label(for='') Day
-				select.form-control(name="day", id=customId.day)
-					while n <= 31
-						option(value=n) #{ n++ }
-		.col-md-1.col-sm-1.col-xs-1
-		.col-md-3.col-sm-3.col-xs-3
-			.form-group.pmd-textfield
-				- var n = 1;
-				if withTitle
-					label.control-label(for='') Month
-				select.form-control(name="month", id=customId.month)
-					while n <= 12
-						option(value=n) #{ n++ }
-		.col-md-1.col-sm-1.col-xs-1
-		.col-md-4.col-sm-4.col-xs-4
-			.form-group.pmd-textfield
-				- var n = parseInt(new Date().getFullYear() - min);
-				- var nEnd = parseInt(n) - max;
-				if withTitle
-					label.control-label(for='') Year
-				select.form-control(name="year", id=customId.year)
-					while n > nEnd
-						option(value=n) #{ n-- }
+include ../form-elements/forms.pug
 
 mixin generalInfo
 	.component-box
@@ -34,36 +6,20 @@ mixin generalInfo
 			.pmd-card-body
 				.row
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='company-name') Company Name
-							input#company-name.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='main-address') Address
-							input#main-address.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='company-province') Province
-							input#company-province.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='company-city') City
-							input#company-city.form-control(type='text')
-						
+						+inputTextField({title: "Company Name", id: "company-name"})
+						+inputTextField({title: "Address", id: "main-address"})
+						+inputTextField({title: "Province", id: "company-province"})
+						+inputTextField({title: "City", id: "company-city"})
+
 					.col-md-1
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='postal-code') Postal Code
-							input#postal-code.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='office-number1') Office Phone Number #1
-							input#office-number.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='office-number2') Office Phone Number #2
-							input#office-number.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='office-email') Office Email
-							input#office-email.form-control(type='email')
+						+inputTextField({title: "Postal Code", id: "postal-code"})
+						+inputTextField({title: "Office Phone Number #1", id: "office-number1"})
+						+inputTextField({title: "Office Phone Number #2", id: "office-number2"})
+						+inputTextField({title: "Office Email", id: "office-email"})
 
 						br
-						button.btn.btn-primary.pmd-ripple-effect(onclick="", style="float: right;") Save Changes
+						+rippleButton({class: "btn-primary", onclick: "", style: "float: right;", title: 'Update'})
 
 mixin aboutCompany
 	div(class="component-box")
@@ -75,7 +31,7 @@ mixin aboutCompany
 				div(class="pmd-tab-active-bar") 
 				ul(class="nav nav-tabs" role="tablist") 
 					li(role="presentation" class="active") 
-						a(href="#general-info" aria-controls="general-info" role="tab" data-toggle="tab") General Info
+						a(href="#general-info" aria-controls="general-info" role="tab" data-toggle="tab") General
 			
 			div(class="pmd-card-body") 
 				div(class="tab-content") 

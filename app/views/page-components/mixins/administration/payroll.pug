@@ -1,42 +1,46 @@
-include ../form-elements/date-picker.pug
+include ../form-elements/forms.pug
 
-mixin broadcastForm
-	.component-box
-		.pmd-card.pmd-card-custom-form
-			.pmd-card-body
-				.row
-					.col-md-11
-						.form-group.pmd-textfield
-							label.control-label(for='broadcast-to') Broadcast To
-							input#broadcast-to.form-control(type='text')
-					.col-md-1
-						.form-group.pmd-checkbox(style="padding-top: 20px;text-align: right;")
-							label.pmd-checkbox.pmd-checkbox-ripple-effect(for='send-to-all')
-								input#send-to-all.pmd-checkbox-ripple-effect(type='checkbox')
-								span All
-				.row
-					.col-md-7
-						.form-group.pmd-textfield
-							label.control-label(for='broadcast-title') Subject / Title
-							input#broadcast-title.form-control(type='text')
-					.col-md-5
-						.row
-							.col-md-7
-								.form-group.pmd-textfield
-									label.control-label(for='broadcast-scheduled') Scheduled
-									+dateDropdown()
-							.col-md-5
-								.form-group.pmd-checkbox(style="padding-top: 20px;text-align: right;")
-									label.pmd-checkbox.pmd-checkbox-ripple-effect(for='broadcast-send-now')
-										input#broadcast-send-now.pmd-checkbox-ripple-effect(type='checkbox')
-										span Send Now
+mixin payrollfilter
+	div(class="component-box") 
+		.row
+			.col-md-3
+				+inputTextField({title: "Employee Name", id: "employee-name"})
+			.col-md-3
+				+inputDropdownMonth({name: 'month', title: 'Month', id: 'payroll-month'})
+			.col-md-3
+				+rippleButtonIcon({class: 'btn-primary', style: "float: right;min-width: 50px;margin-top:8px;", icon: 'search', id: 'payroll-search'})
+
+mixin payrolldata
+	div(class="component-box") 
+		div(class="pmd-card pmd-card-custom-view")
+			div(class="pmd-table-card")
 				.row
 					.col-md-12
-						.form-group.pmd-textfield
-							label.control-label(for='broadcast-text') Text
-							textarea#broadcast-text.form-control(style="min-height: 230px;border: 0.3px solid #ececec")
-						br
-						button.btn.btn-primary.pmd-ripple-effect(onclick="", style="float: right;") Save Changes
+						+filterEmployee
+				hr
+				table(class="table pmd-table")
+					+generateTableHead(["#", "Event Date", "Who Invited", "Description", "Status", "Actions"])
+					tbody
+						tr
+							td(data-title="#") 1
+							td(data-title="Event Date") 20 Jul 2020 13:00
+							td(data-title="Who Invited") All-Employees
+							td(data-title="Description") Meeting For Launching the new Product
+							td(data-title="Status") On Schedule
+							td(data-title="Job Title") Tech Dev
+							td(data-title="Actions")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert
+						tr
+							td(data-title="#") 2
+							td(data-title="Event Date") 20 Jul 2020 13:00
+							td(data-title="Who Invited") rohman, zaqi, daud, silvia, and many others
+							td(data-title="Description") Meeting For Launching the new Product
+							td(data-title="Status") On Schedule
+							td(data-title="Job Title") Tech De
+							td(data-title="Actions")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert
 
 mixin payrollAdministration
 	div(class="component-box")
@@ -45,4 +49,6 @@ mixin payrollAdministration
 	div(class="component-box") 
 		div(class="pmd-card dropdown-tab")  
 			div(class="pmd-card-body") 
-				+broadcastForm
+				+payrollfilter
+				+payrolldata
+				//- +broadcastForm

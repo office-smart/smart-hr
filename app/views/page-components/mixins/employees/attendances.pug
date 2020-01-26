@@ -2,16 +2,12 @@ mixin filterAttendances(opts)
 	.row
 		if (!opts.myAccount)
 		.col-md-3
-			.form-group.pmd-textfield
-				label.control-label(for='employee-name') Employee Name
-				input#employee-name.form-control(type='text')
+			+inputTextField({title: "Employee Name", id: "employee-name"})
 		.col-md-3
-			.form-group.pmd-textfield
-				label.control-label(for='employee-name') Month
-				input#employee-name.form-control(type='text')
+			+inputDropdownMonth({name: 'month', title: 'Month', id: 'attendance-month'})
 		.col-md-2
-			button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
-				i(class="material-icons md-light pmd-sm") search
+			+rippleButtonIcon({class: 'btn-primary', style: "float: right;min-width: 50px;margin-top:8px;", icon: 'search', id: 'attendance-search'})
+
 mixin attendances(opts)
 	if (opts.isAdmin)
 		+floatingButton({ btnClass: 'btn-primary visible-xs visible-sm', dataTarget: '#modal-schedule-create', icon: 'add' })

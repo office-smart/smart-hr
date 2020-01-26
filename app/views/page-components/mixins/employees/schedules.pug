@@ -1,22 +1,17 @@
-include ../form-elements/floating-button.pug
+include ../form-elements/forms.pug
 
 mixin filterSchedule(opts)
 	.row
 		if (!opts.myAccount)
-		.col-md-3
-			.form-group.pmd-textfield
-				label.control-label(for='employee-name') Employee Name
-				input#employee-name.form-control(type='text')
-		.col-md-3
-			.form-group.pmd-textfield
-				label.control-label(for='employee-name') Date
-				input#employee-name.form-control(type='text')
+		.col-md-4
+			+inputTextField({title: "Employee Name", id: "employee-name"})
+		.col-md-4
+			+inputTextField({type: 'date', title: "Schedule Date", id: "schedule-date"})
 		.col-md-2
-			button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
-				i(class="material-icons md-light pmd-sm") search
+			+rippleButtonIcon({icon: 'search', class: "btn-primary", onclick: "", style: "float: right;min-width: 50px;margin-top:8px;"})
 				
 mixin schedules(opts)
-	+floatingButton({ btnClass: 'btn-primary visible-xs visible-sm', dataTarget: '#modal-schedule-create', icon: 'add' })
+	+floatingButton({ btnClass: 'btn-primary visible-xs visible-sm', dataTarget: '#modal-schedule-create', icon: 'create' })
 	div(class="component-box")
 		div(class="pmd-card pmd-card-custom-view")
 			div(class="pmd-table-card")
@@ -24,8 +19,7 @@ mixin schedules(opts)
 					.col-md-7
 						+filterSchedule(opts)
 					.col-md-4.hidden-xs.hidden-sm
-						button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
-							i(class="material-icons md-light pmd-sm") add
+						+rippleButtonIcon({icon: 'create', class: "btn-primary", onclick: "", style: "float: right;min-width: 50px;margin-top:8px;"})
 				hr
 				table(class="table pmd-table")
 					+generateTableHead(["#", "Date", "Start Time", "End Time", "Full Name", "Agenda", "Description", "Actions"])

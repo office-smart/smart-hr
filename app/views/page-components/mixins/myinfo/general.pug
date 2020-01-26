@@ -1,4 +1,4 @@
-include ../form-elements/date-picker.pug
+include ../form-elements/forms.pug
 
 mixin employmentInfo
 	.component-box
@@ -6,33 +6,20 @@ mixin employmentInfo
 			.pmd-card-body
 				.row
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='company-name') Company Name
-							input#company-name.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='job-position') Job Position
-							input#job-position.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='employment-status') Employment Status
-							input#employment-status.form-control(type='text')
+						+inputTextField({title: "Company Name", id: "company-name"})
+						+inputTextField({title: "Job Position", id: "job-position"})
+						+inputTextField({title: "Employment Status", id: "employment-status"})
 						.form-group.pmd-textfield
 							label.control-label(for='join-date') Join Date
 							+dateDropdown(0, 30, false)
 						
 					.col-md-1
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='organization-name') Organization Name
-							input#organization-name.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='job-title') Job Title
-							input#job-title.form-control(type='text')
-						.form-group.pmd-textfield
-							label.control-label(for='branch-id') Brach Id
-							input#branch-id.form-control(type='text')
-						.form-group.pmd-textfield
-							br
-							button.btn.btn-primary.pmd-ripple-effect(onclick="", style="float: right;") Save Changes
+						+inputTextField({title: "Organization Name", id: "organization-name"})
+						+inputTextField({title: "Job Title", id: "job-title"})
+						+inputTextField({title: "Brach Id", id: "branch-id"})
+						br
+						+rippleButtonIcon({title: 'Save Change', class: 'btn-primary', style: "float: right;min-width: 50px;margin-top:8px;", icon: 'save', id: 'general-save-change'})
 
 mixin personalInfo
 	.component-box
