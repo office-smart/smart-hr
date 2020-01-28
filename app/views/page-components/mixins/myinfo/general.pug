@@ -27,114 +27,64 @@ mixin personalInfo
 			.pmd-card-body
 				.row
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='employee-id') Employee ID
-							input#employee-id.form-control(type='text')
+						+inputTextField({title: "Employee ID", id: "employee-id"})
 					.col-md-1
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='fullname') Full Name
-							input#fullname.form-control(type='text')
+						+inputTextField({title: "Full Name", id: "fullname"})
 				.row
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='lastname') Last Name
-							input#lastname.form-control(type='text')
+						+inputTextField({title: "Last Name", id: "lastname"})
 					.col-md-1
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='email-address') Email Address
-							input#email-address.form-control(type='text')
+						+inputTextField({title: "Email Address", id: "email-address"})
 				.row
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='barcode') Barcode
-							input#barcode.form-control(type='text')
+						+inputTextField({title: "Barcode", id: "barcode"})
 					.col-md-1
 					.col-md-5
 						.form-group.pmd-textfield
 							.row
 								.col-md-4
-									label.control-label(for='identity-type') Identity Type
-									select#identity-type.form-control(name='identity')
-										for val, key in {'national-identity': 'KTP', 'driving-license': 'SIM', 'passport': 'Passport'}
-											option(value=key) #{val}
+									+dropdownIdentityType({title: "Identity Type", id: "identity-type"})
 								.col-md-8
-									.form-group.pmd-textfield
-										label.control-label(for='identity-no') Identity No
-										input#identity-no.form-control(type='text')
+									+inputTextField({title: "Identity No", id: "identity-no"})
 				.row
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='address') Address
-							textarea#address.form-control(name="address", style="height: 30px;")
+						+inputTextField({title: "Address", id: "address", style: "height: 30px;"})
 					.col-md-1
 					.col-md-3
-						.form-group.pmd-textfield
-							label.control-label(for='city') City
-							input#city.form-control(type='text')
+						+inputTextField({title: "City", id: "city"})
 					.col-md-2
-						.form-group.pmd-textfield
-							label.control-label(for='postal-code') Postal Code
-							input#postal-code.form-control(type='text')
+						+inputTextField({title: "Postal Code", id: "postal-code"})
 				.row
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='place-of-birth') Place Of Birth
-							input#place-of-birth.form-control(name="place-of-birth")
+						+inputTextField({title: "Place Of Birth", id: "place-of-birth"})
 					.col-md-1
 					.col-md-5
-						+dateDropdown(14, 60, true, {day: "birth-date-day", month: "birth-date-month", year: "birth-date-year"})
+						+dateDropdown(14, 60, true, {day: "birth-date-day", month: "birth-date-month", year: "birth-date-year", title: 'Date Of Birth'})
 				.row
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='phone1') Phone Number #1
-							input#phone1.form-control(name="phone1")
+						+inputTextField({title: "Phone Number #1", id: "phone1"})
 					.col-md-1
 					.col-md-5
-						.form-group.pmd-textfield
-							label.control-label(for='phone2') Phone Number #2
-							input#phone2.form-control(type='text')
+						+inputTextField({title: "Phone Number #2", id: "phone2"})
 				.row
 					.col-md-5
 						.row
 							.col-md-6.col-xs-6-col-sm-6
-								.form-group.pmd-textfield
-									label.control-label(for='gender') Gender
-									br
-									label.radio-inline.pmd-radio(style="padding-top: 10px;")
-										input#inlineRadio1(type='radio' name='gender' value='male' checked="true")
-										span(for='inlineRadio1') Male
-									label.radio-inline.pmd-radio(style="padding-top: 10px;")
-										input#inlineRadio2(type='radio' name='gender' value='female')
-										span(for='inlineRadio2') Female
+								+radioGender({name: 'gender', title: "Gender", id: "gender", checked: 'female'})
 							.col-md-6.col-xs-6-col-sm-6
-								.form-group.pmd-textfield
-									label.control-label(for='marital-status') Marital Status
-									select#marital-status.form-control(type='maritalstatus')
-										option(value="single") Single
-										option(value="married") Married
+								+inputRadio({name: 'maritalstatus', title: "Marital Status", id: "marital-status", checked: 'single'}, {'single': 'Single', 'married': 'Married'})
 					.col-md-1
 					.col-md-5
 						.row
 							.col-md-6.col-xs-6-col-sm-6
-								.form-group.pmd-textfield
-									label.control-label(for='blood-type') Blood Type
-									select#blood-type.form-control(type='blood')
-										each bld in ['none', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
-											option(value=bld) #{bld}
+								+dropdownBloodType({title: "Blood Type", id: "blood-type"})
 							.col-md-6.col-xs-6-col-sm-6
-								.form-group.pmd-textfield
-									label.control-label(for='religion') Religion
-									select#religion.form-control(type='religion-status')
-										option(value="islam") Islam
-										option(value="crist") Cristen
-										option(value="catholic") Catholic
-										option(value="hindu") Hindu
-										option(value="budha") Budha
+								+dropdownReligion({title: "Religion", id: "religion"})
 						.row
 							.col-md-12
-								button.btn.btn-primary.pmd-ripple-effect(onclick="", style="float: right;margin-top: 30px;") Update Info
+								+rippleButton({onclick: "", style: "float: right;margin-top: 30px;", title: 'Update Info'})
 
 mixin familyInfo
 	.component-box
@@ -143,20 +93,11 @@ mixin familyInfo
 				.col-md-10.col-xs-7.col-sm-7
 					h2(style="padding-left: 10px;") Family Data
 				.col-md-2.col-xs-5.col-sm-5(style="padding-top: 10px;")
-					button.btn.btn-primary.pmd-ripple-effect(onclick="", style="") Add New
+					+rippleButton({title: 'Add New', class: 'btn-primary', style: "", id: 'family-add-new'})
 			hr
 			.pmd-table-card
 				table.table.pmd-table
-					thead
-						tr
-							th #
-							th Fullname
-							th Relationship
-							th Birth Date
-							th Identity No
-							th Marital Status
-							th Gender
-							th 
+					+generateTableHead(["#", "Fullname", "Relationship", "Birth Date", "Identity No", "Marital Status", "Gender", "Actions"])
 					tbody(id="family-data-content")
 						tr
 							td(data-title='#') 1
@@ -169,38 +110,17 @@ mixin familyInfo
 							td(data-title)
 								a(href='javascript:void(0);')
 									i.material-icons.md-dark.pmd-sm more_vert
-				//- .row
-				//- 	.col-md-12
-				//- 		.pmd-table-card
-				//- 			table.table.pmd-table
-				//- 				thead
-				//- 					tr
-				//- 						th #
-				//- 						th 
-				//- 						th Relationship
-				//- 						th 
-				//- 						th 
-				//- 						th 
-				//- 				tbody(id="emergency-contact-content")
 			hr
 			.row
 				.col-md-10.col-xs-7.col-sm-7
 					h2(style="padding-left: 10px;") Emergecy Contacts
 				.col-md-2.col-xs-5.col-sm-5(style="padding-top: 10px;")
-					button.btn.btn-primary.pmd-ripple-effect(onclick="", style="") Add New
+					+rippleButton({title: 'Add New', class: 'btn-primary', style: "", id: 'contact-add-new'})
 			hr
 			.pmd-table-card
 				table.table.pmd-table
-					thead
-						tr
-							th #
-							th Name
-							th Relationship
-							th Phone Number
-							th Email
-							th Gender
-							th 
-					tbody(id="family-data-content")
+					+generateTableHead(["#", "Name", "Relationship", "Phone Number", "Email", "Gender", "Actions"])
+					tbody(id="emergency-contact-content")
 						tr
 							td(data-title='#') 1
 							td(data-title='Fullname') Giacomo Guilizzoni

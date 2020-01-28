@@ -1,6 +1,6 @@
 include ../form-elements/forms.pug
 
-mixin payrollfilter
+mixin payrollFilter
 	div(class="component-box") 
 		.row
 			.col-md-3
@@ -16,7 +16,7 @@ mixin payrolldata
 			div(class="pmd-table-card")
 				.row
 					.col-md-12
-						+filterEmployee
+						+payrollFilter
 				hr
 				table(class="table pmd-table")
 					+generateTableHead(["#", "Event Date", "Who Invited", "Description", "Status", "Actions"])

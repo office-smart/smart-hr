@@ -1,4 +1,29 @@
+include ../summary-payroll.pug
+
 mixin payrollInfo
 	div(class="component-box")
 		div(class="pmd-card")
-			h1(style="padding: 5px;") This Page Is Comming Soon...
+			.row(style="padding: 10px;")
+				.col-md-6
+					h1(style="padding: 5px;") Payroll Information
+				.col-md-2.hidden-xs
+					a.btn.btn-primary.pmd-ripple-effect(href="/delegation/create", style="float: right;margin-top: 100px;") Request Payroll
+				.col-md-3
+					+summaryPayroll
+	
+	div(class="component-box")
+		.pmd-card(style="margin-bottom: 0px;")
+			.pmd-card-body(style="min-height: 0px;")
+				.row
+					.col-md-2
+						+inputTextField({type: 'date', title: 'Start Date', id: 'delegation-filter-start-date'})
+					.col-md-2
+						+inputTextField({type: 'date', title: 'End Date', id: 'delegation-filter-end-date'})
+					.col-md-2
+						+inputDropdown({name: 'delegationFilterType', title: 'Type', id: 'delegation-filter-type'}, {'': 'All', 'cuti-tahunan': 'Cuti Tahunan', 'cuti-melahirkan': 'Cuti Melahirkan', 'cuti-sakit': 'Cuti Sakit'})
+					.col-md-2
+						+inputDropdown({name: 'delegationFilterStatus', title: 'Status', id: 'delegation-filter-status'}, {'': 'All', 'pending': 'Pending', 'approved': 'Approved', 'rejected': 'Rejected'})
+					.col-md-1(style="padding-top: 10px;")
+						+rippleButtonIcon({id: 'delegation-filter-search', class: 'btn-primary', icon: 'search', style: "float: right;min-width: 50px;"})
+
+		div(class="pmd-card pmd-card-custom-view")

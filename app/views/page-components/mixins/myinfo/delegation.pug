@@ -16,32 +16,16 @@ mixin delegationInfo
 			.pmd-card-body(style="min-height: 0px;")
 				.row
 					.col-md-2
-						.form-group.pmd-textfield
-							label.control-label(for='start-date') Start Date
-							input#period.form-control(type='text')
+						+inputTextField({type: 'date', title: 'Start Date', id: 'delegation-filter-start-date'})
 					.col-md-2
-						.form-group.pmd-textfield
-							label.control-label(for='end-date') End Date
-							input#end-date.form-control(type='text')
+						+inputTextField({type: 'date', title: 'End Date', id: 'delegation-filter-end-date'})
 					.col-md-2
-						.form-group.pmd-textfield
-							label.control-label(for='filter-type') Type
-							select#filter-type.form-control(name='filterType')
-								option(value="") All
-								option(value="cuti-tahunan") Cuti Tahunan
-								option(value="cuti-melahirkan") Cuti Melahirkan
-								option(value="cuti-sakit") Cuti Sakit
+						+inputDropdown({name: 'delegationFilterType', title: 'Type', id: 'delegation-filter-type'}, {'': 'All', 'cuti-tahunan': 'Cuti Tahunan', 'cuti-melahirkan': 'Cuti Melahirkan', 'cuti-sakit': 'Cuti Sakit'})
 					.col-md-2
-						.form-group.pmd-textfield
-							label.control-label(for='filter-status') Status
-							select#filter-status.form-control(name='filterStatus')
-								option(value="") All
-								option(value="pending") Pending
-								option(value="approved") Approved
-								option(value="rejected") Rejected
+						+inputDropdown({name: 'delegationFilterStatus', title: 'Status', id: 'delegation-filter-status'}, {'': 'All', 'pending': 'Pending', 'approved': 'Approved', 'rejected': 'Rejected'})
 					.col-md-1(style="padding-top: 10px;")
-						button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;")
-							i(class="material-icons md-light pmd-sm") search
+						+rippleButtonIcon({id: 'delegation-filter-search', icon: 'search', style: "float: right;min-width: 50px;"})
+
 		div(class="pmd-card pmd-card-custom-view")
 			div(class="pmd-table-card", style="max-height: 500px;overflow: auto;")
 				table(class="table pmd-table")

@@ -9,38 +9,66 @@ mixin inputDropdown(attr={}, list=[{}])
 mixin inputDropdownMonth(attr)
 	+inputDropdown(attr, ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
 
-mixin dateDropdown(min=0, max=30, withTitle=false, customId={day: "join-date-day", month: "join-date-month", year: "join-date-year"})
-	.row
-		.col-md-3.col-sm-3.col-xs-3
-			.form-group.pmd-textfield
-				- var n = 1;
-				if withTitle
-					label.control-label(for='') Day
-				select.form-control(name="day", id=customId.day)
-					while n <= 31
-						option(value=n) #{ n < 10 ? '0' + n : n }
-						- n++
-		.col-md-1.col-sm-1.col-xs-1
-		.col-md-3.col-sm-3.col-xs-3
-			.form-group.pmd-textfield
-				- var n = 1;
-				if withTitle
-					label.control-label(for='') Month
-				+inputDropdownMonth({name: 'month', id: customId.month})
-				//- select.form-control(name="month", id=customId.month)
-				//- 	while n <= 12
-				//- 		option(value=n) #{ n < 10 ? '0' + n : n }
-				//- 		- n++
-		.col-md-1.col-sm-1.col-xs-1
-		.col-md-4.col-sm-4.col-xs-4
-			.form-group.pmd-textfield
-				- var n = parseInt(new Date().getFullYear() - min);
-				- var nEnd = parseInt(n) - max;
-				if withTitle
-					label.control-label(for='') Year
-				select.form-control(name="year", id=customId.year)
-					while n > nEnd
-						option(value=n) #{ n-- }
+mixin dropdownIdentityType(attr)
+	+inputDropdown(attr, {'national-identity': 'KTP', 'driving-license': 'SIM', 'passport': 'Passport'})
+
+mixin dropdownGender(attr)
+	+inputDropdown(attr, {'male': 'Male', 'female': 'Female'})
+
+mixin dateDropdown(min=0, max=30, withTitle=false, customId={day: "join-date-day", month: "join-date-month", year: "join-date-year", title: false})
+	.form-group.pmd-textfield
+		if customId.title
+			label.control-label(for=customId.id) #{customId.title}
+		.row
+			.col-md-3.col-sm-3.col-xs-3
+				.form-group.pmd-textfield
+					- var n = 1;
+					if withTitle
+						label.control-label(for='') Day
+					select.form-control(name="day", id=customId.day)
+						while n <= 31
+							option(value=n) #{ n < 10 ? '0' + n : n }
+							- n++
+			.col-md-1.col-sm-1.col-xs-1
+			.col-md-3.col-sm-3.col-xs-3
+				.form-group.pmd-textfield
+					- var n = 1;
+					if withTitle
+						label.control-label(for='') Month
+					+inputDropdownMonth({name: 'month', id: customId.month})
+					//- select.form-control(name="month", id=customId.month)
+					//- 	while n <= 12
+					//- 		option(value=n) #{ n < 10 ? '0' + n : n }
+					//- 		- n++
+			.col-md-1.col-sm-1.col-xs-1
+			.col-md-4.col-sm-4.col-xs-4
+				.form-group.pmd-textfield
+					- var n = parseInt(new Date().getFullYear() - min);
+					- var nEnd = parseInt(n) - max;
+					if withTitle
+						label.control-label(for='') Year
+					select.form-control(name="year", id=customId.year)
+						while n > nEnd
+							option(value=n) #{ n-- }
+
+mixin dropdownBloodType(attr)
+	+inputDropdown(attr, ['none', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])
+
+mixin dropdownReligion(attr)
+	+inputDropdown(attr, {'islam': 'Islam', 'crist': 'Cristen', 'catholic': 'Catholic', 'hindu': 'Hindu', 'budha': 'Budha'})
+
+//- radio input
+mixin inputRadio(attr, data)
+	.form-group.pmd-textfield
+		label.control-label(for=attr.id) #{attr.title}
+		br
+		each val, key in data
+			label.radio-inline.pmd-radio(style="padding-top: 10px;")
+				input(type='radio' name=attr.name value=key checked=(attr.checked === key))
+				span(for='') #{ val }
+
+mixin radioGender(attr)
+	+inputRadio(attr, {'male': 'Male', 'female': 'Female'})
 
 //- textfield
 mixin inputTextField(attrs)
