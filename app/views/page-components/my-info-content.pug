@@ -1,0 +1,60 @@
+include mixins/myinfo/general.pug
+include mixins/myinfo/payroll.pug
+include mixins/myinfo/timeoff.pug
+include mixins/myinfo/overtime.pug
+include mixins/myinfo/delegation.pug
+include mixins/employees/attendances.pug
+include mixins/employees/schedules.pug
+
+div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
+	div(class="container-fluid")
+		div(class="component-box") 
+			div(class="pmd-card pmd-z-depth") 
+				div(class="pmd-tabs")
+					div(class="pmd-tab-active-bar", style="")
+					ul(class="nav nav-tabs", role="tablist", style="")
+						li(role="presentation", class="active")
+							a(href="#general", aria-controls="general", role="tab", data-toggle="tab", aria-expanded="true") General Info
+						li(role="presentation", class="")
+							a(href="#payroll", aria-controls="payroll", role="tab", data-toggle="tab", aria-expanded="true") Payroll Info
+						li(role="presentation", class="")
+							a(href="#my-attendance", aria-controls="my-attendance", role="tab", data-toggle="tab", aria-expanded="true") Attendance
+						//- li(role="presentation", class="")
+						//- 	a(href="#my-schedules", aria-controls="my-schedules", role="tab", data-toggle="tab", aria-expanded="true") Schedules
+						li(role="presentation", class="")
+							a(href="#timeoff", aria-controls="timeoff", role="tab", data-toggle="tab", aria-expanded="true") Time Off
+						li(role="presentation", class="")
+							a(href="#overtime", aria-controls="overtime", role="tab", data-toggle="tab", aria-expanded="true") Overtime
+						li(role="presentation", class="")
+							a(href="#delegation", aria-controls="delegation", role="tab", data-toggle="tab", aria-expanded="true") Delegation
+
+				div(class="pmd-card-body")
+					div(class="tab-content")
+						div(role="tabpanel", class="tab-pane active", id="general") 
+							div(class="component-box")
+								div(class="pmd-card pmd-card-custom-view")
+									+generalInformation
+						div(role="tabpanel", class="tab-pane", id="payroll") 
+							div(class="component-box")
+								div(class="pmd-card pmd-card-custom-view")
+									+payrollInfo
+						div(role="tabpanel", class="tab-pane", id="timeoff") 
+							div(class="component-box")
+								div(class="pmd-card pmd-card-custom-view")
+									+timeoffInfo
+						div(role="tabpanel", class="tab-pane", id="my-attendance") 
+							div(class="component-box")
+								div(class="pmd-card pmd-card-custom-view")
+									+attendances({ myAccount: true })
+						//- div(role="tabpanel", class="tab-pane", id="my-schedules") 
+						//- 	div(class="component-box")
+						//- 		div(class="pmd-card pmd-card-custom-view")
+						//- 			+schedules({ myAccount: true })
+						div(role="tabpanel", class="tab-pane", id="overtime") 
+							div(class="component-box")
+								div(class="pmd-card pmd-card-custom-view")
+									+overtimeInfo
+						div(role="tabpanel", class="tab-pane", id="delegation") 
+							div(class="component-box")
+								div(class="pmd-card pmd-card-custom-view")
+									+delegationInfo

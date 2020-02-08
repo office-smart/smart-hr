@@ -1,0 +1,39 @@
+mixin filterAttendances(opts)
+	.row
+		if (!opts.myAccount)
+		.col-md-3
+			+inputTextField({title: "Employee Name", id: "employee-name"})
+		.col-md-3
+			+inputDropdownMonth({name: 'month', title: 'Month', id: 'attendance-month'})
+		.col-md-2
+			+rippleButtonIcon({class: 'btn-primary', style: "float: right;min-width: 50px;margin-top:8px;", icon: 'search', id: 'attendance-search'})
+
+mixin attendances(opts)
+	if (opts.isAdmin)
+		+floatingButton({ btnClass: 'btn-primary visible-xs visible-sm', dataTarget: '#modal-schedule-create', icon: 'add' })
+	div(class="component-box")
+		div(class="pmd-card pmd-card-custom-view")
+			div(class="pmd-table-card")
+				.row
+					.col-md-7
+						+filterAttendances(opts)
+					if (opts.isAdmin)
+						.col-md-4.hidden-xs.hidden-sm
+							button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;margin-top:8px;")
+								i(class="material-icons md-light pmd-sm") add
+				hr
+				table(class="table pmd-table")
+					+generateTableHead(["#", "Date", "Employee ID", "Full Name", "Start Time", "End Time", "Total Time", "Actions"])
+					tbody
+						tr
+							td(data-title="#") 1
+							td(data-title="Date") Jan 2020
+							td(data-title="Employee ID") 10001
+							td(data-title="Full Name") Akhmad Abdul Rohman
+							td(data-title="Start Time") 08:00
+							td(data-title="End Time") 18:00
+							td(data-title="Total Time") 9h
+							td(data-title="Note") Standart
+							td(data-title="Actions")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert

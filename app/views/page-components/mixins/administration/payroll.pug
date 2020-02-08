@@ -1,0 +1,54 @@
+include ../form-elements/forms.pug
+
+mixin payrollFilter
+	div(class="component-box") 
+		.row
+			.col-md-3
+				+inputTextField({title: "Employee Name", id: "employee-name"})
+			.col-md-3
+				+inputDropdownMonth({name: 'month', title: 'Month', id: 'payroll-month'})
+			.col-md-3
+				+rippleButtonIcon({class: 'btn-primary', style: "float: right;min-width: 50px;margin-top:8px;", icon: 'search', id: 'payroll-search'})
+
+mixin payrolldata
+	div(class="component-box") 
+		div(class="pmd-card pmd-card-custom-view")
+			div(class="pmd-table-card")
+				.row
+					.col-md-12
+						+payrollFilter
+				hr
+				table(class="table pmd-table")
+					+generateTableHead(["#", "Event Date", "Who Invited", "Description", "Status", "Actions"])
+					tbody
+						tr
+							td(data-title="#") 1
+							td(data-title="Event Date") 20 Jul 2020 13:00
+							td(data-title="Who Invited") All-Employees
+							td(data-title="Description") Meeting For Launching the new Product
+							td(data-title="Status") On Schedule
+							td(data-title="Job Title") Tech Dev
+							td(data-title="Actions")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert
+						tr
+							td(data-title="#") 2
+							td(data-title="Event Date") 20 Jul 2020 13:00
+							td(data-title="Who Invited") rohman, zaqi, daud, silvia, and many others
+							td(data-title="Description") Meeting For Launching the new Product
+							td(data-title="Status") On Schedule
+							td(data-title="Job Title") Tech De
+							td(data-title="Actions")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert
+
+mixin payrollAdministration
+	div(class="component-box")
+		div(class="pmd-card")
+			h1(style="padding: 5px;") Company Payrolls
+	div(class="component-box") 
+		div(class="pmd-card dropdown-tab")  
+			div(class="pmd-card-body") 
+				+payrollFilter
+				+payrolldata
+				//- +broadcastForm

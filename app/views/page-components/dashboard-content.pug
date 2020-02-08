@@ -1,0 +1,19 @@
+include mixins/summary-employees.pug
+include mixins/remainder-timeoff.pug
+include mixins/approved-timeoff.pug
+
+div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
+	div(class="container-fluid")
+		div(class="component-box") 
+			div(class="pmd-card pmd-z-depth") 
+				div(class="pmd-card-body")
+					.row
+						.col-md-8
+							.row
+								.col-md-4.col-sm-5.col-xs-7
+									+summaryEmployees
+								.col-md-4.col-sm-5.col-xs-7
+									+remainderTimeoff
+						.col-md-4
+							+approvedTimeoff
+					

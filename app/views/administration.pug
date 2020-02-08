@@ -1,0 +1,34 @@
+include global-components/header.pug
+include global-components/menu.pug
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title #{ title || 'Timeoff' }
+        script(src="/modules/listener.js")
+        link(rel="stylesheet", href="//fonts.googleapis.com/icon?family=Material+Icons")
+        link(rel="stylesheet", href="/vendor/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/vendor/propeller/css/propeller.min.css")
+        link(rel="stylesheet", href="/vendor/propeller/css/propeller-theme.css")
+        link(rel="stylesheet", href="/vendor/propeller/css/propeller-admin.css")
+        link(rel="stylesheet", href="/vendor/calendar/css/bootstrap-calendar.css")
+        link(rel="stylesheet", href="/vendor/jquery/ui/jquery-ui.min.css")
+        link(rel="stylesheet", href="/assets/css/style.css")
+    body
+        //- start content
+        +Header({title, isLogin: true})
+        +Menus({ currentUser })
+        include page-components/administration-content.pug
+        
+        //- end content
+        script(src="/vendor/jquery/jquery-1.12.2.min.js")
+        script(src="/vendor/bootstrap/js/bootstrap.min.js")
+        script(src="/vendor/propeller/js/propeller.js")
+        script(src="/vendor/jquery/ui/jquery-ui.min.js")
+        script(src="/vendor/calendar/js/bootstrap-calendar.js")
+        script(src="/vendor/calendar/js/calendar-module.js")
+        script(src="/modules/utils.js")
+        script(src="/modules/users.js")

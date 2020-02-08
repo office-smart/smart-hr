@@ -1,0 +1,36 @@
+include ../form-elements/forms.pug
+
+mixin broadcastForm
+	.component-box
+		.pmd-card.pmd-card-custom-form
+			.pmd-card-body
+				.row
+					.col-md-11
+						+inputTextField({title: "Broadcast To", id: "broadcast-to"})
+					.col-md-1
+						+rippleCheckbox({title: 'All', id: 'send-to-all'})
+				.row
+					.col-md-7
+						+inputTextField({title: "Subject / Title", id: "broadcast-title"})
+					.col-md-5
+						.row
+							.col-md-7
+								.form-group.pmd-textfield
+									label.control-label(for='broadcast-scheduled') Scheduled
+									+dateDropdown()
+							.col-md-5
+								+rippleCheckbox({title: 'Send Now', id: 'broadcast-send-now'})
+				.row
+					.col-md-12
+						+inputTextareaField({title: "Message", id: "broadcast-message", style: "min-height: 230px;border: 0.3px solid #ececec"})
+						br
+						+rippleButton({class: "btn-primary", onclick: "", style: "float: right;", title: 'Send Broadcast'})
+
+mixin broadcastAdministration
+	div(class="component-box")
+		div(class="pmd-card")
+			h1(style="padding: 5px;") Send Broadcast Message
+	div(class="component-box") 
+		div(class="pmd-card dropdown-tab")  
+			div(class="pmd-card-body") 
+				+broadcastForm

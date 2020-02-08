@@ -1,0 +1,159 @@
+include ../form-elements/forms.pug
+
+mixin employmentInfo
+	.component-box
+		.pmd-card.pmd-card-custom-form
+			.pmd-card-body
+				.row
+					.col-md-5
+						+inputTextField({title: "Company Name", id: "company-name"})
+						+inputTextField({title: "Job Position", id: "job-position"})
+						+inputTextField({title: "Employment Status", id: "employment-status"})
+						.form-group.pmd-textfield
+							label.control-label(for='join-date') Join Date
+							+dateDropdown(0, 30, false)
+						
+					.col-md-1
+					.col-md-5
+						+inputTextField({title: "Organization Name", id: "organization-name"})
+						+inputTextField({title: "Job Title", id: "job-title"})
+						+inputTextField({title: "Brach Id", id: "branch-id"})
+						br
+						+rippleButtonIcon({title: 'Save Change', class: 'btn-primary', style: "float: right;min-width: 50px;margin-top:8px;", icon: 'save', id: 'general-save-change'})
+
+mixin personalInfo
+	.component-box
+		.pmd-card.pmd-card-custom-form
+			.pmd-card-body
+				.row
+					.col-md-5
+						+inputTextField({title: "Employee ID", id: "employee-id"})
+					.col-md-1
+					.col-md-5
+						+inputTextField({title: "Full Name", id: "fullname"})
+				.row
+					.col-md-5
+						+inputTextField({title: "Last Name", id: "lastname"})
+					.col-md-1
+					.col-md-5
+						+inputTextField({title: "Email Address", id: "email-address"})
+				.row
+					.col-md-5
+						+inputTextField({title: "Barcode", id: "barcode"})
+					.col-md-1
+					.col-md-5
+						.form-group.pmd-textfield
+							.row
+								.col-md-4
+									+dropdownIdentityType({title: "Identity Type", id: "identity-type"})
+								.col-md-8
+									+inputTextField({title: "Identity No", id: "identity-no"})
+				.row
+					.col-md-5
+						+inputTextField({title: "Address", id: "address", style: "height: 30px;"})
+					.col-md-1
+					.col-md-3
+						+inputTextField({title: "City", id: "city"})
+					.col-md-2
+						+inputTextField({title: "Postal Code", id: "postal-code"})
+				.row
+					.col-md-5
+						+inputTextField({title: "Place Of Birth", id: "place-of-birth"})
+					.col-md-1
+					.col-md-5
+						+dateDropdown(14, 60, true, {day: "birth-date-day", month: "birth-date-month", year: "birth-date-year", title: 'Date Of Birth'})
+				.row
+					.col-md-5
+						+inputTextField({title: "Phone Number #1", id: "phone1"})
+					.col-md-1
+					.col-md-5
+						+inputTextField({title: "Phone Number #2", id: "phone2"})
+				.row
+					.col-md-5
+						.row
+							.col-md-6.col-xs-6-col-sm-6
+								+radioGender({name: 'gender', title: "Gender", id: "gender", checked: 'female'})
+							.col-md-6.col-xs-6-col-sm-6
+								+inputRadio({name: 'maritalstatus', title: "Marital Status", id: "marital-status", checked: 'single'}, {'single': 'Single', 'married': 'Married'})
+					.col-md-1
+					.col-md-5
+						.row
+							.col-md-6.col-xs-6-col-sm-6
+								+dropdownBloodType({title: "Blood Type", id: "blood-type"})
+							.col-md-6.col-xs-6-col-sm-6
+								+dropdownReligion({title: "Religion", id: "religion"})
+						.row
+							.col-md-12
+								+rippleButton({onclick: "", style: "float: right;margin-top: 30px;", title: 'Update Info'})
+
+mixin familyInfo
+	.component-box
+		.pmd-card.pmd-card-custom-view
+			.row
+				.col-md-10.col-xs-7.col-sm-7
+					h2(style="padding-left: 10px;") Family Data
+				.col-md-2.col-xs-5.col-sm-5(style="padding-top: 10px;")
+					+rippleButton({title: 'Add New', class: 'btn-primary', style: "", id: 'family-add-new'})
+			hr
+			.pmd-table-card
+				table.table.pmd-table
+					+generateTableHead(["#", "Fullname", "Relationship", "Birth Date", "Identity No", "Marital Status", "Gender", "Actions"])
+					tbody(id="family-data-content")
+						tr
+							td(data-title='#') 1
+							td(data-title='Fullname') Giacomo Guilizzoni
+							td(data-title='Relationship') Father
+							td(data-title='Birth Date') 1 June 2014
+							td(data-title='Identity No') 611826454635
+							td(data-title='Marital Status') Married
+							td(data-title='Gender') Male
+							td(data-title)
+								a(href='javascript:void(0);')
+									i.material-icons.md-dark.pmd-sm more_vert
+			hr
+			.row
+				.col-md-10.col-xs-7.col-sm-7
+					h2(style="padding-left: 10px;") Emergecy Contacts
+				.col-md-2.col-xs-5.col-sm-5(style="padding-top: 10px;")
+					+rippleButton({title: 'Add New', class: 'btn-primary', style: "", id: 'contact-add-new'})
+			hr
+			.pmd-table-card
+				table.table.pmd-table
+					+generateTableHead(["#", "Name", "Relationship", "Phone Number", "Email", "Gender", "Actions"])
+					tbody(id="emergency-contact-content")
+						tr
+							td(data-title='#') 1
+							td(data-title='Fullname') Giacomo Guilizzoni
+							td(data-title='Relationship') Uncle
+							td(data-title='Phone Number') 0823393883
+							td(data-title='Email') jhon@example.com
+							td(data-title='Gender') Male
+							td(data-title)
+								a(href='javascript:void(0);')
+									i.material-icons.md-dark.pmd-sm more_vert
+
+mixin generalInformation
+	div(class="component-box")
+		div(class="pmd-card")
+			h1(style="padding: 5px;") You can edit this information about yourself
+	div(class="component-box") 
+		div(class="pmd-card dropdown-tab")  
+			div(class="pmd-tabs") 
+				div(class="pmd-tab-active-bar") 
+				ul(class="nav nav-tabs" role="tablist") 
+					li(role="presentation" class="active") 
+						a(href="#employment-info" aria-controls="employment-info" role="tab" data-toggle="tab") Employment Info
+					li(role="presentation") 
+						a(href="#personal-info" aria-controls="personal-info" role="tab" data-toggle="tab") Personal
+					li(role="presentation") 
+						a(href="#family-info" aria-controls="family-info" role="tab" data-toggle="tab") Family Info
+			
+			div(class="pmd-card-body") 
+				div(class="tab-content") 
+					div(role="tabpanel" class="tab-pane active" id="employment-info")
+						+employmentInfo
+					div(role="tabpanel" class="tab-pane" id="personal-info")
+						+personalInfo
+					div(role="tabpanel" class="tab-pane" id="family-info")
+						+familyInfo
+				

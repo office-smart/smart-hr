@@ -1,0 +1,39 @@
+include ../form-elements/forms.pug
+
+mixin generalInfo
+	.component-box
+		.pmd-card.pmd-card-custom-form
+			.pmd-card-body
+				.row
+					.col-md-5
+						+inputTextField({title: "Company Name", id: "company-name"})
+						+inputTextField({title: "Address", id: "main-address"})
+						+inputTextField({title: "Province", id: "company-province"})
+						+inputTextField({title: "City", id: "company-city"})
+
+					.col-md-1
+					.col-md-5
+						+inputTextField({title: "Postal Code", id: "postal-code"})
+						+inputTextField({title: "Office Phone Number #1", id: "office-number1"})
+						+inputTextField({title: "Office Phone Number #2", id: "office-number2"})
+						+inputTextField({title: "Office Email", id: "office-email"})
+
+						br
+						+rippleButton({class: "btn-primary", onclick: "", style: "float: right;", title: 'Update'})
+
+mixin aboutCompany
+	div(class="component-box")
+		div(class="pmd-card")
+			h1(style="padding: 5px;") Company Information
+	div(class="component-box") 
+		div(class="pmd-card dropdown-tab")  
+			div(class="pmd-tabs") 
+				div(class="pmd-tab-active-bar") 
+				ul(class="nav nav-tabs" role="tablist") 
+					li(role="presentation" class="active") 
+						a(href="#general-info" aria-controls="general-info" role="tab" data-toggle="tab") General
+			
+			div(class="pmd-card-body") 
+				div(class="tab-content") 
+					div(role="tabpanel" class="tab-pane active" id="general-info")
+						+generalInfo

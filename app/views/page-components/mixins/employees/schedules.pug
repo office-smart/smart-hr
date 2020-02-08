@@ -1,0 +1,37 @@
+include ../form-elements/forms.pug
+
+mixin filterSchedule(opts)
+	.row
+		if (!opts.myAccount)
+		.col-md-4
+			+inputTextField({title: "Employee Name", id: "employee-name"})
+		.col-md-4
+			+inputTextField({type: 'date', title: "Schedule Date", id: "schedule-date"})
+		.col-md-2
+			+rippleButtonIcon({icon: 'search', class: "btn-primary", onclick: "", style: "float: right;min-width: 50px;margin-top:8px;"})
+				
+mixin schedules(opts)
+	+floatingButton({ btnClass: 'btn-primary visible-xs visible-sm', dataTarget: '#modal-schedule-create', icon: 'create' })
+	div(class="component-box")
+		div(class="pmd-card pmd-card-custom-view")
+			div(class="pmd-table-card")
+				.row
+					.col-md-7
+						+filterSchedule(opts)
+					.col-md-4.hidden-xs.hidden-sm
+						+rippleButtonIcon({icon: 'create', class: "btn-primary", onclick: "", style: "float: right;min-width: 50px;margin-top:8px;"})
+				hr
+				table(class="table pmd-table")
+					+generateTableHead(["#", "Date", "Start Time", "End Time", "Full Name", "Agenda", "Description", "Actions"])
+					tbody
+						tr
+							td(data-title="#") 1
+							td(data-title="Date Time") 12 Jan 2020
+							td(data-title="Start Time") 14:00
+							td(data-title="End Time") 15:00
+							td(data-title="Full Name") Akhmad Abdul Rohman
+							td(data-title="Agenda") Meeting
+							td(data-title="Description") Meet with commbank for feature release
+							td(data-title="Actions")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert

@@ -2,3 +2,5 @@ node_modules
 .env
 public
 package-*.json
+smart-hr.code-workspace
+.vscode

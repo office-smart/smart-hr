@@ -1,0 +1,27 @@
+include mixins/table/table-head.pug
+include mixins/employees/all-employees.pug
+include mixins/employees/attendances.pug
+include mixins/employees/schedules.pug
+
+div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
+	div(class="container-fluid")
+		div(class="component-box") 
+			div(class="pmd-card pmd-z-depth")
+				div(class="pmd-tabs")
+					div(class="pmd-tab-active-bar", style="")
+					ul(class="nav nav-tabs", role="tablist", style="")
+						li(role="presentation", class="active")
+							a(href="#all", aria-controls="all", role="tab", data-toggle="tab", aria-expanded="true") All Employees
+						li(role="presentation", class="")
+							a(href="#attendances", aria-controls="attendances", role="tab", data-toggle="tab", aria-expanded="true") Attendances
+						li(role="presentation", class="")
+							a(href="#schedules", aria-controls="schedules", role="tab", data-toggle="tab", aria-expanded="true") Schedules
+				hr
+				div(class="pmd-card-body")
+					div(class="tab-content")
+						div(role="tabpanel", class="tab-pane active", id="all") 
+							+allEmployees({ isAdmin: false })
+						div(role="tabpanel", class="tab-pane", id="attendances") 
+							+attendances({ isAdmin: false })
+						div(role="tabpanel", class="tab-pane", id="schedules") 
+							+schedules({ isAdmin: false })

@@ -1,0 +1,52 @@
+include ../summary-overtime.pug
+include ../table/table-head.pug
+
+mixin overtimeInfo
+	div(class="component-box")
+		div(class="pmd-card")
+			.row(style="padding: 10px;")
+				.col-md-6
+					h1(style="padding: 5px;") Overtime Information
+				.col-md-2.hidden-xs
+					a.btn.btn-primary.pmd-ripple-effect(href="/overtime/create", style="float: right;margin-top: 100px;") Request Overtime
+				.col-md-3
+					+summaryOvertime
+	div(class="component-box")
+		.pmd-card(style="margin-bottom: 0px;")
+			.pmd-card-body(style="min-height: 0px;")
+				.row
+					.col-md-2
+						.form-group.pmd-textfield
+							label.control-label(for='start-date') Start Date
+							input#period.form-control(type='text')
+					.col-md-2
+						.form-group.pmd-textfield
+							label.control-label(for='end-date') End Date
+							input#end-date.form-control(type='text')
+					.col-md-2
+						.form-group.pmd-textfield
+							label.control-label(for='filter-status') Status
+							select#filter-status.form-control(name='filterStatus')
+								option(value="") All
+								option(value="pending") Pending
+								option(value="approved") Approved
+								option(value="rejected") Rejected
+					.col-md-1(style="padding-top: 10px;")
+						button.btn.pmd-btn-raised.pmd-ripple-effect.btn-primary(style="float: right;min-width: 50px;")
+							i(class="material-icons md-light pmd-sm") search
+		div(class="pmd-card pmd-card-custom-view")
+			div(class="pmd-table-card", style="max-height: 500px;overflow: auto;")
+				table(class="table pmd-table")
+					+generateTableHead(["#", "Date", "Start Time", "End Time", "Total Hours", "Status", "Notes", "Actions"])
+					tbody
+						tr
+							td(data-title="#") 1
+							td(data-title="Date") 21 Juli 2019
+							td(data-title="Start Time") 18:00
+							td(data-title="End Time") 20:00
+							td(data-title="Total Hours") 2
+							td(data-title="Status") Approved
+							td(data-title="Notes") Tambahan Pengerjaan
+							td(data-title="Action")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert

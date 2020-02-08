@@ -1,32 +1,54 @@
 {
     "roles": [
         "admin",
-        "user"
+        "user",
+        "user-test",
+        "hello"
     ],
     "resources": {
         "user": [
             "create",
             "delete",
             "edit",
-            "read"
+            "read",
+            "visit"
         ],
-        "permissions": [
+        "role": [
             "create",
             "delete",
             "edit",
-            "read"
+            "read",
+            "visit"
         ],
         "dashboard": [
-            "read"
+            "read",
+            "visit"
         ]
     },
     "grants": {
         "admin": [
-            "user:add",
+            "user:create",
             "user:edit",
             "user:delete",
             "user:read",
+            "user:visit",
+            "role:create",
+            "role:edit",
+            "role:delete",
+            "role:read",
+            "role:visit"
+        ],
+        "user-test": [
+            "user:read",
             "user:visit"
+        ],
+        "hello": [
+            "user:read",
+            "user:visit",
+            "role:read",
+            "role:visit",
+            "dashboard:read",
+            "dashboard:visit"
         ]
     }
 }

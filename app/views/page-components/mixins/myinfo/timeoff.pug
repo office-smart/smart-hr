@@ -1,0 +1,44 @@
+include ../form-elements/forms.pug
+include ../remainder-timeoff.pug
+include ../table/table-head.pug
+
+mixin timeoffInfo
+	div(class="component-box")
+		div(class="pmd-card")
+			.row(style="padding: 10px;")
+				.col-md-6
+					h1(style="padding: 5px;") Time Off Information
+				.col-md-2.hidden-xs
+					a.btn.btn-primary.pmd-ripple-effect(href="/timeoff/create", style="float: right;margin-top: 100px;") Request Timeoff
+				.col-md-3
+					+remainderTimeoff
+	hr(style="margin: 0px;")
+	div(class="component-box")
+		.pmd-card(style="margin-bottom: 0px;")
+			.pmd-card-body(style="min-height: 0px;")
+				.row
+					.col-md-2
+						+inputDropdown({name: 'filterType', title: 'Type', id: 'timeoff-type'}, [{name: '', title: 'All'},{name: 'cuti-tahunan', title: 'Cuti Tahunan'},{name: 'cuti-melahirkan', title: 'Cuti Melahirkan'},{name: 'cuti-sakit', title: 'Cuti Sakit'}])
+					.col-md-2
+						+inputDropdownMonth({name: 'month', title: 'Month', id: 'timeoff-month'})
+					.col-md-2
+						+inputDropdown({name: 'timeoffStatus', title: 'Type', id: 'timeoff-status'}, [{name: '', title: 'All'},{name: 'pending', title: 'Pending'},{name: 'approved', title: 'Approved'},{name: 'rejected', title: 'Rejected'}])
+					.col-md-1(style="padding-top: 10px;")
+						+rippleButtonIcon({class: 'btn-primary', style: "float: right;min-width: 50px;", icon: 'search', id: 'timeoff-search'})
+
+		div(class="pmd-card pmd-card-custom-view")
+			div(class="pmd-table-card", style="max-height: 500px;overflow: auto;")
+				table(class="table pmd-table")
+					+generateTableHead(["#", "Type", "Start Date", "End Date", "Total Days", "Status", "Notes", "Actions"])
+					tbody
+						tr
+							td(data-title="#") 1
+							td(data-title="Type") Cuti Tahunan
+							td(data-title="Start Date") 21 Juli 2019
+							td(data-title="End Date") 22 Juli 2019
+							td(data-title="Total Days") 2
+							td(data-title="Status") Approved
+							td(data-title="Notes") Mau Liburan Dulu
+							td(data-title="Action")
+								a(href="javascript:void(0);")
+									i(class="material-icons md-dark pmd-sm") more_vert

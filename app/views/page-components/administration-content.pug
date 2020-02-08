@@ -1,0 +1,42 @@
+include mixins/table/table-head.pug
+include mixins/administration/about-company.pug
+include mixins/administration/broadcast.pug
+include mixins/administration/employees.pug
+include mixins/administration/calendars.pug
+include mixins/administration/payroll.pug
+include mixins/administration/audits.pug
+
+div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
+	div(class="container-fluid")
+		div(class="component-box") 
+			div(class="pmd-card pmd-z-depth")
+				div(class="pmd-tabs")
+					div(class="pmd-tab-active-bar", style="")
+					ul(class="nav nav-tabs", role="tablist", style="")
+						li(role="presentation", class="active")
+							a(href="#company-info", aria-controls="company-info", role="tab", data-toggle="tab", aria-expanded="true") About Company
+						li(role="presentation", class="")
+							a(href="#broadcast", aria-controls="broadcast", role="tab", data-toggle="tab", aria-expanded="true") Broadcast
+						li(role="presentation", class="")
+							a(href="#employees", aria-controls="employees", role="tab", data-toggle="tab", aria-expanded="true") Employees
+						li(role="presentation", class="")
+							a(href="#calendars", aria-controls="calendars", role="tab", data-toggle="tab", aria-expanded="true") Calendars
+						li(role="presentation", class="")
+							a(href="#payroll", aria-controls="payroll", role="tab", data-toggle="tab", aria-expanded="true") Payroll
+						li(role="presentation", class="")
+							a(href="#audit", aria-controls="audit", role="tab", data-toggle="tab", aria-expanded="true") Audit
+				hr
+				div(class="pmd-card-body")
+					div(class="tab-content")
+						div(role="tabpanel", class="tab-pane active", id="company-info") 
+							+aboutCompany
+						div(role="tabpanel", class="tab-pane", id="broadcast") 
+							+broadcastAdministration
+						div(role="tabpanel", class="tab-pane", id="employees")
+							+employeesAdministration
+						div(role="tabpanel", class="tab-pane", id="calendars")
+							+calendarAdministration
+						div(role="tabpanel", class="tab-pane", id="payroll")
+							+payrollAdministration
+						div(role="tabpanel", class="tab-pane", id="audit") 
+							+auditAdministration
