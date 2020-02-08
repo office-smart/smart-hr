@@ -1,3 +1,6 @@
 node_modules
 .env
-package-lock.json
+public
+package-*.json
+smart-hr.code-workspace
+.vscode

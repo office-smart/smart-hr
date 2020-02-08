@@ -2,38 +2,39 @@ const AccountsService = require('../services/AccountsService')
 const errorHandler = require('../libs/errorHandler')
 const { getAccess } = require('../helpers/access')
 
-const errorMessage = function (obj = {}) {
-    errorHandler({...obj, controller: 'User'})
-    console.log(obj.err)
-}
-
-// initiate the controller
-let controller = {}
-
-controller.login = async (req, res, next) => {
+const md5 = require('md5')
+const UserModel = require('../models/Users')
+const { set } = require('../libs/redis')
+const { InternalError } = require('./../libs/ErrorHandler')
+const conf = require('./../config/app')
+class UserController {
+  async login (req, res, next) {
     try {
         const data = await AccountsService.login(req.body)
         res.send(data)
     } catch (err) {
-        errorMessage({req, res, err})
+      next(new InternalError({ message: 'something error happen', stack: err.toString() }))
     }
-}
-controller.getUsers = async (req, res, next) => {
+  }
+
+  async getUsers (req, res, next) {
     try {
         const access = getAccess(req.roleAccess, 'users')
         const items = await AccountsService.getUsers(req.query)
         res.send({ access, items })
     } catch (err) {
-        errorMessage({req, res, err})
+      new InternalError({ message: 'something error happen', stack: err.toString() })
     }
-}
-controller.create = async (req, res, next) => {
+  }
+
+  async create (req, res, next) {
     try {
         const data = await AccountsService.create(req.body)
         res.send(data)
     } catch (err) {
-        errorMessage({req, res, err})
+      new InternalError({ message: 'something error happen', stack: err.toString() })
     }
+  }
 }
 
-module.exports = controller
+module.exports = UserController

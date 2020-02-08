@@ -10,7 +10,8 @@ const viewController = require('../controllers/ViewController')
 const AuthMiddleware = require('../middlewares/AuthMiddleware')
 
 router.get('/', (req, res) => {
-    res.redirect('/dashboard')
+    // res.redirect('/dashboard')
+  res.redirect('/users')
 })
 router.get('/login', [viewController.login])
 router.get('/logout', [viewController.logout])
