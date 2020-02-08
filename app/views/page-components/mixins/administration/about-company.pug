@@ -4,22 +4,23 @@ mixin generalInfo
 	.component-box
 		.pmd-card.pmd-card-custom-form
 			.pmd-card-body
-				.row
-					.col-md-5
-						+inputTextField({title: "Company Name", id: "company-name"})
-						+inputTextField({title: "Address", id: "main-address"})
-						+inputTextField({title: "Province", id: "company-province"})
-						+inputTextField({title: "City", id: "company-city"})
+				form(id="form-about-company", onSubmit="fn.submitForm(this.id);")
+					.row
+						.col-md-5
+							+inputTextField({name: "companyName", title: "Company Name", id: "company-name"})
+							+inputTextField({name: "companyDetail.address", title: "Address", id: "main-address"})
+							+inputTextField({name: "companyDetail.province", title: "Province", id: "company-province"})
+							+inputTextField({name: "companyDetail.city", title: "City", id: "company-city"})
 
-					.col-md-1
-					.col-md-5
-						+inputTextField({title: "Postal Code", id: "postal-code"})
-						+inputTextField({title: "Office Phone Number #1", id: "office-number1"})
-						+inputTextField({title: "Office Phone Number #2", id: "office-number2"})
-						+inputTextField({title: "Office Email", id: "office-email"})
+						.col-md-1
+						.col-md-5
+							+inputTextField({name: "companyDetail.postalCode", title: "Postal Code", id: "postal-code"})
+							+inputTextField({name: "companyDetail.officePhone1", title: "Office Phone Number #1", id: "office-number1"})
+							+inputTextField({name: "companyDetail.officePhone2", title: "Office Phone Number #2", id: "office-number2"})
+							+inputTextField({name: "companyDetail.officeEmail", title: "Office Email", id: "office-email"})
 
-						br
-						+rippleButton({class: "btn-primary", onclick: "", style: "float: right;", title: 'Update'})
+							br
+							+rippleButton({class: "btn-primary", style: "float: right;", title: 'Update'})
 
 mixin aboutCompany
 	div(class="component-box")

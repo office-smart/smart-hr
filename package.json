@@ -1,7 +1,7 @@
 {
-  "name": "nodefrog-framework-api",
+  "name": "smart-hr",
   "version": "0.1.4",
-  "description": "nodejs blogs",
+  "description": "Smart HR Based On NodeJS",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",

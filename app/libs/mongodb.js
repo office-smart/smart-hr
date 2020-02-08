@@ -2,15 +2,15 @@
 
 const mongoose = require('mongoose')
 
-const uri = 'mongodb://localhost:27017/stok'
+const MONGOURI = process.env.MONGODB_URI
 
 const connect = async () => {
     try {
-        await mongoose.connect(uri, {
+        await mongoose.connect(MONGOURI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        console.log('mongodb connected')
+        console.log('( √ ) mongodb')
     } catch (err) {
         throw err
     }
@@ -19,6 +19,7 @@ const connect = async () => {
 const listenError = () => {
     mongoose.connection.on('error', err => {
         console.error(err)
+        console.log('(mongo) trying to connecting again in 3s')
         setTimeout(connect, 3 * 1000)
     })
 }

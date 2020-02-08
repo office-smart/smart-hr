@@ -3,6 +3,7 @@
 require('dotenv').config()
 const {join} = require('path')
 const mongodbConnection = require('./app/libs/mongodb')
+const {createRedisConnection} = require('./app/libs/redis')
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const backendRoutes = require('./app/routes/backendRoutes')
@@ -38,9 +39,16 @@ app.all('*', (req, res) => {
         })
 })
 
-mongodbConnection()
+createRedisConnection()
     .then(() => {
-        app.listen(port, host, console.log(`app listen on ${port}`))
+        mongodbConnection()
+            .then(() => {
+                app.listen(port, host, console.log(`app listen on ${port}`))
+            })
+            .catch((err) => {
+                console.log(err)
+                process.exit(0)
+            })
     })
     .catch((err) => {
         console.log(err)

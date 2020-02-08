@@ -4,28 +4,25 @@ const express = require('express')
 const router = express.Router()
 
 // controllers
-const ProductController = require('../controllers/ProductController')
-const UserController = require('../controllers/UserController')
+const AccountsController = require('../controllers/AccountsController')
 
 // middlewares
-const TokenAuth = require('../middlewares/TokenAuthMiddleware')
-const { ApiAccess } = require('../middlewares/AccessMiddleware')
+const AuthMiddleware = require('../middlewares/AuthMiddleware')
+
+const { version, name } = require('../../package.json')
 
 router.get('/', (req, res) => {
     res.send({
-        version: '0.1.0'
+        app_name: name,
+        version
     })
 })
 
 // login route
-router.post('/user/login', [UserController.login])
-
-// product routes
-router.get('/products', [TokenAuth, ApiAccess, ProductController.getProduct])
-router.get('/products/create', [TokenAuth, ApiAccess, ProductController.create])
+router.post('/user/login', [ AccountsController.login ])
 
 // users routes
-router.get('/users', [TokenAuth, ApiAccess, UserController.getUsers])
-router.post('/users/create', [TokenAuth, ApiAccess, UserController.create])
+router.get('/users', [ AuthMiddleware,  AccountsController.getUsers ])
+router.post('/users/create', [ AuthMiddleware,  AccountsController.create ])
 
 module.exports = router

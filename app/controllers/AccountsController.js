@@ -1,4 +1,4 @@
-const userService = require('../services/userService')
+const AccountsService = require('../services/AccountsService')
 const errorHandler = require('../libs/errorHandler')
 const { getAccess } = require('../helpers/access')
 
@@ -12,7 +12,7 @@ let controller = {}
 
 controller.login = async (req, res, next) => {
     try {
-        const data = await userService.login(req.body)
+        const data = await AccountsService.login(req.body)
         res.send(data)
     } catch (err) {
         errorMessage({req, res, err})
@@ -21,8 +21,7 @@ controller.login = async (req, res, next) => {
 controller.getUsers = async (req, res, next) => {
     try {
         const access = getAccess(req.roleAccess, 'users')
-        console.log(req.roleAccess, access)
-        const items = await userService.getUsers(req.query)
+        const items = await AccountsService.getUsers(req.query)
         res.send({ access, items })
     } catch (err) {
         errorMessage({req, res, err})
@@ -30,7 +29,7 @@ controller.getUsers = async (req, res, next) => {
 }
 controller.create = async (req, res, next) => {
     try {
-        const data = await userService.create(req.body)
+        const data = await AccountsService.create(req.body)
         res.send(data)
     } catch (err) {
         errorMessage({req, res, err})
