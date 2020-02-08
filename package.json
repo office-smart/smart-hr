@@ -4,9 +4,9 @@
   "description": "nodejs blogs",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon --watch app --watch server.js --watch package.json -x node server.js",
-    "debug": "PORT=3002 nodemon --watch server.js --watch app --watch package.json -x node --inspect-brk server.js",
+    "start": "node server.js",
+    "dev": "nodemon --watch app --watch package.json -x node server.js",
+    "debug": "node --inspect-brk server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "rohmanahmad",
@@ -16,15 +16,25 @@
   },
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.3.1",
     "md5": "^2.2.1",
     "mongoose": "^5.8.1",
+    "morgan": "^1.9.1",
     "pug": "^2.0.4",
     "redis": "^2.8.0",
     "validator": "^12.1.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
 }

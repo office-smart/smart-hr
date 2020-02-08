@@ -1,0 +1,23 @@
+div(class="pmd-sidebar-overlay")
+
+aside(id="basicSidebar", class="pmd-sidebar  sidebar-default pmd-sidebar-slide-push pmd-sidebar-left pmd-sidebar-open bg-fill-darkblue sidebar-with-icons", role="navigation")
+    ul(class="nav pmd-sidebar-nav")
+        li(class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg")
+            a(aria-expanded="false", data-toggle="dropdown", class="btn-user dropdown-toggle media", data-sidebar="true", aria-expandedhref="javascript:void(0);")
+                div(class="media-left")
+                    img(src="/vendor/images/user-icon.png", alt="New User")
+                
+                div(class="media-body media-middle", id="current-user") ####
+                
+                div(class="media-right media-middle")
+                    i(class="dic-more-vert dic")
+        each val, index in menus
+            li
+                a(class="pmd-ripple-effect " + val['class'], href=val['link'])
+                    i(class="media-left media-middle material-icons") #{ val['icon'] } 
+                    span(class="media-body") #{ val['title'] }
+
+        li(style="background: #5a2c2c;")
+            a(class="pmd-ripple-effect", href="/logout")
+                i(class="media-left media-middle material-icons") power_off
+                span(class="media-body") Keluar

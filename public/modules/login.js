@@ -1,24 +1,36 @@
-let fn = window.fn;
+const fn = window.fn
 
 fn.selectors = {
-    username: '#input-username',
-    password: '#input-password'
+  username: '#input-username',
+  password: '#input-password'
 }
 
 fn.init = function () {
-    ls.clear();
-    fn.listenEnter(fn.doLogin);
+  ls.clear()
+  fn.listenEnter(fn.doLogin)
 }
 
 fn.doLogin = function () {
-    const data = fn.getInputValue({
-        username: 'username',
-        password: 'password'
+  const data = fn.getInputValue({
+    username: 'username',
+    password: 'password'
+  })
+  fn.sendXHR({
+    url: '/api/user/login',
+    method: 'POST',
+    data
+  })
+    .then(function (res) {
+      let currentToken = ''
+      for (const key in res) {
+        ls.setItem(key, res[key])
+        if (key === 'token') currentToken = res[key]
+      }
+      document.cookie = 'x_hr_key=' + currentToken
+      window.location.href = '/users'
     })
-    fn.sendXHR({
-        url: '/api/user/login',
-        method: 'POST',
-        data
+    .catch(function (err) {
+      alert(err.message)
     })
         .then(function (res) {
             let currentToken = '';
@@ -35,4 +47,4 @@ fn.doLogin = function () {
 }
 
 // call init first
-fn.init();
+fn.init()
