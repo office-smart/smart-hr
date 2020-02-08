@@ -32,18 +32,6 @@ fn.doLogin = function () {
     .catch(function (err) {
       alert(err.message)
     })
-        .then(function (res) {
-            let currentToken = '';
-            for (let key in res) {
-                ls.setItem(key, res[key]);
-                if (key === 'token') currentToken = res[key];
-            }
-            document.cookie = 'x_hr_key=' + currentToken;
-            window.location.href = '/dashboard';
-        })
-        .catch(function (err) {
-            fn.alertError(err.error);
-        });
 }
 
 // call init first

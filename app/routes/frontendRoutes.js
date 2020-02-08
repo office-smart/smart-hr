@@ -29,6 +29,6 @@ router.get('/my-inbox', [/* CookieAuth, ViewAccess,  */viewController.myinbox])
 router.get('/approval', [/* CookieAuth, ViewAccess,  */viewController.approval])
 router.get('/users', [CookieAuth, CanAccess('user:visit'), viewController.users])
 router.get('/roles', [CookieAuth, CanAccess('role:visit'), viewController.roles])
-router.get('/administration', [CookieAuth, ViewAccess, viewController.administration])
+router.get('/administration', [CookieAuth, viewController.administration])
 
 module.exports = router
