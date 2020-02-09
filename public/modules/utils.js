@@ -6,7 +6,7 @@ utils.currentToken = ls.getItem('token')
 
 utils.sendXHR = function (opt) {
   if (!opt.headers) opt.headers = {}
-  if (utils.currentToken) opt.headers['x-auth-token'] = utils.currentToken
+  if (utils.currentToken) opt.headers['smart-token'] = utils.currentToken
   return new Promise(function (resolve, reject) {
     opt.success = function (res) {
       resolve(res)

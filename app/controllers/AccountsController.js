@@ -1,12 +1,9 @@
 const AccountsService = require('../services/AccountsService')
 const errorHandler = require('../libs/errorHandler')
-const { getAccess } = require('../helpers/access')
+// const { getAccess } = require('../helpers/access')
 
-const md5 = require('md5')
-const UserModel = require('../models/Users')
-const { set } = require('../libs/redis')
 const { InternalError } = require('./../libs/ErrorHandler')
-const conf = require('./../config/app')
+
 class UserController {
   async login (req, res, next) {
     try {
@@ -19,9 +16,9 @@ class UserController {
 
   async getUsers (req, res, next) {
     try {
-        const access = getAccess(req.roleAccess, 'users')
+        // const access = getAccess(req.roleAccess, 'users')
         const items = await AccountsService.getUsers(req.query)
-        res.send({ access, items })
+        res.send({ access: [], items })
     } catch (err) {
       new InternalError({ message: 'something error happen', stack: err.toString() })
     }
