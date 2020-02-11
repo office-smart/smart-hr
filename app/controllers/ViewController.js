@@ -3,6 +3,7 @@
 const lang = require('../languages/index')
 
 const isDev = (process.env.NODE_ENV === 'development')
+
 const loadMenu = (langType = 'EN', active = 'MENU_DASHBOARD') => {
     let menus = [{
         id: 'dashboard',

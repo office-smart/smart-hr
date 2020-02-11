@@ -9,9 +9,9 @@ interfaces
         _id: mongoose.Types.ObjectId,
         name: String,
         services: [
-            // smart-hr,
-            // smart-ga,
-            // smart-accounting,
+            // smart-hr
+            // smart-ga
+            // smart-accounting
             // smart-warehouse
             // smart-safety
             // smart-wt
@@ -105,6 +105,7 @@ interfaces
         familyInfo: [
             /* 
             {
+                title: String, // mrs, mr
                 fullName: String,
                 relationType: String,
                 birthOfDate: Date,
@@ -124,8 +125,58 @@ interfaces
             }
             */
         ],
+        contract: {
+            type: String, // contract | permanent
+            hireDate: Date,
+            contractUntil: Date
+        },
         companyID: mongoose.Types.ObjectId,
-        status: Number,
+        status: String,
+        createAt: Date,
+        updateAt: Date
+    }
+
+interfaces
+    .Cities = {
+        _id: mongoose.Types.ObjectId,
+        cityName: String,
+        province: {
+            id: String,
+            name: String
+        },
+        country: {
+            id: String,
+            name: String
+        },
+        maps: {
+            link: String
+        },
+        createAt: new Date(),
+        updateAt: new Date()
+    }
+
+interfaces
+    .Divisions = {
+        _id: mongoose.Types.ObjectId,
+        divisionName: String,
+        createAt: Date,
+        updateAt: Date
+    }
+
+interfaces
+    .JobList = {
+        _id: mongoose.Types.ObjectId,
+        code: String,
+        title: String,
+        createAt: Date,
+        updateAt: Date
+    }
+
+interfaces
+    .BranchesList = {
+        _id: mongoose.Types.ObjectId,
+        code: String,
+        title: String,
         createAt: Date,
         updateAt: Date
     }
@@ -134,18 +185,20 @@ interfaces
     .Permissions = {
         _id: mongoose.Types.ObjectId,
         name: String,
+        title: String,
         description: String,
         createAt: Date,
         updateAt: Date
     }
 
 interfaces
-    .AccountAccess = {
+    .AccessControll = {
         _id: mongoose.Types.ObjectId,
         accountId: mongoose.Types.ObjectId,
         permisions: [
-            // hr.* => superadmin
             // hr.administration.employees.add
+            // hr.administration.employees.list
+            // hr.administration.employees.delete
         ],
         createAt: Date,
         updateAt: Date
