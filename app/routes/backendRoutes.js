@@ -3,28 +3,26 @@
 const express = require('express')
 const router = express.Router()
 
-const { UserController, RoleController } = require('../controllers')
-const TokenAuth = require('../middlewares/TokenAuthMiddleware')
-const { CanAccess } = require('../middlewares/AccessMiddleware')
-const { UserValidation } = require('../validations')
+// controllers
+const AccountsController = require('../controllers/AccountsController')
+
+// middlewares
+const AuthMiddleware = require('../middlewares/AuthMiddleware')
+
+const { version, name } = require('../../package.json')
 
 router.get('/', (req, res) => {
-  res.send({
-    version: '0.1.0'
-  })
+    res.send({
+        app_name: name,
+        version
+    })
 })
 
-/**
- *  User Route
- */
-router.post('/user/login', UserValidation.login(), UserController.login)
-router.get('/users', [TokenAuth, CanAccess('user:read'), UserController.getUsers])
-router.post('/users/create', [TokenAuth, CanAccess('user:create'), UserController.create])
+// login route
+router.post('/user/login', [ AccountsController.login ])
 
-/**
- *  Role Route
- */
-router.get('/roles', [TokenAuth, CanAccess('role:read'), RoleController.getRoles])
-router.post('/roles/create', [TokenAuth, CanAccess('role:create'), RoleController.create])
+// users routes
+router.get('/users', [ AuthMiddleware,  AccountsController.getUsers ])
+router.post('/users/create', [ AuthMiddleware,  AccountsController.create ])
 
 module.exports = router

@@ -7,6 +7,20 @@
         {
             "type": "node",
             "request": "launch",
+<<<<<<< HEAD
+            "name": "Launch Command",
+            "program": "${workspaceFolder}/command.js",
+            "args": ["creator", "blablabla", "bla=balabal"],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        
+        {
+            "type": "node",
+            "request": "launch",
+=======
+>>>>>>> 68bd76a94bd90cec7fcd7421b31ee6f6d008f5ac
             "name": "Launch via NPM",
             "runtimeExecutable": "npm",
             "runtimeArgs": [

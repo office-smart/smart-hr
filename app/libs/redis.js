@@ -2,20 +2,37 @@
 
 const redis = require('redis')
 
-const client = redis.createClient({
-    url: process.env.REDIS_URI
-})
+const REDISURI = process.env.REDIS_URI
 
-client.on('error', (err) => {
-    console.log(err)
-    process.exit(0)
-})
-
-client.on('connect', () => {
-    console.log('redis connected')
-})
+let client = null
 
 module.exports = {
+    createRedisConnection: () => {
+        return new Promise((resolve, reject) => {
+            client = redis.createClient({
+                url: REDISURI
+            })
+            
+            client.on('error', (err) => {
+                console.log(err)
+                return reject(err)
+            })
+            
+            client.on('connect', () => {
+                console.log('( √ ) redis')
+                return resolve()
+            })
+            
+            client.on('reconnecting', () => {
+                console.log('( redis ) reconnecting')
+            })
+            
+            client.on('end', () => {
+                console.log('( redis ) end connection')
+                return reject()
+            })
+        })
+    },
     set: ({key, value, exp}) => {
         client.set(key, value, 'EX', exp)
     },

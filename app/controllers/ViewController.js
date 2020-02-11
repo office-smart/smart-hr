@@ -1,7 +1,63 @@
 'use strict'
 
-const isDev = process.env.NODE_ENV === 'development'
-const { menus: loadMenu } = require('../services/lang/index')
+const lang = require('../languages/index')
+
+const isDev = (process.env.NODE_ENV === 'development')
+const loadMenu = (langType = 'EN', active = 'MENU_DASHBOARD') => {
+    let menus = [{
+        id: 'dashboard',
+        class: '',
+        icon: 'import_export',
+        title: lang(langType, MENU_DASHBOARD),
+        link: '/dashboard'
+    },{
+        id: 'myinfo',
+        class: '',
+        icon: 'person',
+        title: lang(langType, MENU_MYINFO),
+        link: '/my-info'
+    },{
+        id: 'employees',
+        class: '',
+        icon: 'group',
+        title: lang(langType, MENU_EMPLOYEES),
+        link: '/employees'
+    },{
+        id: 'timeoff',
+        class: '',
+        icon: 'do_not_disturb_off',
+        title: lang(langType, MENU_TIMEOFF),
+        link: '/timeoff'
+    },{
+        id: 'payroll',
+        class: '',
+        icon: 'monetization_on',
+        title: lang(langType, MENU_PAYROLL),
+        link: '/payroll'
+    },{
+        id: 'calendar',
+        class: '',
+        icon: 'perm_contact_calendar',
+        title: lang(langType, MENU_CALENDAR),
+        link: '/calendar'
+    },{
+        id: 'tasks',
+        class: '',
+        icon: 'memory',
+        title: lang(langType, MENU_TASKS),
+        link: '/tasks'
+    },{
+        id: 'administration',
+        class: '',
+        icon: 'tune',
+        title: lang(langType, MENU_ADMINISTRATION),
+        link: '/administration'
+    }]
+    return menus.map(x => {
+        if (active === x.id) x.class = 'active'
+        return x
+    })
+}
 
 const controller = {}
 
