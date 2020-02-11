@@ -2,7 +2,14 @@ window.fn = {}
 const ls = localStorage
 
 const utils = window.fn
+
 utils.currentToken = ls.getItem('token')
+
+utils.listenEnter = function (handler) {
+  fn.jquery('input').on('keypress', function (e) {
+      if(e.which == 13) handler();
+  });
+}
 
 utils.sendXHR = function (opt) {
   if (!opt.headers) opt.headers = {}

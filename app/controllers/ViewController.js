@@ -8,49 +8,56 @@ const loadMenu = (langType = 'EN', active = 'MENU_DASHBOARD') => {
         id: 'dashboard',
         class: '',
         icon: 'import_export',
-        title: lang(langType, MENU_DASHBOARD),
+        title: lang(langType, 'MENU_DASHBOARD'),
         link: '/dashboard'
-    },{
+    },
+    {
         id: 'myinfo',
         class: '',
         icon: 'person',
-        title: lang(langType, MENU_MYINFO),
+        title: lang(langType, 'MENU_MYINFO'),
         link: '/my-info'
-    },{
+    },
+    {
         id: 'employees',
         class: '',
         icon: 'group',
-        title: lang(langType, MENU_EMPLOYEES),
+        title: lang(langType, 'MENU_EMPLOYEES'),
         link: '/employees'
-    },{
+    },
+    {
         id: 'timeoff',
         class: '',
         icon: 'do_not_disturb_off',
-        title: lang(langType, MENU_TIMEOFF),
+        title: lang(langType, 'MENU_TIMEOFF'),
         link: '/timeoff'
-    },{
+    },
+    {
         id: 'payroll',
         class: '',
         icon: 'monetization_on',
-        title: lang(langType, MENU_PAYROLL),
+        title: lang(langType, 'MENU_PAYROLL'),
         link: '/payroll'
-    },{
+    },
+    {
         id: 'calendar',
         class: '',
         icon: 'perm_contact_calendar',
-        title: lang(langType, MENU_CALENDAR),
+        title: lang(langType, 'MENU_CALENDAR'),
         link: '/calendar'
-    },{
+    },
+    {
         id: 'tasks',
         class: '',
         icon: 'memory',
-        title: lang(langType, MENU_TASKS),
+        title: lang(langType, 'MENU_TASKS'),
         link: '/tasks'
-    },{
+    },
+    {
         id: 'administration',
         class: '',
         icon: 'tune',
-        title: lang(langType, MENU_ADMINISTRATION),
+        title: lang(langType, 'MENU_ADMINISTRATION'),
         link: '/administration'
     }]
     return menus.map(x => {
