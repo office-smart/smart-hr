@@ -1,5 +1,5 @@
-const backendRoutes = require('./app/routes/backendRoutes')
-const frontendRoutes = require('./app/routes/frontendRoutes')
+const backendRoutes = require('./backendRoutes')
+const frontendRoutes = require('./frontendRoutes')
 
 module.exports = (app) => {
   app.use('/api', backendRoutes)

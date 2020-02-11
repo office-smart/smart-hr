@@ -2,8 +2,8 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const { join } = require('path')
 
-const Acl = require('./app/helpers/AclHelper')
-const access = require('./app/helpers/acl/acl.json')
+const Acl = require('../helpers/AclHelper')
+const access = require('../helpers/acl/acl.json')
 
 module.exports = (app, express) => {
   /**
@@ -25,7 +25,7 @@ module.exports = (app, express) => {
   app.use(morgan('combined'))
 
   app.set('view engine', 'pug')
-  app.set('views', join(__dirname, 'app/views'))
+  app.set('views', join(__dirname, '../views'))
 
   return app
 }

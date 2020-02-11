@@ -18,11 +18,14 @@ router.get('/', (req, res) => {
     })
 })
 
+
+const ctrl = new AccountsController()
+
 // login route
-router.post('/user/login', [ AccountsController.login ])
+router.post('/user/login', [ ctrl.login ])
 
 // users routes
-router.get('/users', [ AuthMiddleware,  AccountsController.getUsers ])
-router.post('/users/create', [ AuthMiddleware,  AccountsController.create ])
+router.get('/users', [ AuthMiddleware,  ctrl.getUsers ])
+router.post('/users/create', [ AuthMiddleware,  ctrl.create ])
 
 module.exports = router

@@ -1,16 +1,16 @@
 'use strict'
 
 const readline = require('readline')
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
 
 const input = (text = '?') => {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    })
     return new Promise((resolve, reject) => {
         rl.question(text, (value) => {
+            rl.close()
             resolve(value)
-            rl.close();
         });
     })
 }

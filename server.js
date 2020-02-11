@@ -9,9 +9,9 @@ const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3003
 
 // register.js
-require('./register')(app, express)
+require('./app/config/register')(app, express)
 // route.js
-require('./route')(app)
+require('./app/routes')(app)
 
 createRedisConnection()
     .then(() => {
