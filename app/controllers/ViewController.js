@@ -34,6 +34,13 @@ const loadMenu = (langType = 'EN', active = 'MENU_DASHBOARD') => {
         link: '/timeoff'
     },
     {
+        id: 'overtime',
+        class: '',
+        icon: 'alarm_on',
+        title: lang(langType, 'MENU_OVERTIME'),
+        link: '/overtime'
+    },
+    {
         id: 'payroll',
         class: '',
         icon: 'monetization_on',

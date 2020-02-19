@@ -2,36 +2,52 @@
 
 const md5 = require('md5')
 const AccountsModel = require('../models/AccountsModel')
+const AccessControllModel = require('../models/AccessControllModel')
 const { Accounts: AccountInterface } = require('../interfaces/ModelInterfaces')
-const l = require('../languages/index')
+const lang = require('../languages/index')
 const { set } = require('../libs/redis')
 const exp = 12 * 60 * 60
+
+const ErrorLoginInvalid = lang('EN', 'E_INVALID_USERNAME')
 
 let service = {}
 
 service.login = async ({ username, password }) => {
     try {
-        const msg = l('EN', 'E_INVALID_USERNAME')
         const isUsername = (username && username.length > 0)
         const isPassword = (password && password.length > 0)
         const isValid = isUsername && isPassword
-        if (!isValid) throw new Error(msg)
+        if (!isValid) throw new Error(ErrorLoginInvalid)
         const form = {
             username,
             password: md5(password)
         }
-        let data = await AccountsModel.findOne(form)
-        if (!data) throw new Error(msg)
-        if (data['status'] === 'banned') throw new Error('Account Was Banned By System')
-        if (data['status'] === 'tmp-banned') throw new Error('Account Was Temporary Banned By System')
-        if (data['status'] === 'need-verify') throw new Error('Unverified Account. Please Check Your Email Verification')
-        const { roleType } = data
         const newExp = new Date().getTime() + exp
+        const data = this.getLoginInfo(form)
         const lang = (data['lang'] || 'EN').toUpperCase()
         const stringData = JSON.stringify({ userid: data['_id'], username, roleType, lang, exp: newExp })
         const key = md5(stringData)
         set({ key, value: stringData, exp }) // 12 jam
         return { token: key, username, roleType, exp: newExp }
+    } catch (err) {
+        throw err
+    }
+}
+service.getAccessInfo = async ({accountId}) => {
+    try {
+        const access = await AccessControllModel.findOne({accountId})
+    } catch (err) {
+        throw err
+    }
+}
+service.getLoginInfo = async ({username, password}) => {
+    try {
+        let data = await AccountsModel.findOne({username, password})
+        if (!data) throw new Error(ErrorLoginInvalid)
+        if (data['status'] === 'banned') throw new Error('Account Was Banned By System')
+        if (data['status'] === 'tmp-banned') throw new Error('Account Was Temporary Banned By System')
+        if (data['status'] === 'need-verify') throw new Error('Unverified Account. Please Check Your Email Verification')
+        return data
     } catch (err) {
         throw err
     }
