@@ -1,19 +1,13 @@
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const { join } = require('path')
-
-const Acl = require('../helpers/AclHelper')
-const access = require('../helpers/acl/acl.json')
+require('../libs/ExtendResponse')
 
 module.exports = (app, express) => {
-  /**
-     *  Register Global Variabel
-     */
-  app.locals.Acl = new Acl(access)
-
-  /**
-     *  Register Middleware
-     */
+  /* registering extender for response */
+  /*
+   *  Register Middleware
+   */
   app.use(cookieParser()) // using cookie parser
   app.use(express.static('public', {}))
   app.use(express.json()) // for parsing application/json

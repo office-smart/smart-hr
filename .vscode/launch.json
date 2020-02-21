@@ -7,6 +7,16 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Launch Server",
+            "program": "${workspaceFolder}/server.js",
+            "args": [],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch Command",
             "program": "${workspaceFolder}/command.js",
             "args": ["creator", "blablabla", "bla=balabal"],
