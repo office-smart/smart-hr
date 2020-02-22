@@ -1,14 +1,15 @@
+/* eslint-disable no-undef */
 window.fn = {}
-const ls = localStorage
 
 const utils = window.fn
 
-utils.currentToken = ls.getItem('token')
+utils.ls = localStorage
+utils.currentToken = utils.ls.getItem('token')
 
 utils.listenEnter = function (handler) {
-  fn.jquery('input').on('keypress', function (e) {
-      if(e.which == 13) handler();
-  });
+  utils.jquery('input').on('keypress', function (e) {
+    if (e.which === 13) handler()
+  })
 }
 
 utils.sendXHR = function (opt) {
@@ -31,7 +32,7 @@ utils.jquery = function (selector) {
 }
 
 utils.canAccess = function (access, requestAccess) {
-  return access.filter(item => item == requestAccess).length > 0
+  return access.filter(item => item === requestAccess).length > 0
 }
 
 utils.getInputValue = function (selectors) { // selectors => object
@@ -53,5 +54,5 @@ utils.getInputValue = function (selectors) { // selectors => object
   }
 }
 
-const currentUser = ls.getItem('username')
+const currentUser = utils.ls.getItem('username')
 $('#current-user').html(currentUser)

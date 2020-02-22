@@ -1,7 +1,5 @@
 'use strict'
 
-clear()
-
 const {
     Clients,
     CompanyInformation,

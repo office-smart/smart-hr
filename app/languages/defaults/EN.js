@@ -7,6 +7,7 @@ const variables = {
     'MENU_APPROVAL': 'Approval',
     'MENU_CALENDAR': 'Calendar',
     'MENU_EMPLOYEES': 'Employees',
+    'MENU_OVERTIME': 'Overtime',
     'MENU_PAYROLL': 'Payroll',
     'MENU_TASKS': 'Tasks',
     'MENU_ADMINISTRATION': 'Administration',

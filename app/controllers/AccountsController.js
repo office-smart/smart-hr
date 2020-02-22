@@ -1,35 +1,35 @@
-const AccountsService = require('../services/AccountsService')
-const errorHandler = require('../libs/errorHandler')
-// const { getAccess } = require('../helpers/access')
+'use strict'
 
-const { InternalError } = require('./../libs/ErrorHandler')
+/* services */
+const AccountsService = require('../services/AccountsService')
+const AuthenticationService = require('../services/AuthenticationService')
 
 class UserController {
   async login (req, res, next) {
     try {
-        const data = await AccountsService.login(req.body)
-        res.send(data)
+      const data = await AuthenticationService.doLogin(req.body)
+      res.api200(data)
     } catch (err) {
-      next(new InternalError({ message: 'something error happen', stack: err.toString() }))
+      res.api400(err)
     }
   }
 
   async getUsers (req, res, next) {
     try {
-        // const access = getAccess(req.roleAccess, 'users')
-        const items = await AccountsService.getUsers(req.query)
-        res.send({ access: [], items })
+      // const access = getAccess(req.roleAccess, 'users')
+      const items = await AccountsService.getUsers(req.query)
+      res.api200({ access: [], items })
     } catch (err) {
-      new InternalError({ message: 'something error happen', stack: err.toString() })
+      res.api400()
     }
   }
 
   async create (req, res, next) {
     try {
-        const data = await AccountsService.create(req.body)
-        res.send(data)
+      const data = await AccountsService.create(req.body)
+      res.send(data)
     } catch (err) {
-      new InternalError({ message: 'something error happen', stack: err.toString() })
+      res.api400(err)
     }
   }
 }

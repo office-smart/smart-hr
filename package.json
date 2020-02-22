@@ -1,6 +1,6 @@
 {
   "name": "smart-hr",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Smart HR Based On NodeJS",
   "main": "index.js",
   "scripts": {

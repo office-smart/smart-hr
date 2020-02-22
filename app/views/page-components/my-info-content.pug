@@ -13,48 +13,62 @@ div(id="content", class="pmd-content content-area dashboard", style="padding-bot
 				div(class="pmd-tabs")
 					div(class="pmd-tab-active-bar", style="")
 					ul(class="nav nav-tabs", role="tablist", style="")
-						li(role="presentation", class="active")
-							a(href="#general", aria-controls="general", role="tab", data-toggle="tab", aria-expanded="true") General Info
-						li(role="presentation", class="")
-							a(href="#payroll", aria-controls="payroll", role="tab", data-toggle="tab", aria-expanded="true") Payroll Info
-						li(role="presentation", class="")
-							a(href="#my-attendance", aria-controls="my-attendance", role="tab", data-toggle="tab", aria-expanded="true") Attendance
-						//- li(role="presentation", class="")
-						//- 	a(href="#my-schedules", aria-controls="my-schedules", role="tab", data-toggle="tab", aria-expanded="true") Schedules
-						li(role="presentation", class="")
-							a(href="#timeoff", aria-controls="timeoff", role="tab", data-toggle="tab", aria-expanded="true") Time Off
-						li(role="presentation", class="")
-							a(href="#overtime", aria-controls="overtime", role="tab", data-toggle="tab", aria-expanded="true") Overtime
-						li(role="presentation", class="")
-							a(href="#delegation", aria-controls="delegation", role="tab", data-toggle="tab", aria-expanded="true") Delegation
+						if permissions.infoPersonal
+							li(role="presentation", class="active")
+								a(href="#general", aria-controls="general", role="tab", data-toggle="tab", aria-expanded="true") General Info
+						if permissions.payrollHistory
+							li(role="presentation", class="")
+								a(href="#payroll", aria-controls="payroll", role="tab", data-toggle="tab", aria-expanded="true") Payroll Info
+						if permissions.attendanceList
+							li(role="presentation", class="")
+								a(href="#my-attendance", aria-controls="my-attendance", role="tab", data-toggle="tab", aria-expanded="true") Attendance
+						//- if permissions.schedules
+							li(role="presentation", class="")
+								a(href="#my-schedules", aria-controls="my-schedules", role="tab", data-toggle="tab", aria-expanded="true") Schedules
+						if permissions.timeoffHistory
+							li(role="presentation", class="")
+								a(href="#timeoff", aria-controls="timeoff", role="tab", data-toggle="tab", aria-expanded="true") Time Off
+						if permissions.overtimeHistory
+							li(role="presentation", class="")
+								a(href="#overtime", aria-controls="overtime", role="tab", data-toggle="tab", aria-expanded="true") Overtime
+						if permissions.delegationList
+							li(role="presentation", class="")
+								a(href="#delegation", aria-controls="delegation", role="tab", data-toggle="tab", aria-expanded="true") Delegation
 
 				div(class="pmd-card-body")
 					div(class="tab-content")
-						div(role="tabpanel", class="tab-pane active", id="general") 
-							div(class="component-box")
-								div(class="pmd-card pmd-card-custom-view")
-									+generalInformation
-						div(role="tabpanel", class="tab-pane", id="payroll") 
-							div(class="component-box")
-								div(class="pmd-card pmd-card-custom-view")
-									+payrollInfo
-						div(role="tabpanel", class="tab-pane", id="timeoff") 
-							div(class="component-box")
-								div(class="pmd-card pmd-card-custom-view")
-									+timeoffInfo
-						div(role="tabpanel", class="tab-pane", id="my-attendance") 
-							div(class="component-box")
-								div(class="pmd-card pmd-card-custom-view")
-									+attendances({ myAccount: true })
-						//- div(role="tabpanel", class="tab-pane", id="my-schedules") 
-						//- 	div(class="component-box")
-						//- 		div(class="pmd-card pmd-card-custom-view")
-						//- 			+schedules({ myAccount: true })
-						div(role="tabpanel", class="tab-pane", id="overtime") 
-							div(class="component-box")
-								div(class="pmd-card pmd-card-custom-view")
-									+overtimeInfo
-						div(role="tabpanel", class="tab-pane", id="delegation") 
-							div(class="component-box")
-								div(class="pmd-card pmd-card-custom-view")
-									+delegationInfo
+						if permissions.infoPersonal
+							div(role="tabpanel", class="tab-pane active", id="general") 
+								div(class="component-box")
+									div(class="pmd-card pmd-card-custom-view")
+										+generalInformation
+						if permissions.payrollHistory					
+							div(role="tabpanel", class="tab-pane", id="payroll") 
+								div(class="component-box")
+									div(class="pmd-card pmd-card-custom-view")
+										+payrollInfo
+						if permissions.timeoffHistory					
+							div(role="tabpanel", class="tab-pane", id="timeoff") 
+								div(class="component-box")
+									div(class="pmd-card pmd-card-custom-view")
+										+timeoffInfo
+						if permissions.attendanceList					
+							div(role="tabpanel", class="tab-pane", id="my-attendance") 
+								div(class="component-box")
+									div(class="pmd-card pmd-card-custom-view")
+										+attendances({ myAccount: true })
+						//- if permissions.schedules					
+							div(role="tabpanel", class="tab-pane", id="my-schedules") 
+								div(class="component-box")
+									div(class="pmd-card pmd-card-custom-view")
+										+schedules({ myAccount: true })
+						if permissions.overtimeHistory					
+							div(role="tabpanel", class="tab-pane", id="overtime") 
+								div(class="component-box")
+									div(class="pmd-card pmd-card-custom-view")
+										+overtimeInfo
+						if permissions.delegationList					
+							div(role="tabpanel", class="tab-pane", id="delegation") 
+								div(class="component-box")
+									div(class="pmd-card pmd-card-custom-view")
+										+delegationInfo

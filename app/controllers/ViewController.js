@@ -1,70 +1,79 @@
 'use strict'
 
+const AccessService = require('../services/AccessControllService')
+
 const lang = require('../languages/index')
 
 const isDev = (process.env.NODE_ENV === 'development')
 
 const loadMenu = (langType = 'EN', active = 'MENU_DASHBOARD') => {
-    let menus = [{
-        id: 'dashboard',
-        class: '',
-        icon: 'import_export',
-        title: lang(langType, 'MENU_DASHBOARD'),
-        link: '/dashboard'
-    },
-    {
-        id: 'myinfo',
-        class: '',
-        icon: 'person',
-        title: lang(langType, 'MENU_MYINFO'),
-        link: '/my-info'
-    },
-    {
-        id: 'employees',
-        class: '',
-        icon: 'group',
-        title: lang(langType, 'MENU_EMPLOYEES'),
-        link: '/employees'
-    },
-    {
-        id: 'timeoff',
-        class: '',
-        icon: 'do_not_disturb_off',
-        title: lang(langType, 'MENU_TIMEOFF'),
-        link: '/timeoff'
-    },
-    {
-        id: 'payroll',
-        class: '',
-        icon: 'monetization_on',
-        title: lang(langType, 'MENU_PAYROLL'),
-        link: '/payroll'
-    },
-    {
-        id: 'calendar',
-        class: '',
-        icon: 'perm_contact_calendar',
-        title: lang(langType, 'MENU_CALENDAR'),
-        link: '/calendar'
-    },
-    {
-        id: 'tasks',
-        class: '',
-        icon: 'memory',
-        title: lang(langType, 'MENU_TASKS'),
-        link: '/tasks'
-    },
-    {
-        id: 'administration',
-        class: '',
-        icon: 'tune',
-        title: lang(langType, 'MENU_ADMINISTRATION'),
-        link: '/administration'
-    }]
-    return menus.map(x => {
-        if (active === x.id) x.class = 'active'
-        return x
-    })
+  const menus = [{
+    id: 'dashboard',
+    class: '',
+    icon: 'import_export',
+    title: lang(langType, 'MENU_DASHBOARD'),
+    link: '/dashboard'
+  },
+  {
+    id: 'myinfo',
+    class: '',
+    icon: 'person',
+    title: lang(langType, 'MENU_MYINFO'),
+    link: '/my-info'
+  },
+  {
+    id: 'employees',
+    class: '',
+    icon: 'group',
+    title: lang(langType, 'MENU_EMPLOYEES'),
+    link: '/employees'
+  },
+  {
+    id: 'timeoff',
+    class: '',
+    icon: 'do_not_disturb_off',
+    title: lang(langType, 'MENU_TIMEOFF'),
+    link: '/timeoff'
+  },
+  {
+    id: 'overtime',
+    class: '',
+    icon: 'alarm_on',
+    title: lang(langType, 'MENU_OVERTIME'),
+    link: '/overtime'
+  },
+  {
+    id: 'payroll',
+    class: '',
+    icon: 'monetization_on',
+    title: lang(langType, 'MENU_PAYROLL'),
+    link: '/payroll'
+  },
+  {
+    id: 'calendar',
+    class: '',
+    icon: 'perm_contact_calendar',
+    title: lang(langType, 'MENU_CALENDAR'),
+    link: '/calendar'
+  },
+  {
+    id: 'tasks',
+    class: '',
+    icon: 'memory',
+    title: lang(langType, 'MENU_TASKS'),
+    link: '/tasks'
+  },
+  {
+    id: 'administration',
+    class: '',
+    icon: 'tune',
+    title: lang(langType, 'MENU_ADMINISTRATION'),
+    link: '/administration'
+  }]
+  return menus.map(x => {
+    if (active === x.id) x.class = 'active'
+    return x
+  })
 }
 
 const controller = {}
@@ -84,8 +93,25 @@ controller.forgot = (req, res) => {
 controller.dashboard = async (req, res) => {
   res.render('dashboard', { menus: loadMenu(req.lang, 'dashboard'), title: 'Dashboard', isDev })
 }
-controller.myinfo = (req, res) => {
-  res.render('my-info', { menus: loadMenu(req.lang, 'myinfo'), title: 'My Info', isDev })
+controller.myinfo = async (req, res) => {
+  try {
+    const permissions = await AccessService.getAccessPermission({
+      infoPersonal: 'hr.my.info.personal',
+      infoEmployee: 'hr.my.info.employee',
+      infoFamily: 'hr.my.info.family',
+      attendanceList: 'hr.my.attendance.list',
+      delegationList: 'hr.my.delegation.list',
+      timeoffHistory: 'hr.timeoff.history',
+      timeoffRequest: 'hr.timeoff.request',
+      overtimeHistory: 'hr.overtime.history',
+      overtimeRequest: 'hr.overtime.request',
+      payrollHistory: 'hr.payroll.history',
+      payrollRequest: 'hr.payroll.request'
+    }, req.config.permissions)
+    res.render('my-info', { menus: loadMenu(req.lang, 'myinfo'), title: 'My Info', isDev, permissions })
+  } catch (err) {
+    res.api400(err)
+  }
 }
 controller.employees = (req, res) => {
   res.render('employees', { menus: loadMenu(req.lang, 'employees'), title: 'Employees', isDev })
@@ -119,7 +145,7 @@ controller.roles = (req, res) => {
   res.render('roles', { menus: loadMenu(req.lang, 'roles'), activeMenu: 'roles', title: 'Role Page' })
 }
 controller.administration = (req, res) => {
-  res.render('administration', { config: req.config, menus: loadMenu(req.lang, 'administration'), title: "Administration", isDev })
+  res.render('administration', { config: req.config, menus: loadMenu(req.lang, 'administration'), title: 'Administration', isDev })
 }
 
 module.exports = controller

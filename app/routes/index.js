@@ -6,7 +6,8 @@ module.exports = (app) => {
   app.use('/', frontendRoutes)
   app.use((err, req, res, next) => {
     res.status((err && err.data && err.data.code) || 500)
-    res.json(err)
+    console.log(err)
+    res.send(err.message)
   })
 
   app.all('*', (req, res) => {
