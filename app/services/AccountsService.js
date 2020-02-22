@@ -1,12 +1,20 @@
 'use strict'
 
-// models
+/* models */
 const AccountsModel = require('../models/AccountsModel')
-// interfaces
+
+/* services */
+const EncryptionService = require('../services/EncryptionService')
+
+/* interfaces */
 // const { Accounts: AccountInterface } = require('../interfaces/ModelInterfaces')
 
 const service = {}
 
+service.findBy = async function (criteria = {}) {
+  const d = await AccountsModel.findOne(criteria)
+  return d || {}
+}
 service.getUsers = async ({ username, email, status, page, limit }, myusername) => {
   const criteria = {}
   criteria.username = {

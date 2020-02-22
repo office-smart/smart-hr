@@ -6,7 +6,7 @@ fn.selectors = {
 }
 
 fn.init = function () {
-  ls.clear()
+  fn.ls.clear()
   fn.listenEnter(fn.doLogin)
 }
 
@@ -22,9 +22,10 @@ fn.doLogin = function () {
   })
     .then(function (res) {
       let currentToken = ''
-      for (const key in res) {
-        ls.setItem(key, res[key])
-        if (key === 'token') currentToken = res[key]
+      const data = res.data
+      for (const key in data) {
+        fn.ls.setItem(key, data[key])
+        if (key === 'token') currentToken = data[key]
       }
       document.cookie = 'smart-token=' + currentToken
       window.location.href = '/dashboard'

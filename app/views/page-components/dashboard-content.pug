@@ -1,5 +1,6 @@
-include mixins/summary-employees.pug
-include mixins/remainder-timeoff.pug
+include mixins/summaries/summary-overtime.pug
+include mixins/summaries/summary-employees.pug
+include mixins/summaries/remainder-timeoff.pug
 include mixins/approved-timeoff.pug
 
 div(id="content", class="pmd-content content-area dashboard", style="padding-bottom: 20px;")
@@ -14,6 +15,8 @@ div(id="content", class="pmd-content content-area dashboard", style="padding-bot
 									+summaryEmployees
 								.col-md-4.col-sm-5.col-xs-7
 									+remainderTimeoff
+								.col-md-4.col-sm-5.col-xs-7
+									+summaryOvertime
 						.col-md-4
 							+approvedTimeoff
 					

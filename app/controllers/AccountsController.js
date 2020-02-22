@@ -1,6 +1,6 @@
 'use strict'
 
-// services
+/* services */
 const AccountsService = require('../services/AccountsService')
 const AuthenticationService = require('../services/AuthenticationService')
 
@@ -8,7 +8,7 @@ class UserController {
   async login (req, res, next) {
     try {
       const data = await AuthenticationService.doLogin(req.body)
-      res.api400()
+      res.api200(data)
     } catch (err) {
       res.api400(err)
     }
@@ -29,7 +29,7 @@ class UserController {
       const data = await AccountsService.create(req.body)
       res.send(data)
     } catch (err) {
-      new InternalError({ message: 'something error happen', stack: err.toString() })
+      res.api400(err)
     }
   }
 }
