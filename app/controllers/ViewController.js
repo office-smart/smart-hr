@@ -1,6 +1,7 @@
 'use strict'
 
 const AccessService = require('../services/AccessControllService')
+const InitialFormDataService = require('../services/InitialFormDataService')
 
 const lang = require('../languages/index')
 
@@ -95,20 +96,9 @@ controller.dashboard = async (req, res) => {
 }
 controller.myinfo = async (req, res) => {
   try {
-    const permissions = await AccessService.getAccessPermission({
-      infoPersonal: 'hr.my.info.personal',
-      infoEmployee: 'hr.my.info.employee',
-      infoFamily: 'hr.my.info.family',
-      attendanceList: 'hr.my.attendance.list',
-      delegationList: 'hr.my.delegation.list',
-      timeoffHistory: 'hr.timeoff.history',
-      timeoffRequest: 'hr.timeoff.request',
-      overtimeHistory: 'hr.overtime.history',
-      overtimeRequest: 'hr.overtime.request',
-      payrollHistory: 'hr.payroll.history',
-      payrollRequest: 'hr.payroll.request'
-    }, req.config.permissions)
-    res.render('my-info', { menus: loadMenu(req.lang, 'myinfo'), title: 'My Info', isDev, permissions })
+    const permissions = await AccessService.getAccessPermission('myinfo', req.config.permissions)
+    const formData = await InitialFormDataService.getInitMyInfo(req.config.user)
+    res.render('my-info', { menus: loadMenu(req.lang, 'myinfo'), title: 'My Info', isDev, permissions, formData })
   } catch (err) {
     res.api400(err)
   }

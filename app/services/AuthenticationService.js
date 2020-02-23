@@ -31,7 +31,7 @@ service.doLogin = async ({ username, password }) => {
   const newExp = new Date().getTime() + exp
   const data = await service.getLoginInfo(form)
   const lang = (data.lang || 'EN').toUpperCase()
-  const stringData = JSON.stringify({ userid: data._id, username, lang, exp: newExp })
+  const stringData = JSON.stringify({ userid: data._id, username, lang, employeeId: data.employeeID, exp: newExp })
   const key = md5(stringData)
   set({ key, value: stringData, exp }) // 12 jam
   set({ key: `permissions_${key}`, value: data.permissions.toString(), exp }) // 12 jam

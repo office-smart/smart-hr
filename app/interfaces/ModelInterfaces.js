@@ -125,9 +125,9 @@ interfaces
             */
     ],
     contract: {
-      type: String, // contract | permanent
-      hireDate: Date,
-      contractUntil: Date
+      // type: String, // contract | permanent
+      // hireDate: Date,
+      // contractUntil: Date
     },
     companyID: mongoose.Types.ObjectId,
     status: String,
