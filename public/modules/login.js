@@ -16,7 +16,7 @@ fn.doLogin = function () {
     password: 'password'
   })
   fn.sendXHR({
-    url: '/api/user/login',
+    url: fn.endpoints['auth.login'],
     method: 'POST',
     data
   })

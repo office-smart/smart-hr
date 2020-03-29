@@ -4,12 +4,27 @@ const { result, intersection } = require('lodash')
 const { get } = require('../libs/redis')
 
 class AuthMiddleware {
+  getToken (request) {
+    const token = result(request, 'cookies.smart-token', request.header('smart-token')) || request.query['smart-token']
+    if (!token || (token && token.length === 0)) throw new Error('Invalid Auth Header')
+    return token
+  }
+
+  token (request, response, next) {
+    try {
+      const token = this.getToken(request)
+      request.config = { token }
+      next()
+    } catch (err) {
+      response.api400(err)
+    }
+  }
+
   getAccess (access = []) {
     this.access = access
     return async (request, response, next) => {
       try {
-        const token = result(request, 'cookies.smart-token', request.header('smart-token')) || request.query['smart-token']
-        if (!token || (token && token.length === 0)) throw new Error('Invalid Auth Header')
+        const token = this.getToken(request)
         const needPermissions = this.access.length
         const access = await get(`permissions_${token}`)
         if (!access) return response.redirect('/login')
@@ -17,11 +32,14 @@ class AuthMiddleware {
         if (intersection(arrayAccess, this.access).length < needPermissions) throw new Error('Need Permission To Access This Page')
         const user = await get(token)
         if (!user || (user && user.length === 0)) throw new Error('Invalid Session Data')
-        const JSONuser = JSON.parse(user)
+        const { employeeId, username, lang, companyId, exp } = JSON.parse(user)
         const config = {
-          lang: '',
+          lang,
           token: token,
-          user: JSONuser,
+          username,
+          employeeId,
+          companyId,
+          exp,
           permissions: arrayAccess
         }
         request.config = config

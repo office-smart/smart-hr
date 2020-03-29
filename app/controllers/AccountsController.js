@@ -2,29 +2,19 @@
 
 /* services */
 const AccountsService = require('../services/AccountsService')
-const AuthenticationService = require('../services/AuthenticationService')
 
-class UserController {
-  async login (req, res, next) {
-    try {
-      const data = await AuthenticationService.doLogin(req.body)
-      res.api200(data)
-    } catch (err) {
-      res.api400(err)
-    }
-  }
-
-  async getUsers (req, res, next) {
+class AccountsController {
+  async getAccounts ({ req, res }, next) {
     try {
       // const access = getAccess(req.roleAccess, 'users')
-      const items = await AccountsService.getUsers(req.query)
+      const items = await AccountsService.getAccountsBy(req.query)
       res.api200({ access: [], items })
     } catch (err) {
       res.api400()
     }
   }
 
-  async create (req, res, next) {
+  async create ({ req, res }, next) {
     try {
       const data = await AccountsService.create(req.body)
       res.send(data)
@@ -34,4 +24,4 @@ class UserController {
   }
 }
 
-module.exports = UserController
+module.exports = AccountsController

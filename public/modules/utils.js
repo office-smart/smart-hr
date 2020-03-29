@@ -5,6 +5,10 @@ const utils = window.fn
 
 utils.ls = localStorage
 utils.currentToken = utils.ls.getItem('token')
+utils.endpoints = {
+  'auth.login': '/api/v1/auth/login',
+  'administration.my-company': '/api/v1/company/information'
+}
 
 utils.listenEnter = function (handler) {
   utils.jquery('input').on('keypress', function (e) {

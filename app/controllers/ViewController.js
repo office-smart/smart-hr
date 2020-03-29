@@ -1,7 +1,6 @@
 'use strict'
 
 const AccessService = require('../services/AccessControllService')
-const InitialFormDataService = require('../services/InitialFormDataService')
 
 const lang = require('../languages/index')
 
@@ -77,65 +76,88 @@ const loadMenu = (langType = 'EN', active = 'MENU_DASHBOARD') => {
   })
 }
 
-const controller = {}
+class ViewController {
+  async login ({ req, res }, next) {
+    res.render('login', { title: 'Login', isDev })
+  }
 
-controller.login = (req, res) => {
-  res.render('login', { title: 'Login', isDev })
-}
-controller.logout = (req, res) => {
-  res.redirect('/login')
-}
-controller.register = (req, res) => {
-  res.render('register', { title: 'Register', isDev })
-}
-controller.forgot = (req, res) => {
-  res.render('forgot', { title: 'Forgot Password', isDev })
-}
-controller.dashboard = async (req, res) => {
-  res.render('dashboard', { menus: loadMenu(req.lang, 'dashboard'), title: 'Dashboard', isDev })
-}
-controller.myinfo = async (req, res) => {
-  try {
-    const permissions = await AccessService.getAccessPermission('myinfo', req.config.permissions)
-    const formData = await InitialFormDataService.getInitMyInfo(req.config.user)
-    res.render('my-info', { menus: loadMenu(req.lang, 'myinfo'), title: 'My Info', isDev, permissions, formData })
-  } catch (err) {
-    res.api400(err)
+  async logout ({ req, res }, next) {
+    res.redirect('/login')
+  }
+
+  async register ({ req, res }, next) {
+    res.render('register', { title: 'Register', isDev })
+  }
+
+  async forgot ({ req, res }, next) {
+    res.render('forgot', { title: 'Forgot Password', isDev })
+  }
+
+  async dashboard ({ req, res }, next) {
+    res.render('dashboard', { menus: loadMenu(req.lang, 'dashboard'), title: 'Dashboard', isDev })
+  }
+
+  async myinfo ({ req, res }, next) {
+    try {
+      const permissions = await AccessService.getAccessPermission('myinfo', req.config.permissions)
+      res.render('my-info', { menus: loadMenu(req.lang, 'myinfo'), title: 'My Info', isDev, permissions })
+    } catch (err) {
+      res.api400(err)
+    }
+  }
+
+  async employees ({ req, res }, next) {
+    res.render('employees', { menus: loadMenu(req.lang, 'employees'), title: 'Employees', isDev })
+  }
+
+  async timeoff ({ req, res }, next) {
+    res.render('timeoff', { menus: loadMenu(req.lang, 'timeoff'), title: 'Time Off', isDev })
+  }
+
+  async overtime ({ req, res }, next) {
+    res.render('timeoff', { menus: loadMenu(req.lang, 'timeoff'), title: 'Time Off', isDev })
+  }
+
+  async payroll ({ req, res }, next) {
+    res.render('payroll', { menus: loadMenu(req.lang, 'payroll'), title: 'Payroll', isDev })
+  }
+
+  async calendar ({ req, res }, next) {
+    res.render('calendar', { menus: loadMenu(req.lang, 'calendar'), title: 'Calendar', isDev })
+  }
+
+  async tasks ({ req, res }, next) {
+    res.render('tasks', { menus: loadMenu(req.lang, 'tasks'), title: 'Tasks', isDev })
+  }
+
+  async myinbox ({ req, res }, next) {
+    res.render('my-inbox', { menus: loadMenu(req.lang, 'myinbox'), title: 'My Inbox', isDev })
+  }
+
+  async approval ({ req, res }, next) {
+    res.render('approval', { menus: loadMenu(req.lang, 'approval'), title: 'Approval', isDev })
+    res.render('register', { activeMenu: '' })
+  }
+
+  async users ({ req, res }, next) {
+    res.render('users', { menus: loadMenu(req.lang, 'users'), activeMenu: 'users', title: 'User Page' })
+  }
+
+  async roles ({ req, res }, next) {
+    res.render('roles', { menus: loadMenu(req.lang, 'roles'), activeMenu: 'roles', title: 'Role Page' })
+  }
+
+  async administration ({ req, res }, next) {
+    const modules = [
+      'administration/mycompany.js',
+      'administration/myemployees.js',
+      'administration/calendars.js',
+      'administration/payrolls.js',
+      'administration/broadcast.js',
+      'administration/audit.js'
+    ]
+    res.render('administration', { config: req.config, menus: loadMenu(req.lang, 'administration'), title: 'Administration', isDev, modules })
   }
 }
-controller.employees = (req, res) => {
-  res.render('employees', { menus: loadMenu(req.lang, 'employees'), title: 'Employees', isDev })
-}
-controller.timeoff = (req, res) => {
-  res.render('timeoff', { menus: loadMenu(req.lang, 'timeoff'), title: 'Time Off', isDev })
-}
-controller.payroll = (req, res) => {
-  res.render('payroll', { menus: loadMenu(req.lang, 'payroll'), title: 'Payroll', isDev })
-}
-controller.calendar = (req, res) => {
-  res.render('calendar', { menus: loadMenu(req.lang, 'calendar'), title: 'Calendar', isDev })
-}
-controller.tasks = (req, res) => {
-  res.render('tasks', { menus: loadMenu(req.lang, 'tasks'), title: 'Tasks', isDev })
-}
-controller.myinbox = (req, res) => {
-  res.render('my-inbox', { menus: loadMenu(req.lang, 'myinbox'), title: 'My Inbox', isDev })
-}
-controller.approval = (req, res) => {
-  res.render('approval', { menus: loadMenu(req.lang, 'approval'), title: 'Approval', isDev })
-  res.render('register', { activeMenu: '' })
-}
-controller.forgot = (req, res) => {
-  res.render('forgot', { activeMenu: '' })
-}
-controller.users = (req, res) => {
-  res.render('users', { menus: loadMenu(req.lang, 'users'), activeMenu: 'users', title: 'User Page' })
-}
-controller.roles = (req, res) => {
-  res.render('roles', { menus: loadMenu(req.lang, 'roles'), activeMenu: 'roles', title: 'Role Page' })
-}
-controller.administration = (req, res) => {
-  res.render('administration', { config: req.config, menus: loadMenu(req.lang, 'administration'), title: 'Administration', isDev })
-}
 
-module.exports = controller
+module.exports = ViewController

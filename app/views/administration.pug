@@ -31,4 +31,5 @@ html(lang="en")
         script(src="/vendor/calendar/js/bootstrap-calendar.js")
         script(src="/vendor/calendar/js/calendar-module.js")
         script(src="/modules/utils.js")
-        script(src="/modules/users.js")
+        each m in modules
+            script(src="/modules/" + m)

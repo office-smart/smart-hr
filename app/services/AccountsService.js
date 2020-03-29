@@ -15,7 +15,7 @@ service.findBy = async function (criteria = {}) {
   const d = await AccountsModel.findOne(criteria)
   return d || {}
 }
-service.getUsers = async ({ username, email, status, page, limit }, myusername) => {
+service.getAccountsBy = async ({ username, email, status, page, limit }, myusername) => {
   const criteria = {}
   criteria.username = {
     $ne: myusername

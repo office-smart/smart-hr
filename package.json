@@ -28,6 +28,7 @@
     "morgan": "^1.9.1",
     "pug": "^2.0.4",
     "redis": "^2.8.0",
+    "require-all": "^3.0.0",
     "validator": "^12.1.0"
   },
   "devDependencies": {

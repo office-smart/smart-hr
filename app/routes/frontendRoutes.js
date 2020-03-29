@@ -3,31 +3,53 @@
 const express = require('express')
 const router = express.Router()
 
-// controllers
-const viewController = require('../controllers/ViewController')
+const controllers = require('../controllers')
+const frontendRoutesV1 = require('require-all')(require('path').join(__dirname, '/v1/frontend'))
 
-// middlewares
-const AuthMiddleware = require('../middlewares/AuthMiddleware')
-const Auth = new AuthMiddleware()
+function getController (name = '') {
+  const splitter = name.split('.')
+  let ctrl = null
+  for (const x of splitter) {
+    if (!ctrl && controllers[x]) {
+      ctrl = controllers[x]
+    } else {
+      if (ctrl[x]) {
+        ctrl = ctrl[x]
+      }
+    }
+  }
+  return ctrl
+}
 
-router.get('/', (req, res) => {
-  // res.redirect('/dashboard')
-  res.redirect('/users')
-})
-router.get('/login', [viewController.login])
-router.get('/logout', [viewController.logout])
-// router.get('/register', [AuthMiddleware, viewController.register])
-// console.log(typeof new AuthMiddleware(['hr.menu.forgot']).access())
-router.get('/forgot', [Auth.getAccess(['hr.menu.forgot']), viewController.forgot])
-router.get('/dashboard', [Auth.getAccess(['hr.menu.dashboard']), viewController.dashboard])
-router.get('/my-info', [Auth.getAccess(['hr.menu.my-info']), viewController.myinfo])
-router.get('/employees', [Auth.getAccess(['hr.menu.employees']), viewController.employees])
-router.get('/timeoff', [Auth.getAccess(['hr.menu.timeoff']), viewController.timeoff])
-router.get('/payroll', [Auth.getAccess(['hr.menu.payroll']), viewController.payroll])
-router.get('/calendar', [Auth.getAccess(['hr.menu.calendar']), viewController.calendar])
-router.get('/tasks', [Auth.getAccess(['hr.menu.tasks']), viewController.tasks])
-router.get('/my-inbox', [Auth.getAccess(['hr.menu.my-inbox']), viewController.myinbox])
-router.get('/approval', [Auth.getAccess(['hr.menu.approval']), viewController.approval])
-router.get('/administration', [Auth.getAccess(['hr.menu.administration']), viewController.administration])
+for (const routes in frontendRoutesV1) {
+  const r = frontendRoutesV1[routes]
+  for (const xRoute in r) {
+    try {
+      const { method, path, controller, beforeController, afterController } = r[xRoute]
+      const ctrl = getController(controller)
+      if (!ctrl) throw new Error(`Invalid Controller Named ${controller}`)
+      console.log(`[frontend] registering route ${path}`)
+      if (method === 'GET') {
+        router.get(path, [...beforeController, async function (req, res, next) {
+          try {
+            await ctrl({ req, res }, next)
+          } catch (err) {
+            next(err)
+          }
+        }, ...afterController])
+      } else if (method === 'POST') {
+        router.post(path, [...beforeController, async function (req, res, next) {
+          try {
+            await ctrl({ req, res }, next)
+          } catch (err) {
+            next(err)
+          }
+        }, ...afterController])
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
 
 module.exports = router

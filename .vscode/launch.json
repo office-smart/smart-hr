@@ -9,6 +9,9 @@
             "request": "launch",
             "name": "Launch Server",
             "program": "${workspaceFolder}/server.js",
+            "env": {
+                "PORT": "3000"
+            },
             "args": [],
             "skipFiles": [
                 "<node_internals>/**"

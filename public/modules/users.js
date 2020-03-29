@@ -23,7 +23,7 @@ fn.loadingUser = function () {
 fn.getUsers = function () {
   try {
     fn.sendXHR({
-      url: '/api/users',
+      url: '/api/v1/accounts',
       method: 'GET',
       beforeSend: function () {
         fn.loadingUser()
