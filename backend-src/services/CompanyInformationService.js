@@ -31,14 +31,10 @@ service.getCompanyInformationById = async (companyId) => {
 }
 
 service.upsert = async (id, data) => {
-  try {
-    const q = await CompanyInformationModel
-      .updateOne({
-        _id: data.companyId
-      })
-  } catch (err) {
-    throw err
-  }
+  await CompanyInformationModel
+    .updateOne({
+      _id: data.companyId
+    })
 }
 
 module.exports = service

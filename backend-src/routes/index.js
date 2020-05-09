@@ -6,6 +6,11 @@ const documentation = require('./documentation')
 const { version, name } = require('../../package.json')
 
 module.exports = (app) => {
+  // global middlewares fires before all controllers are executed
+  app.use((req, res, next) => {
+    console.log(`[${req.method}]`, req.originalUrl)
+    next()
+  })
   // backend routes v1
   app.use('/api/v1', backendRoutes)
   // frontend routes
@@ -17,12 +22,6 @@ module.exports = (app) => {
   })
   app.use('/documentation', documentation)
   app.use('/', frontendRoutes)
-  // middleware
-  app.use((err, req, res, next) => {
-    res.status((err && err.data && err.data.code) || 500)
-    console.log(err)
-    res.send(err.message)
-  })
   // any method and path
   app.all('*', (req, res) => {
     res
@@ -33,6 +32,12 @@ module.exports = (app) => {
         app_name: name,
         version
       })
+  })
+  // global middlewares fires after controller executed
+  app.use((err, req, res, next) => {
+    res.status((err && err.data && err.data.code) || 500)
+    console.log(err)
+    res.send(err.message)
   })
   return app
 }

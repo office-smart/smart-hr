@@ -1,17 +1,17 @@
 'use strict'
 
 require('dotenv').config()
-const mongodbConnection = require('./app/libs/mongodb')
-const { createRedisConnection } = require('./app/libs/redis')
+const mongodbConnection = require('./backend-src/libs/mongodb')
+const { createRedisConnection } = require('./backend-src/libs/redis')
 const express = require('express')
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3003
 
 // register.js
-require('./app/config/register')(app, express)
+require('./backend-src/config/register')(app, express)
 // route.js
-require('./app/routes')(app)
+require('./backend-src/routes')(app)
 
 createRedisConnection()
   .then(() => {

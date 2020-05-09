@@ -4,10 +4,13 @@
   "description": "Smart HR Based On NodeJS",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon --watch app --watch package.json -x node server.js",
-    "debug": "node --inspect-brk server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "stack:start": "node server.js",
+    "stack:test": "echo \"Error: no test specified\" && exit 1",
+    "stack:clean": "eslint --fix-dry-run backend-src",
+    "stack:dev": "nodemon --watch backend-src --watch .env -x node server.js",
+    "frontend:dev": "nodemon --watch 'frontend-src/**/*' -e tag,js --watch package.json -x npm run frontend:build",
+    "frontend:build": "webpack -p -d --progress --colors",
+    "frontend:dev1": "webpack-dev-server --hot"
   },
   "author": "rohmanahmad",
   "contacts": {
@@ -18,14 +21,17 @@
   "dependencies": {
     "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.3.1",
+    "jquery": "^3.5.0",
     "md5": "^2.2.1",
     "moment": "^2.24.0",
     "mongoose": "^5.8.1",
     "morgan": "^1.9.1",
+    "popper.js": "^1.16.1",
     "pug": "^2.0.4",
     "redis": "^2.8.0",
     "require-all": "^3.0.0",
@@ -37,6 +43,30 @@
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1"
+    "eslint-plugin-standard": "^4.0.1",
+    "npm-run-all": "^2.3.0",
+    "riot": "^2.5.0",
+    "riotcontrol": "0.0.3",
+    "autoprefixer": "^6.3.3",
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015-riot": "^1.1.0",
+    "cpy": "^4.0.1",
+    "cpy-cli": "^1.0.1",
+    "css-loader": "^0.23.0",
+    "csswring": "^5.1.0",
+    "postcss-custom-properties": "^5.0.0",
+    "postcss-import": "^8.1.2",
+    "postcss-loader": "^0.9.1",
+    "postcss-nested": "^1.0.0",
+    "riotjs-loader": "^3.0.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.9.10",
+    "webpack-dev-server": "^1.9.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015-riot"
+    ]
   }
 }

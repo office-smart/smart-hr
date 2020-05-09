@@ -17,5 +17,8 @@ module.exports = {
   rules: {
     "no-new": 0,
     "prefer-promise-reject-errors" : 0,
+  },
+  globals: {
+    "riot": true
   }
 }

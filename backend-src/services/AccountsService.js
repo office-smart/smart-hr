@@ -4,7 +4,7 @@
 const AccountsModel = require('../models/AccountsModel')
 
 /* services */
-const EncryptionService = require('../services/EncryptionService')
+const EncryptionService = require('./EncryptionService')
 
 /* interfaces */
 // const { Accounts: AccountInterface } = require('../interfaces/ModelInterfaces')

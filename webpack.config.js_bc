@@ -1,0 +1,74 @@
+var webpack = require('webpack')
+
+// postcss plugins
+var cssimport = require('postcss-import')
+var customProperties = require('postcss-custom-properties')
+var autoprefixer = require('autoprefixer')
+var csswring = require('csswring')
+var cssnested = require('postcss-nested')
+const path = require('path')
+const fs = require('fs')
+
+module.exports = {
+  entry: {
+    app: ['./frontend-src/index.js']
+  },
+  output: {
+    path: path.join('public'),
+    filename: 'bundle.[hash].js'
+  },
+  devtool: 'eval',
+  debug: true,
+  plugins: [
+    function () {
+      const path = './public/'
+      const regex = /bundle(.*)$/
+      fs.readdirSync(path)
+        .filter(f => regex.test(f))
+        .map(f => fs.unlinkSync(path + f))
+    },
+    new webpack.ProvidePlugin({
+      riot: 'riot'
+    }),
+    function () {
+      this.plugin('done', function (statsData) {
+        var stats = statsData.toJson()
+
+        if (!stats.errors.length) {
+          var x = stats.assetsByChunkName.app
+          if (typeof x === 'object') x = x[0]
+          if (x) {
+            var htmlFileName = 'backend-src/views/index.pug'
+            var bundleScript = x.split(',')[0]
+            var html = fs.readFileSync(path.join(__dirname, htmlFileName), 'utf8')
+            var htmlOutput = html.replace(
+              /bundle(.*)js/,
+              bundleScript)
+
+            fs.writeFileSync(
+              path.join(__dirname, htmlFileName),
+              htmlOutput)
+          }
+        }
+      })
+    }
+  ],
+  module: {
+    preLoaders: [
+      { test: /\.tag$/, exclude: /node_modules/, loader: 'riotjs-loader', query: { type: 'babel' } }
+    ],
+    loaders: [
+      { test: /\.js|\.tag$/, exclude: /node_modules/, include: /frontend-src/, loader: 'babel-loader' },
+      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' }
+    ]
+  },
+  postcss: [cssimport, cssnested, customProperties, autoprefixer, csswring],
+  devServer: {
+    contentBase: './public/',
+    // contentBase: './backend-src/views/',
+    port: 5555,
+    hot: true,
+    inline: true,
+    writeToDisk: true // untuk meng-generate bundle.[hash].js
+  }
+}
