@@ -1,0 +1,48 @@
+include ../form-elements/forms.pug
+
+mixin familyInfo
+	.component-box
+		.pmd-card.pmd-card-custom-view
+			.row
+				.col-md-10.col-xs-7.col-sm-7
+					h2(style="padding-left: 10px;") Family Data
+				.col-md-2.col-xs-5.col-sm-5(style="padding-top: 10px;")
+					+rippleButton({title: 'Add New', class: 'btn-primary', style: "", id: 'family-add-new'})
+			hr
+			.pmd-table-card
+				table.table.pmd-table
+					+generateTableHead(["#", "Fullname", "Relationship", "Birth Date", "Identity No", "Marital Status", "Gender", "Actions"])
+					tbody(id="family-data-content")
+						tr
+							td(data-title='#') 1
+							td(data-title='Fullname') Giacomo Guilizzoni
+							td(data-title='Relationship') Father
+							td(data-title='Birth Date') 1 June 2014
+							td(data-title='Identity No') 611826454635
+							td(data-title='Marital Status') Married
+							td(data-title='Gender') Male
+							td(data-title)
+								a(href='javascript:void(0);')
+									i.material-icons.md-dark.pmd-sm more_vert
+			hr
+			.row
+				.col-md-10.col-xs-7.col-sm-7
+					h2(style="padding-left: 10px;") Emergecy Contacts
+				.col-md-2.col-xs-5.col-sm-5(style="padding-top: 10px;")
+					+rippleButton({title: 'Add New', class: 'btn-primary', style: "", id: 'contact-add-new'})
+			hr
+			.pmd-table-card
+				table.table.pmd-table
+					+generateTableHead(["#", "Name", "Relationship", "Phone Number", "Email", "Gender", "Actions"])
+					tbody(id="emergency-contact-content")
+						tr
+							td(data-title='#') 1
+							td(data-title='Fullname') Giacomo Guilizzoni
+							td(data-title='Relationship') Uncle
+							td(data-title='Phone Number') 0823393883
+							td(data-title='Email') jhon@example.com
+							td(data-title='Gender') Male
+							td(data-title)
+								a(href='javascript:void(0);')
+									i.material-icons.md-dark.pmd-sm more_vert
+

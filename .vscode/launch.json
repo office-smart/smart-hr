@@ -10,7 +10,7 @@
             "name": "Launch Server",
             "program": "${workspaceFolder}/server.js",
             "env": {
-                "PORT": "3000"
+                "PORT": "3001"
             },
             "args": [],
             "skipFiles": [

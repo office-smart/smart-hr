@@ -1,0 +1,65 @@
+include ../form-elements/forms.pug
+
+mixin personalInfo
+	.component-box
+		.pmd-card.pmd-card-custom-form
+			.pmd-card-body
+				.row
+					.col-md-5
+						+inputTextField({title: "Full Name", id: "fullname"})
+					.col-md-1
+					.col-md-5
+				.row
+					.col-md-5
+						+inputTextField({title: "Last Name", id: "lastname"})
+					.col-md-1
+					.col-md-5
+						+inputTextField({title: "Email Address", id: "email-address"})
+				.row
+					.col-md-5
+						+inputTextField({title: "Barcode", id: "barcode"})
+					.col-md-1
+					.col-md-5
+						.form-group.pmd-textfield
+							.row
+								.col-md-4
+									+dropdownIdentityType({title: "Identity Type", id: "identity-type"})
+								.col-md-8
+									+inputTextField({title: "Identity No", id: "identity-no"})
+				.row
+					.col-md-5
+						+inputTextField({title: "Address", id: "address", style: "height: 30px;"})
+					.col-md-1
+					.col-md-3
+						+inputTextField({title: "City", id: "city"})
+					.col-md-2
+						+inputTextField({title: "Postal Code", id: "postal-code"})
+				.row
+					.col-md-5
+						+inputTextField({title: "Place Of Birth", id: "place-of-birth"})
+					.col-md-1
+					.col-md-5
+						+dateDropdown(14, 60, true, {day: "birth-date-day", month: "birth-date-month", year: "birth-date-year", title: 'Date Of Birth'})
+				.row
+					.col-md-5
+						+inputTextField({title: "Phone Number #1", id: "phone1"})
+					.col-md-1
+					.col-md-5
+						+inputTextField({title: "Phone Number #2", id: "phone2"})
+				.row
+					.col-md-5
+						.row
+							.col-md-6.col-xs-6-col-sm-6
+								+radioGender({name: 'gender', title: "Gender", id: "gender", checked: 'female'})
+							.col-md-6.col-xs-6-col-sm-6
+								+inputRadio({name: 'maritalstatus', title: "Marital Status", id: "marital-status", checked: 'single'}, {'single': 'Single', 'married': 'Married'})
+					.col-md-1
+					.col-md-5
+						.row
+							.col-md-6.col-xs-6-col-sm-6
+								+dropdownBloodType({title: "Blood Type", id: "blood-type"})
+							.col-md-6.col-xs-6-col-sm-6
+								+dropdownReligion({title: "Religion", id: "religion"})
+						.row
+							.col-md-12
+								+rippleButton({onclick: "", style: "float: right;margin-top: 30px;", title: 'Update Info'})

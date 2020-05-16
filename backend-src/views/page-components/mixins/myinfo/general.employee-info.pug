@@ -1,0 +1,23 @@
+include ../form-elements/forms.pug
+
+mixin employeeInfo
+	.component-box
+		.pmd-card.pmd-card-custom-form
+			.pmd-card-body
+				.row
+					.col-md-5
+						+inputTextField({title: "Employee ID", id: "employee-id"})
+						+inputTextField({title: "Job Position", id: "job-position"})
+						+inputTextField({title: "Employment Status", id: "employment-status"})
+						.form-group.pmd-textfield
+							label.control-label(for='join-date') Join Date
+							+dateDropdown(0, 30, false)
+						
+					.col-md-1
+					.col-md-5
+						+inputTextField({title: "Company Name", id: "company-name"})
+						+inputTextField({title: "Organization Name", id: "organization-name"})
+						+inputTextField({title: "Job Title", id: "job-title"})
+						+inputTextField({title: "Brach Id", id: "branch-id"})
+						br
+						+rippleButtonIcon({title: 'Save Change', class: 'btn-primary', style: "float: right;min-width: 50px;margin-top:8px;", icon: 'save', id: 'general-save-change'})
