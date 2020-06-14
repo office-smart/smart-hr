@@ -1,6 +1,9 @@
 'use strict'
 
-const { AuthMiddleware } = require('../../../middlewares')
+const {
+  AuthMiddleware,
+  ThrottleMiddleware
+} = require('../../../middlewares')
 
 module.exports = {
   'auth.login': {
@@ -8,7 +11,9 @@ module.exports = {
     path: '/auth/login',
     controller: 'AuthController.login',
     afterController: [],
-    beforeController: []
+    beforeController: [
+      ThrottleMiddleware.limitRequest(60, 4)
+    ]
   },
   'auth.logout': {
     method: 'GET',
@@ -16,7 +21,8 @@ module.exports = {
     controller: 'AuthController.logout',
     afterController: [],
     beforeController: [
-      AuthMiddleware.token
+      AuthMiddleware.token,
+      ThrottleMiddleware.limitRequest(60, 4)
     ]
   }
 }

@@ -4,6 +4,14 @@
 const { AuthMiddleware } = require('../../../middlewares')
 
 module.exports = {
+  // dynamic assets
+  'js.identity': {
+    method: 'GET',
+    path: '/modules/identity/clients.min.js',
+    controller: 'AssetsController.clientIdentity',
+    afterController: [], // the middlewares fires after execute the controller function
+    beforeController: [] // the middlewares fires before execute the controller function
+  },
   'view.home': {
     method: 'GET',
     path: '/',

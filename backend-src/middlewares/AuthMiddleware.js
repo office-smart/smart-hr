@@ -1,7 +1,7 @@
 'use strict'
 
 const { result, intersection } = require('lodash')
-const { get } = require('../libs/redis')
+const { redisGetData } = require('../providers/redis')
 
 class AuthMiddleware {
   getToken (request) {
@@ -26,11 +26,11 @@ class AuthMiddleware {
       try {
         const token = this.getToken(request)
         const needPermissions = this.access.length
-        const access = await get(`permissions_${token}`)
+        const access = await redisGetData(`permissions_${token}`)
         if (!access) return response.redirect('/login')
         const arrayAccess = access.split(',').filter(x => typeof x === 'string').map(x => x.trim())
         if (intersection(arrayAccess, this.access).length < needPermissions) throw new Error('Need Permission To Access This Page')
-        const user = await get(token)
+        const user = await redisGetData(token)
         if (!user || (user && user.length === 0)) throw new Error('Invalid Session Data')
         const { employeeId, username, lang, companyId, exp } = JSON.parse(user)
         const config = {

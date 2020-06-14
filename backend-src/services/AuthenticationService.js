@@ -5,7 +5,7 @@ const md5 = require('md5')
 
 /* helpers */
 const lang = require('../languages/index')
-const { set, del } = require('../libs/redis')
+const { redisSetData, redisDelData } = require('../providers/redis')
 
 /* services */
 const AccountsService = require('./AccountsService')
@@ -40,8 +40,8 @@ service.doLogin = async ({ username, password }) => {
     exp: newExp
   })
   const key = md5(stringData)
-  set({ key, value: stringData, exp }) // 12 jam
-  set({ key: `permissions_${key}`, value: data.permissions.toString(), exp }) // 12 jam
+  redisSetData({ key, value: stringData, exp }) // 12 jam
+  redisSetData({ key: `permissions_${key}`, value: data.permissions.toString(), exp }) // 12 jam
   return { token: key, username, exp: newExp, timeServer: new Date().getTime() }
 }
 
@@ -62,7 +62,7 @@ service.getLoginInfo = async ({ username, password }) => {
 
 service.doLogout = function (currentToken = '') {
   if (!currentToken) throw new Error('You\'re never logged in')
-  del(currentToken)
+  redisDelData(currentToken)
 }
 
 module.exports = service

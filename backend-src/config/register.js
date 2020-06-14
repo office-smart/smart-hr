@@ -1,9 +1,12 @@
+'use strict'
+
+const express = require('express')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const { join } = require('path')
-require('../libs/ExtendResponse')
+require('../providers/response')
 
-module.exports = (app, express) => {
+module.exports = (app, redis) => {
   /* registering extender for response */
   /*
    *  Register Middleware

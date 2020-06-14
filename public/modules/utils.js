@@ -19,6 +19,7 @@ utils.listenEnter = function (handler) {
 utils.sendXHR = function (opt) {
   if (!opt.headers) opt.headers = {}
   if (utils.currentToken) opt.headers['smart-token'] = utils.currentToken
+  if (document.identity) opt.headers['smart-identity'] = document.identity
   return new Promise(function (resolve, reject) {
     opt.success = function (res) {
       resolve(res)

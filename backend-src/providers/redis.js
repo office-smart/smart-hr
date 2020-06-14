@@ -33,10 +33,10 @@ module.exports = {
       })
     })
   },
-  set: ({ key, value, exp }) => {
+  redisSetData: ({ key, value, exp }) => {
     client.set(key, value, 'EX', exp)
   },
-  get: (key) => {
+  redisGetData: (key) => {
     return new Promise((resolve, reject) => {
       client.get(key, (err, data) => {
         if (err) return reject(err)
@@ -44,7 +44,7 @@ module.exports = {
       })
     })
   },
-  del: (key) => {
+  redisDelData: (key) => {
     client.del(key, function (err) {
       if (!err) {
         client.del(`permissions_${key}`, function (err2) {
