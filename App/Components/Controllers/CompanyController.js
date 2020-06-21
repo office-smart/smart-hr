@@ -13,4 +13,6 @@ class CompanyController {
   }
 }
 
-module.exports = CompanyController
+module.exports = function () {
+  return new CompanyController()
+}

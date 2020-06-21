@@ -21,7 +21,7 @@ service.getClientIdentityScript = async function (accountId) {
   await redisSetData({
     key: `identity_${identityClient}`,
     value: 200,
-    exp: 1 * 60 * 1000
+    exp: 1 * 60 * 1000 // 1 menit >> jika dalam 1 menit tidak dipakai, berarti identity udh terdefinisi dalam cookie. dan jika dipakai, maka ttl akan ditambah menjadi 1 hari
   })
   return script
 }

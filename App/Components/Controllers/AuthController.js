@@ -3,6 +3,10 @@
 const AuthenticationService = require('../services/AuthenticationService')
 
 class AuthController {
+  constructor (config = {}) {
+    this.config = config
+  }
+
   async login ({ req, res, config }, next) {
     try {
       const data = await AuthenticationService.doLogin(req.body)
@@ -22,4 +26,6 @@ class AuthController {
   }
 }
 
-module.exports = AuthController
+module.exports = function () {
+  return new AuthController()
+}

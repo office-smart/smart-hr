@@ -1,12 +1,14 @@
 'use strict'
 
-const { redisGetData, redisSetData } = require('../providers/redis')
-
 function getIdentity (request) {
   const identity = request.header('smart-identity')
   return identity
 }
 class ThrottleMiddleware {
+  constructor ({ Redis }) {
+    this.redis = Redis
+  }
+
   /**
      * Number (time) in second
      * Number (limit)
@@ -17,9 +19,9 @@ class ThrottleMiddleware {
         const currentIdentity = getIdentity(request)
         if (!currentIdentity || (currentIdentity && currentIdentity.length === 0)) throw new Error('Need Login Again!')
         const key = `identity_${currentIdentity}`
-        const dataOnRedis = await redisGetData(key)
+        const dataOnRedis = await this.redisGetData(key)
         if (!dataOnRedis) throw new Error('Need Login Again!!')
-        await redisSetData(key, dataOnRedis - 1)
+        await this.redisSetData(key, dataOnRedis - 1)
         await next()
       } catch (err) {
         response.api400(err)
@@ -28,4 +30,6 @@ class ThrottleMiddleware {
   }
 }
 
-module.exports = ThrottleMiddleware
+module.exports = function (injections) {
+  return new ThrottleMiddleware(injections)
+}

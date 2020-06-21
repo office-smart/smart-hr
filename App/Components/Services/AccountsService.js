@@ -4,7 +4,7 @@
 const AccountsModel = require('../models/AccountsModel')
 
 /* services */
-const EncryptionService = require('../services/EncryptionService')
+const EncryptionService = require('./EncryptionService')
 
 /* interfaces */
 // const { Accounts: AccountInterface } = require('../interfaces/ModelInterfaces')
@@ -15,6 +15,7 @@ service.findBy = async function (criteria = {}) {
   const d = await AccountsModel.findOne(criteria)
   return d || {}
 }
+
 service.getAccountsBy = async ({ username, email, status, page, limit }, myusername) => {
   const criteria = {}
   criteria.username = {

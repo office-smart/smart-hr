@@ -24,4 +24,6 @@ class AccountsController {
   }
 }
 
-module.exports = AccountsController
+module.exports = function () {
+  return new AccountsController()
+}

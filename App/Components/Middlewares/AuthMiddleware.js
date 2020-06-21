@@ -1,11 +1,13 @@
 'use strict'
 
-const { result, intersection } = require('lodash')
-const { redisGetData } = require('../providers/redis')
-
 class AuthMiddleware {
+  constructor ({ Redis, lodash }) {
+    this.redisProvider = Redis
+    this.lodash = lodash
+  }
+
   getToken (request) {
-    const token = result(request, 'cookies.smart-token', request.header('smart-token')) || request.query['smart-token']
+    const token = this.lodash.result(request, 'cookies.smart-token', request.header('smart-token')) || request.query['smart-token']
     if (!token || (token && token.length === 0)) throw new Error('Invalid Auth Header')
     return token
   }
@@ -26,11 +28,11 @@ class AuthMiddleware {
       try {
         const token = this.getToken(request)
         const needPermissions = this.access.length
-        const access = await redisGetData(`permissions_${token}`)
+        const access = await this.redisProvider.redisGetData(`permissions_${token}`)
         if (!access) return response.redirect('/login')
         const arrayAccess = access.split(',').filter(x => typeof x === 'string').map(x => x.trim())
-        if (intersection(arrayAccess, this.access).length < needPermissions) throw new Error('Need Permission To Access This Page')
-        const user = await redisGetData(token)
+        if (this.lodash.intersection(arrayAccess, this.access).length < needPermissions) throw new Error('Need Permission To Access This Page')
+        const user = await this.redisProvider.redisGetData(token)
         if (!user || (user && user.length === 0)) throw new Error('Invalid Session Data')
         const { employeeId, username, lang, companyId, exp } = JSON.parse(user)
         const config = {
@@ -57,4 +59,6 @@ class AuthMiddleware {
   }
 }
 
-module.exports = AuthMiddleware
+module.exports = function (injections) {
+  return new AuthMiddleware(injections)
+}

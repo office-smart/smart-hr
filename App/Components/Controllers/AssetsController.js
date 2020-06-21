@@ -14,4 +14,6 @@ class AssetsController {
   }
 }
 
-module.exports = AssetsController
+module.exports = function () {
+  return new AssetsController()
+}
